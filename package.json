@@ -8,7 +8,8 @@
         "dev": "cross-env DEV_SERVER=true vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common@latest"
     },
     "eslintConfig": {
         "root": true,

@@ -38,7 +38,7 @@
         </div>
         <div class="c-header-nav__pad">
             <el-menu mode="horizontal" class="c-quick-menu" v-model="activeIndex" :ellipsis="false">
-                <el-sub-menu index="quick-menu" popper-class="c-quick-menu__submenu" :teleported="true">
+                <el-sub-menu index="quick-menu" popper-class="c-quick-menu__submenu" >
                     <template #title>快捷导航</template>
                     <el-menu-item v-for="item in finalNav" :key="'header-nav-' + item.key">
                         <template v-if="matchedClient(item.client)">
@@ -240,16 +240,22 @@ export default {
 .c-quick-menu__submenu {
     .el-menu {
         min-width: 150px;
+
+        .el-menu{
+            .el-menu-item{
+                padding:0 20px !important;
+            }
+        }
     }
     .u-menu-item,
     .u-item {
         display: block;
         color: @color;
     }
-    .el-menu-item {
+    .el-menu-item,.el-sub-menu {
         min-width: 150px;
         &:hover {
-            background-color: #e6f0fb;
+            background-color: #e6f0fb !important;
 
             .el-sub-menu__title {
                 background-color: #e6f0fb;
