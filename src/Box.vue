@@ -21,19 +21,20 @@
             </li>
         </ul>
         <span class="u-close" @click="closeBox($event)">
-            <i class="el-icon-upload2"></i>
+            <el-icon><Upload /></el-icon>
             <span>收起</span>
         </span>
     </div>
 </template>
 
 <script>
-import search from "./header/search.vue";
 import _ from "lodash";
 import Bus from "../utils/bus";
 import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import box from "../assets/data/box.json";
 import { getMenu } from "../service/header.js";
+
+import search from "./header/Search.vue";
 export default {
     name: "CommonBox",
     props: ["overlayEnable"],

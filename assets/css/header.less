@@ -179,6 +179,11 @@ body {
         visibility: hidden;
         opacity: 0;
         transition: visibility 0.15s, opacity 0.15s linear;
+
+        .el-icon {
+            .pr;
+            top: 2px;
+        }
     }
 
     &:hover {
@@ -435,6 +440,14 @@ body {
         margin-top: 6px;
         b {
             color: @color;
+            margin-right: 5px;
+        }
+        .el-icon {
+            .pr;
+            top: 1px;
+            &:hover {
+                color: var(--el-color-primary);
+            }
         }
     }
     .u-copy {

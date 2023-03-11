@@ -37,12 +37,12 @@ import dayjs from "dayjs";
 import isToday from "dayjs/plugin/isToday";
 dayjs.extend(isToday);
 
-import message from "./message.vue";
-import publish from "./publish.vue";
-import vip from "./vip.vue";
-import asset from "./asset.vue";
-import manage from "./manage.vue";
-import userInfo from "./userInfo.vue";
+import message from "./Message.vue";
+import publish from "./Publish.vue";
+import vip from "./Vip.vue";
+import asset from "./Asset.vue";
+import manage from "./Manage.vue";
+import userInfo from "./UserInfo.vue";
 export default {
     name: "HeaderUser",
     components: {

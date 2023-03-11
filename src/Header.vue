@@ -29,11 +29,12 @@
 import _ from "lodash";
 import { isApp, KW } from "../assets/js/app.js";
 
-import logo from "./header/logo.vue";
-import clientSwitch from "./header/clientSwitch.vue";
-import search from "./header/search.vue";
-import nav from "./header/nav.vue";
-import user from "./header/user.vue";
+// components
+import logo from "./header/Logo.vue";
+import clientSwitch from "./header/ClientSwitch.vue";
+import search from "./header/Search.vue";
+import nav from "./header/Nav.vue";
+import user from "./header/User.vue";
 import Box from "../src/Box.vue";
 
 export default {

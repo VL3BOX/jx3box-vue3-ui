@@ -10,7 +10,7 @@
                                 :class="{ on: isFocus(item.link) }"
                                 :href="item.link"
                                 :target="isSelf(item.link)"
-                                >{{ item.label }}<i class="el-icon-arrow-down el-icon--right"></i
+                                >{{ item.label }}<el-icon><ArrowDown /></el-icon
                             ></a>
                             <template #dropdown>
                                 <el-dropdown-menu class="c-header-menu">
@@ -38,7 +38,7 @@
         </div>
         <div class="c-header-nav__pad">
             <el-menu mode="horizontal" class="c-quick-menu" v-model="activeIndex" :ellipsis="false">
-                <el-sub-menu index="quick-menu" popper-class="c-quick-menu__submenu" >
+                <el-sub-menu index="quick-menu" popper-class="c-quick-menu__submenu">
                     <template #title>快捷导航</template>
                     <el-menu-item v-for="item in finalNav" :key="'header-nav-' + item.key">
                         <template v-if="matchedClient(item.client)">
@@ -241,9 +241,9 @@ export default {
     .el-menu {
         min-width: 150px;
 
-        .el-menu{
-            .el-menu-item{
-                padding:0 20px !important;
+        .el-menu {
+            .el-menu-item {
+                padding: 0 20px !important;
             }
         }
     }
@@ -252,7 +252,8 @@ export default {
         display: block;
         color: @color;
     }
-    .el-menu-item,.el-sub-menu {
+    .el-menu-item,
+    .el-sub-menu {
         min-width: 150px;
         &:hover {
             background-color: #e6f0fb !important;

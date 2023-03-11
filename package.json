@@ -1,6 +1,6 @@
 {
     "name": "jx3box-vue3-ui",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "JX3BOX Vue3 UI",
     "main": "index.js",
     "scripts": {
@@ -9,7 +9,7 @@
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "prepare": "husky install",
-        "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common@latest"
+        "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common@latest @jx3box/jx3box-data@latest"
     },
     "eslintConfig": {
         "root": true,
@@ -27,15 +27,15 @@
     "dependencies": {
         "@element-plus/icons-vue": "^2.1.0",
         "@jx3box/jx3box-common": "github:jx3box/jx3box-common",
+        "@vueuse/core": "^9.13.0",
         "@vueuse/head": "^0.7.6",
         "axios": "^1.3.4",
         "core-js": "^3.8.3",
         "dayjs": "^1.11.7",
         "element-plus": "^2.2.36",
+        "lodash": "^4.17.21",
         "mitt": "^3.0.0",
-        "pinia": "^2.0.33",
-        "vue": "^3.2.13",
-        "vue-router": "^4.0.16"
+        "vue": "^3.2.13"
     },
     "devDependencies": {
         "@babel/core": "^7.12.16",

@@ -8,21 +8,26 @@
             <div class="u-detail">
                 <span class="u-item">
                     <a class="u-item-primary" href="/about/incentives" target="_blank">
-                        <span class="u-label"><i class="el-icon-user"></i> 等级</span>
+                        <span class="u-label"
+                            ><el-icon><User /></el-icon> 等级</span
+                        >
                         <span class="u-value u-level" :style="levelStyle">Lv.{{ level }}</span>
                     </a>
                     <!-- <span class="u-item-extend"><a href="/about/incentives" target="_blank">[权益]</a></span> -->
                 </span>
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/boxcoin" target="_blank"
-                        ><span class="u-label"><i class="el-icon-coin"></i> 盒币</span>
+                        ><span class="u-label"
+                            ><el-icon><Coin /></el-icon> 盒币</span
+                        >
                         <span class="u-value">{{ asset.box_coin }}</span></a
                     >
                     <span class="u-item-extend"><a href="/dashboard/boxcoin" target="_blank">[兑换通宝]</a></span>
                 </span>
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/cny" target="_blank"
-                        ><span class="u-label"><i class="el-icon-wallet"></i> 金箔</span
+                        ><span class="u-label"
+                            ><el-icon><Wallet /></el-icon> 金箔</span
                         ><span class="u-value">{{ asset.cny }}</span></a
                     >
                     <span class="u-item-extend"
@@ -32,7 +37,9 @@
                 </span>
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/points" target="_blank"
-                        ><span class="u-label"><i class="el-icon-sugar"></i> 银铛</span>
+                        ><span class="u-label"
+                            ><el-icon><Sugar /></el-icon> 银铛</span
+                        >
                         <span class="u-value">{{ asset.points }}</span></a
                     >
                     <span class="u-item-extend"
@@ -42,7 +49,9 @@
                 </span>
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/card" target="_blank"
-                        ><span class="u-label"><i class="el-icon-bank-card"></i> 卡密</span>
+                        ><span class="u-label"
+                            ><el-icon><Postcard /></el-icon> 卡密</span
+                        >
                         <span class="u-value">{{ asset.ext_info ? asset.ext_info.keycode : 0 }}</span></a
                     >
                     <span class="u-item-extend"><a href="/dashboard/card" target="_blank">[查看]</a></span>
@@ -142,6 +151,9 @@ export default {
 
             .u-label {
                 color: #454545;
+                .flex;
+                align-items: center;
+                gap: 5px;
             }
 
             .u-value {

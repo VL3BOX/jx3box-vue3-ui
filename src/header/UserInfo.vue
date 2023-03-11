@@ -53,7 +53,7 @@
                             <span
                                 >魔盒UID：<b>{{ user.ID }}</b></span
                             >
-                            <i class="el-icon-document-copy u-copy" @click.stop="copyText(user.ID)"></i>
+                            <el-icon @click.stop="copyText(user.ID)"><DocumentCopy /></el-icon>
                         </div>
                     </div>
 
@@ -64,14 +64,22 @@
                     </el-button-group>
 
                     <div class="u-other">
-                        <a href="/dashboard/fav" class="u-item"><i class="el-icon-star-off"></i>收藏订阅 </a>
-                        <a href="/team/role/manage" class="u-item"><i class="el-icon-user"></i>角色管理 </a>
-                        <a href="/dashboard/purchases" class="u-item"
-                            ><i class="el-icon-shopping-cart-2"></i>已购资源
+                        <a href="/dashboard/fav" class="u-item"
+                            ><el-icon><Star /></el-icon>收藏订阅
                         </a>
-                        <a href="/dashboard/mall" class="u-item"><i class="el-icon-shopping-bag-1"></i>订单中心 </a>
+                        <a href="/team/role/manage" class="u-item"
+                            ><el-icon><User /></el-icon>角色管理
+                        </a>
+                        <a href="/dashboard/purchases" class="u-item"
+                            ><el-icon><ShoppingCart /></el-icon>已购资源
+                        </a>
+                        <a href="/dashboard/mall" class="u-item"
+                            ><el-icon><ShoppingBag /></el-icon>订单中心
+                        </a>
                         <hr />
-                        <a href="/dashboard/feedback" class="u-item"><i class="el-icon-phone-outline"></i>反馈帮助 </a>
+                        <a href="/dashboard/feedback" class="u-item"
+                            ><el-icon><Phone /></el-icon>反馈帮助
+                        </a>
                         <hr />
                         <div class="u-logout">
                             <el-button @click="logout" size="small" plain>退出登录</el-button>

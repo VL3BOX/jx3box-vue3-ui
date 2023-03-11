@@ -6,18 +6,28 @@
         <ul class="u-menu u-pop-content">
             <li v-for="item in finalPanel" :key="item.label">
                 <a :href="item.link" target="_blank"
-                    ><i :class="item.icon || 'el-icon-present'"></i> {{ item.label }}</a
+                    ><el-icon>
+                        <component :is="item.icon" v-if="item.icon"></component>
+                        <Present v-else />
+                    </el-icon>
+                    {{ item.label }}</a
                 >
             </li>
             <hr v-if="finalPanel.length" />
             <li v-if="isEditor">
-                <a href="https://os.jx3box.com/admin" target="_blank"><i class="el-icon-receiving"></i> 管理平台</a>
+                <a href="https://os.jx3box.com/admin" target="_blank"
+                    ><el-icon><MessageBox /></el-icon> 管理平台</a
+                >
             </li>
             <li v-if="isAdmin">
-                <a href="/admin"><i class="el-icon-setting"></i> 站点配置</a>
+                <a href="/admin"
+                    ><el-icon><Setting></Setting></el-icon> 站点配置</a
+                >
             </li>
             <li v-if="isTeamMember">
-                <a href="/dashboard/feedback?tab=pending"><i class="el-icon-message"></i> 反馈处理</a>
+                <a href="/dashboard/feedback?tab=pending"
+                    ><el-icon><Message /></el-icon> 反馈处理</a
+                >
             </li>
         </ul>
     </div>
@@ -83,7 +93,7 @@ export default {
                 const isTeamMember = JSON.parse(localStorage.getItem("BoxTeam3"));
 
                 if (isTeamMember) {
-                    this.isTeamMember = isTeamMember === "true";
+                    this.isTeamMember = isTeamMember === "true" || isTeamMember;
                 } else {
                     checkTeamMember().then((res) => {
                         this.isTeamMember = res.data.data;
