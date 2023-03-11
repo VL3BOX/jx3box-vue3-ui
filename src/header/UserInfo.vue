@@ -21,7 +21,8 @@
                         <a href="https://os.jx3box.com/admin">管理平台</a>
                     </li>
                     <li>
-                        <a @click="logout">退出登录</a>
+                        <a class="" @click="logout">退出登录</a>
+
                     </li>
                 </ul>
             </template>
@@ -82,7 +83,7 @@
                         </a>
                         <hr />
                         <div class="u-logout">
-                            <el-button @click="logout" size="small" plain>退出登录</el-button>
+                            <el-button @click="logout" plain>退出登录</el-button>
                         </div>
                     </div>
                 </div>
