@@ -26,5 +26,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
 }
 
+import { install } from "../index.js";
+install(app);
+
 // 3.Mount DOM
 app.mount("#app");

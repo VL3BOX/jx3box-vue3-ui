@@ -28,25 +28,17 @@
 </template>
 
 <script>
-import Header from "./Header.vue";
-import Breadcrumb from "./Breadcrumb.vue";
-import Main from "./Main.vue";
-import Footer from "./Footer.vue";
-import LeftSidebar from "./LeftSidebar.vue";
-import LeftSideToggle from "./LeftSideToggle.vue";
-import RightSidebar from "./RightSidebar.vue";
-import Bottom from "./Bottom.vue";
 export default {
     name: "App",
     components: {
-        Main,
-        Header,
-        Footer,
-        Breadcrumb,
-        LeftSidebar,
-        LeftSideToggle,
-        RightSidebar,
-        Bottom,
+        // Main,
+        // Header,
+        // Footer,
+        // Breadcrumb,
+        // LeftSidebar,
+        // LeftSideToggle,
+        // RightSidebar,
+        // Bottom,
     },
 };
 </script>
