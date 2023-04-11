@@ -59,7 +59,7 @@ import Like from "../interact/Like.vue";
 import Fav from "../interact/Fav.vue";
 import BoxcoinAdmin from "../interact/BoxcoinAdmin.vue";
 import BoxcoinUser from "../interact/BoxcoinUser.vue";
-import BoxcoinRecords from "@/interact/BoxcoinRecords.vue";
+import BoxcoinRecords from "../interact/BoxcoinRecords.vue";
 import User from "@jx3box/jx3box-common/js/user";
 import { getBoxcoinStatus, getPostBoxcoinConfig } from "../../service/thx";
 
