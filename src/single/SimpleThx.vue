@@ -29,7 +29,28 @@
                 @updateRecord="updateRecord"
                 :client="client"
             />
+            <el-tooltip effect="dark" content="打赏记录" placement="top-start">
+                <!-- <div class="w-boxcoin-block"> -->
+                <img
+                    src="../../assets/img/widget/records.svg"
+                    svg-inline
+                    class="u-record-icon"
+                    alt=""
+                    @click="onRecord"
+                />
+                <!-- </div> -->
+            </el-tooltip>
         </div>
+
+        <el-drawer v-model="showDrawer" title="打赏记录">
+            <BoxcoinRecords
+                :postId="postId"
+                :postType="postType"
+                :postClient="client"
+                :cacheRecord="cacheRecord"
+                :mode="mode"
+            />
+        </el-drawer>
     </div>
 </template>
 
@@ -38,6 +59,7 @@ import Like from "../interact/Like.vue";
 import Fav from "../interact/Fav.vue";
 import BoxcoinAdmin from "../interact/BoxcoinAdmin.vue";
 import BoxcoinUser from "../interact/BoxcoinUser.vue";
+import BoxcoinRecords from "@/interact/BoxcoinRecords.vue";
 import User from "@jx3box/jx3box-common/js/user";
 import { getBoxcoinStatus, getPostBoxcoinConfig } from "../../service/thx";
 
@@ -48,6 +70,7 @@ export default {
         Fav,
         BoxcoinAdmin,
         BoxcoinUser,
+        BoxcoinRecords,
     },
     props: {
         type: {
@@ -80,7 +103,7 @@ export default {
         },
         client: {
             type: String,
-            default: "origin",
+            default: "std",
         },
         allowGift: {
             type: Number,
@@ -112,6 +135,8 @@ export default {
 
             cacheRecord: null,
             boxcoin_enable: 0,
+
+            showDrawer: false,
         };
     },
     computed: {
@@ -159,6 +184,9 @@ export default {
         // 用户打赏
         updateRecord: function (data) {
             this.cacheRecord = data;
+        },
+        onRecord: function () {
+            this.showDrawer = true;
         },
     },
 };

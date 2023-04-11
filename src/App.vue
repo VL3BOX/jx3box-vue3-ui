@@ -27,7 +27,7 @@
                 :userId="7"
                 :adminBoxcoinEnable="true"
                 :userBoxcoinEnable="true"
-                :postId="[{ user_id: 10, article_id: '11111', article_type: '' }]"
+                :postId="57260"
             />
             <RightSidebar> </RightSidebar>
             <Footer></Footer>
