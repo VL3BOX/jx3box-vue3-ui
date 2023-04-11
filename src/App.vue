@@ -20,14 +20,24 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
+            <SimpleThxVue
+                postType="bbs"
+                postTitle="bbs23865的标题"
+                type="batchReward"
+                :userId="7"
+                :adminBoxcoinEnable="true"
+                :userBoxcoinEnable="true"
+                :postId="[{ user_id: 10, article_id: '11111', article_type: '' }]"
+            />
             <RightSidebar> </RightSidebar>
             <Footer></Footer>
-            <Bottom></Bottom>
+            <!-- <Bottom></Bottom> -->
         </Main>
     </div>
 </template>
 
 <script>
+import SimpleThxVue from "./single/SimpleThx.vue";
 export default {
     name: "App",
     components: {
@@ -39,6 +49,7 @@ export default {
         // LeftSideToggle,
         // RightSidebar,
         // Bottom,
+        SimpleThxVue,
     },
 };
 </script>

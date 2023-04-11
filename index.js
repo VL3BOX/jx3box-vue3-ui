@@ -5,7 +5,6 @@ import Breadcrumb from "./src/Breadcrumb.vue";
 import LeftSidebar from "./src/LeftSidebar.vue";
 import RightSidebar from "./src/RightSidebar.vue";
 import LeftSideToggle from "./src/LeftSideToggle.vue";
-import Bottom from "./src/Bottom.vue";
 
 const components = {
     Header,
@@ -15,7 +14,6 @@ const components = {
     LeftSidebar,
     RightSidebar,
     LeftSideToggle,
-    Bottom,
 };
 
 const install = function (app) {
