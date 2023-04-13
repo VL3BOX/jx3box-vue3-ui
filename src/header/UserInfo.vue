@@ -145,7 +145,7 @@ export default {
     methods: {
         copyText,
         showAvatar,
-        logout: function () {
+        logout: function (mute=false) {
             User.destroy()
                 .then(() => {
                     this.$emit("logout");
@@ -154,6 +154,7 @@ export default {
                     }
                 })
                 .then(() => {
+                    if (mute) return;
                     this.$notify({
                         title: "成功",
                         message: "登出成功",
@@ -169,6 +170,10 @@ export default {
             getMyInfo().then((data) => {
                 this.user = data;
                 this.isSuperAuthor = !!data.sign;
+
+                if (this.user.deleted) {
+                    this.logout(true);
+                }
             });
         },
     },
