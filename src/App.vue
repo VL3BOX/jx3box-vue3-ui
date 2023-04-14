@@ -16,7 +16,7 @@
         </breadcrumb>
         <LeftSidebar :open="true" :uid="8">
             <LeftSideToggle :mobileOnly="true" />
-            <!-- <Author :author="author" :uid="37" /> -->
+            <Author :uid="8" />
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
@@ -37,19 +37,13 @@
 </template>
 
 <script>
+import Author from './Author.vue';
 import SimpleThxVue from "./single/SimpleThx.vue";
 export default {
     name: "App",
     components: {
-        // Main,
-        // Header,
-        // Footer,
-        // Breadcrumb,
-        // LeftSidebar,
-        // LeftSideToggle,
-        // RightSidebar,
-        // Bottom,
         SimpleThxVue,
+        Author,
     },
 };
 </script>
