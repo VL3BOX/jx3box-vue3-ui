@@ -4,7 +4,7 @@
             <ul class="u-list">
                 <li class="u-item u-head">
                     <span class="u-meta u-action">
-                        <i class="el-icon-trophy"></i>
+                        <el-icon><Trophy /></el-icon>
                     </span>
                     <span class="u-meta u-user">参与打赏</span>
                     <span class="u-meta u-user">收益作者</span>
@@ -37,7 +37,7 @@
                     <time class="u-meta u-time">{{ showTime(item.created_at) }}</time>
                     <span class="u-client" v-if="isSuperAdmin">{{ item.client }}</span>
                     <span class="u-delete" v-if="isSuperAdmin" @click="recovery(item, i)">
-                        <i class="el-icon-delete"></i>撤销
+                        <i class="Delete"></i>撤销
                     </span>
                 </li>
             </ul>

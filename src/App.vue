@@ -29,6 +29,7 @@
                 :userBoxcoinEnable="true"
                 :postId="57260"
             />
+            <Comment category="post" id="19382"></Comment>
             <RightSidebar> </RightSidebar>
             <Footer></Footer>
             <!-- <Bottom></Bottom> -->
@@ -37,13 +38,15 @@
 </template>
 
 <script>
-import Author from './Author.vue';
+import Author from './single/Author.vue';
 import SimpleThxVue from "./single/SimpleThx.vue";
+import Comment from "./single/Comment.vue";
 export default {
     name: "App",
     components: {
         SimpleThxVue,
         Author,
+        Comment,
     },
 };
 </script>

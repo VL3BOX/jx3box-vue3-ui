@@ -32,7 +32,7 @@
                 <img class="u-avatar" :src="showAvatar('')" />
                 <span class="u-name">-</span>
                 <div class="u-empty">
-                    <i class="el-icon-warning-outline"></i>{{ searched ? "未找到匹配项" : "请输入搜索条件" }}
+                    <el-icon><Warning /></el-icon>{{ searched ? "未找到匹配项" : "请输入搜索条件" }}
                 </div>
             </template>
         </div>

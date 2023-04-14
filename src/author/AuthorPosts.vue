@@ -1,7 +1,6 @@
 <template>
     <div class="c-author-posts" v-if="ready">
         <div class="u-label">
-            <!-- <i class="el-icon-notebook-2"></i> -->
             <img svg-inline src="../../assets/img/leftsidebar/post.svg" />
             <span>最新作品</span>
             <a :href="authorLink(uid)" class="u-more" target="_blank"

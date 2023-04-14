@@ -18,15 +18,15 @@
 </template>
 
 <script>
-import AuthorInfo from "./author/AuthorInfo.vue";
-import AuthorLink from "./author/AuthorLink.vue";
-import AuthorFollow from "./author/AuthorFollow.vue";
+import AuthorInfo from "../author/AuthorInfo.vue";
+import AuthorLink from "../author/AuthorLink.vue";
+import AuthorFollow from "../author/AuthorFollow.vue";
 // import AuthorMsg from "./author/AuthorMsg.vue";
-import AuthorGift from "./author/AuthorGift.vue";
-import AuthorFans from "./author/AuthorFans.vue";
-import AuthorMedals from "./author/AuthorMedals.vue";
-import AuthorTeams from "./author/AuthorTeams.vue";
-import AuthorPosts from "./author/AuthorPosts.vue";
+import AuthorGift from "../author/AuthorGift.vue";
+import AuthorFans from "../author/AuthorFans.vue";
+import AuthorMedals from "../author/AuthorMedals.vue";
+import AuthorTeams from "../author/AuthorTeams.vue";
+import AuthorPosts from "../author/AuthorPosts.vue";
 export default {
     name: "AuthorComp",
     props: ["uid"],
@@ -55,5 +55,5 @@ export default {
 </script>
 
 <style lang="less">
-@import "../assets/css/author.less";
+@import "../../assets/css/author.less";
 </style>

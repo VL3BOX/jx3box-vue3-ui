@@ -1,7 +1,6 @@
 <template>
     <div class="c-author-teams" v-if="ready">
         <div class="u-label">
-            <!-- <i class="el-icon-school"></i> -->
             <img svg-inline src="../../assets/img/leftsidebar/united.svg" />
             <span>所在团队</span>
         </div>
