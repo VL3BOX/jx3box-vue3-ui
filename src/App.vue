@@ -23,11 +23,21 @@
             <SimpleThxVue
                 postType="bbs"
                 postTitle="bbs23865的标题"
+                :userId="7"
+                :adminBoxcoinEnable="true"
+                :userBoxcoinEnable="true"
+                :allowGift="true"
+                :postId="57260"
+            />
+            <Thx
+                postType="bbs"
+                postTitle="bbs23865的标题"
                 type="batchReward"
                 :userId="7"
                 :adminBoxcoinEnable="true"
                 :userBoxcoinEnable="true"
                 :postId="57260"
+                :allowGift="true"
             />
             <Comment category="post" id="19382"></Comment>
             <RightSidebar> </RightSidebar>
@@ -41,12 +51,14 @@
 import Author from './single/Author.vue';
 import SimpleThxVue from "./single/SimpleThx.vue";
 import Comment from "./single/Comment.vue";
+import Thx from "./single/Thx.vue";
 export default {
     name: "App",
     components: {
         SimpleThxVue,
         Author,
         Comment,
+        Thx,
     },
 };
 </script>

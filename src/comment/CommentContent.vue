@@ -26,7 +26,7 @@
             <el-button
                 class="u-admin"
                 v-if="canDelete"
-                type="text"
+                link
                 icon="Delete"
                 size="small"
                 @click="deleteComment()"

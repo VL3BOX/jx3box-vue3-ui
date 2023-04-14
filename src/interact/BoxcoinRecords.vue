@@ -74,6 +74,7 @@ export default {
             isSuperAdmin: User.isSuperAdmin(),
         };
     },
+    emits: ["update:boxcoin"],
     computed: {
         post_keys: function () {
             return [this.postType, this.postId];
@@ -117,7 +118,7 @@ export default {
                 this.list = res.data.data.list;
                 this.total = res.data.data.page.total;
                 this.boxcoin = res.data.data.fromManager + res.data.data.fromUser;
-                this.$parent.boxcoin = this.boxcoin;
+                this.$emit("update:boxcoin", this.boxcoin);
             });
         },
         recovery: function (item, i) {

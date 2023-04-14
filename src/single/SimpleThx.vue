@@ -49,6 +49,7 @@
                 :postClient="client"
                 :cacheRecord="cacheRecord"
                 :mode="mode"
+                @update:boxcoin="updateBoxcoin"
             />
         </el-drawer>
     </div>
@@ -106,7 +107,7 @@ export default {
             default: "std",
         },
         allowGift: {
-            type: Number,
+            type: [Number, Boolean],
             default: 1,
         },
         adminBoxcoinEnable: {
@@ -187,6 +188,9 @@ export default {
         },
         onRecord: function () {
             this.showDrawer = true;
+        },
+        updateBoxcoin: function (data) {
+            this.boxcoin = data;
         },
     },
 };
