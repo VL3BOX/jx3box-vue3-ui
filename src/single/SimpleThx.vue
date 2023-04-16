@@ -118,6 +118,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        presetConfig: {
+            type: Object,
+            default: () => ({}),
+        },
     },
     data: function () {
         return {
@@ -156,6 +160,18 @@ export default {
     },
     methods: {
         loadBoxcoinConfig: function () {
+            if (Object.keys(this.presetConfig)?.length) {
+                this.admin_max = this.presetConfig.admin_max || 0;
+                this.admin_min = this.presetConfig.admin_min || 0;
+                this.admin_points = this.presetConfig.admin_points || [10, 1000];
+                this.admin_left = this.presetConfig.admin_left || 0;
+                this.admin_total = this.presetConfig.admin_total || 0;
+
+                this.user_points = this.presetConfig.user_points || [10, 1000];
+                this.user_left = this.presetConfig.user_left || 0;
+                this.boxcoin_enable = this.presetConfig.boxcoin_enable || 0;
+                return;
+            }
             User.isLogin() &&
                 getPostBoxcoinConfig(this.postType).then((res) => {
                     this.admin_max = res.data.data.limit.admin_max || 0;
