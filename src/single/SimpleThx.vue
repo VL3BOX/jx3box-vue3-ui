@@ -42,7 +42,7 @@
             </el-tooltip>
         </div>
 
-        <el-drawer v-model="showDrawer" title="打赏记录">
+        <el-drawer v-model="showDrawer" title="打赏记录" append-to-body>
             <BoxcoinRecords
                 :postId="postId"
                 :postType="postType"
