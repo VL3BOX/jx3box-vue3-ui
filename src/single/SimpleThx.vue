@@ -195,7 +195,7 @@ export default {
                     }
                 });
             getBoxcoinStatus().then((res) => {
-                this.boxcoin_enable = !!~~res.data.data.val;
+                this.boxcoin_enable = !!~~res.data?.data?.val;
             });
         },
         // 用户打赏

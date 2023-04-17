@@ -20,6 +20,7 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
+            <PostHeader :post="post"></PostHeader>
             <SimpleThxVue
                 postType="bbs"
                 postTitle="bbs23865的标题"
@@ -40,8 +41,11 @@
                 :allowGift="true"
             />
             <Comment category="post" id="19382"></Comment>
-            <RightSidebar> </RightSidebar>
-            <Footer></Footer>
+            <RightSidebar>
+                <PostTopic type="bps" :id="48857"></PostTopic>
+            </RightSidebar>
+            <Footer>
+            </Footer>
             <!-- <Bottom></Bottom> -->
         </Main>
     </div>
@@ -52,6 +56,9 @@ import Author from './single/Author.vue';
 import SimpleThxVue from "./single/SimpleThx.vue";
 import Comment from "./single/Comment.vue";
 import Thx from "./single/Thx.vue";
+import PostHeader from './single/PostHeader.vue';
+import PostTopic from "./single/PostTopic.vue";
+import axios from "axios"
 export default {
     name: "App",
     components: {
@@ -59,6 +66,30 @@ export default {
         Author,
         Comment,
         Thx,
+        PostHeader,
+        PostTopic
     },
+    data() {
+        return {
+            post_id: "57222",
+            post: ""
+        }
+    },
+    watch: {
+        post_id: {
+            immediate: true,
+            handler: function () {
+                this.loadPost();
+            },
+        },
+    },
+    methods: {
+        loadPost() {
+            axios.get(`/api/cms/post/${this.post_id}`).then((res) => {
+                this.post = res.data.data;
+                this.$forceUpdate();
+            });
+        }
+    }
 };
 </script>
