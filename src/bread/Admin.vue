@@ -5,7 +5,7 @@
         v-model="dialog_visible"
         :before-close="close"
         append-to-body
-        :with-header="false"
+        :with-header="true"
         v-if="hasRight"
         :close-on-click-modal="true"
     >
