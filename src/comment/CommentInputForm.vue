@@ -12,12 +12,12 @@
             ></el-input>
             <div class="c-comment-tools">
                 <el-icon class="u-upload-icon" @click="showUploader = !showUploader"><Picture /></el-icon>
-                <!--<Emotion-->
-                <!--    class="c-comment-emotion"-->
-                <!--    @selected="handleEmotionSelected"-->
-                <!--    type="pop"-->
-                <!--    :max="6"-->
-                <!--&gt;</Emotion>-->
+                <Emotion
+                   class="c-comment-emotion"
+                   @selected="handleEmotionSelected"
+                   type="pop"
+                   :max="6">
+                </Emotion>
             </div>
             <Uploader
                 class="u-uploader"
@@ -41,12 +41,12 @@
 
 <script>
 import Uploader from "./Upload.vue";
-// import Emotion from "@jx3box/jx3box-emotion/src/Emotion2.vue";
+import Emotion from "@jx3box/jx3box-emotion/src/Emotion2.vue";
 
 export default {
     components: {
         Uploader,
-        // Emotion
+        Emotion
     },
     props: {
         // 用于判定该评论组件是否在底部

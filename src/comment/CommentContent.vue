@@ -90,12 +90,12 @@
             <el-form-item class="c-comment-tool-box">
                 <div class="c-comment-tools">
                     <el-icon class="u-upload-icon" @click="showUploader = !showUploader"><Picture /></el-icon>
-                    <!--<Emotion-->
-                    <!--    class="c-comment-emotion"-->
-                    <!--    @selected="handleEmotionSelected"-->
-                    <!--    type="pop"-->
-                    <!--    :max="6"-->
-                    <!--&gt;</Emotion>-->
+                    <Emotion
+                       class="c-comment-emotion"
+                       @selected="handleEmotionSelected"
+                       type="pop"
+                       :max="6"
+                    ></Emotion>
                 </div>
                 <Uploader
                     v-if="showUploader"
@@ -124,7 +124,7 @@
 import Uploader from "./Upload.vue";
 import { resolveImagePath } from "@jx3box/jx3box-common/js/utils";
 import { formatContent } from "../../utils/emotion";
-// import Emotion from "@jx3box/jx3box-emotion/src/Emotion2.vue";
+import Emotion from "@jx3box/jx3box-emotion/src/Emotion2.vue";
 
 function fillZero(num) {
     return num > 9 ? num : `0${num}`;
@@ -144,7 +144,7 @@ export default {
     ],
     components: {
         Uploader,
-        // Emotion,
+        Emotion,
     },
     data: function () {
         return {
