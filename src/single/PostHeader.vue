@@ -64,8 +64,8 @@
             </span>
 
             <!-- 编辑 -->
-            <a class="u-edit u-sub-block" :href="edit_link" v-if="canEdit">
-                <i class="u-icon-edit el-icon-edit-outline"></i>
+            <a class="u-edit u-sub-block" :href="edit_link">
+                <el-icon class="u-icon-edit" :size="16"><Edit /></el-icon>
                 <span>编辑</span>
             </a>
         </div>
@@ -286,8 +286,8 @@ export default {
                 font-size: 16px;
             }
             .pr;
-            top: 2px;
-            .mr(3px);
+            top: 4px;
+            .mr(1px);
         }
         &:hover {
             box-shadow: 0 1px 0 @color-link;

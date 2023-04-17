@@ -5,12 +5,11 @@
         v-model="dialog_visible"
         :before-close="close"
         append-to-body
-        :modal="false"
         :with-header="false"
         v-if="hasRight"
-        ref="adminDrawer"
+        :close-on-click-modal="true"
     >
-        <div class="c-admin-wrapper">
+        <div class="c-admin-wrapper" ref="adminDrawer">
             <!-- <template v-if="isAdmin"> -->
             <el-divider content-position="left">状态变更</el-divider>
             <el-radio-group v-model="post_status" size="small" class="c-admin-status">
@@ -110,7 +109,7 @@ import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import { getSetting, postSetting } from "../../service/admin";
 import User from "@jx3box/jx3box-common/js/user";
 import MARK from "@jx3box/jx3box-common/data/mark.json";
-import { onClickOutside } from "@vueuse/core";
+// import { onClickOutside } from "@vueuse/core";
 export default {
     name: "BreadAdmin",
     data() {
@@ -296,9 +295,9 @@ export default {
         });
 
         // 点击外部关闭
-        onClickOutside(this.$refs.adminDrawer, () => {
-            this.close();
-        });
+        // onClickOutside(this.$refs.adminDrawer, () => {
+        //     this.close();
+        // });
     },
 };
 </script>
