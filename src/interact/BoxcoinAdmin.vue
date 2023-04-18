@@ -31,6 +31,8 @@
                                 <b>{{ item }}</b
                                 >盒币
                             </el-radio>
+                            <el-radio label="custom" border>自定义</el-radio>
+                            <el-input v-model="amount" v-show="count === 'custom'" placeholder="输入自定义数量"></el-input>
                         </el-radio-group>
                     </div>
                 </div>
@@ -79,6 +81,7 @@ export default {
             remark: "辛苦，感谢！",
             left: this.own,
             chosen: "", // 被选中的人
+            amount: "",
 
             submitting: false,
             fetchingCurrentRelease: false,
@@ -89,13 +92,15 @@ export default {
             return this.total - this.left;
         },
         ready: function () {
-            return this.isNotSelf && this.isEnough && this.count && this.remark;
+            const count = this.count === "custom" ? this.amount : this.count;
+            return this.isNotSelf && this.isEnough && count && this.remark;
         },
         isNotSelf: function () {
             return this.userId != User.getInfo().uid;
         },
         isEnough: function () {
-            return this.left && this.left >= this.count;
+            const count = this.count === "custom" ? this.amount : this.count;
+            return this.left && this.left >= count;
         },
         allowBoxcoin: function () {
             return this.postType && this.postId && (this.userId || (this.authors && this.authors.length));
@@ -122,7 +127,8 @@ export default {
         },
         submit: function () {
             this.submitting = true;
-            grantBoxcoin(this.postType, this.postId, this.chosen || this.userId, this.count, {
+            const count = this.count === "custom" ? this.amount : this.count;
+            grantBoxcoin(this.postType, this.postId, this.chosen || this.userId, count, {
                 remark: this.remark,
                 client: this.client || this.hostClient,
             })
