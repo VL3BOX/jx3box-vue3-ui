@@ -12,12 +12,8 @@
         <!-- 分页 -->
         <el-row v-if="data.length >= 3 || showPager">
             <el-col :span="4">
-                <el-button link v-show="showPager" @click="showLess()"
-                    >收起</el-button
-                >
-                <el-button link v-show="!showPager" @click="showMore()"
-                    >查看更多</el-button
-                >
+                <el-button link v-show="showPager" @click="showLess()">收起</el-button>
+                <el-button link v-show="!showPager" @click="showMore()">查看更多</el-button>
             </el-col>
             <el-col :span="20" class="c-comment-reply-pages">
                 <el-pagination
@@ -41,7 +37,7 @@ export default {
     components: {
         ReplyItem,
     },
-    data: function() {
+    data: function () {
         return {
             showPager: false,
         };
@@ -75,6 +71,7 @@ export default {
     border-top: 1px dashed #eee;
 }
 .c-comment-reply {
+    flex-direction: column;
     &:not(:last-of-type) {
         border-bottom: 1px dashed #eee;
         padding-bottom: 10px;
