@@ -2,7 +2,6 @@
     <div class="c-author-gift">
         <el-button
             class="u-btn"
-            size="small"
             icon="Present"
             @click="openGiftDialog"
             :disabled="isSelf || !status"
