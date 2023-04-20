@@ -93,10 +93,13 @@ export default {
         },
         ready: function () {
             const count = this.count === "custom" ? this.amount : this.count;
-            return this.isNotSelf && this.isEnough && count && this.remark;
+            return this.isNotSelf && !this.targetIsSelf && this.isEnough && count && this.remark;
         },
         isNotSelf: function () {
             return this.userId != User.getInfo().uid;
+        },
+        targetIsSelf: function () {
+            return this.chosen == User.getInfo().uid;
         },
         isEnough: function () {
             const count = this.count === "custom" ? this.amount : this.count;
