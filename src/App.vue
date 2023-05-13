@@ -44,21 +44,20 @@
             <RightSidebar>
                 <PostTopic type="bps" :id="48857"></PostTopic>
             </RightSidebar>
-            <Footer>
-            </Footer>
+            <Footer> </Footer>
             <!-- <Bottom></Bottom> -->
         </Main>
     </div>
 </template>
 
 <script>
-import Author from './single/Author.vue';
+import Author from "./single/Author.vue";
 import SimpleThxVue from "./single/SimpleThx.vue";
 import Comment from "./single/Comment.vue";
 import Thx from "./single/Thx.vue";
-import PostHeader from './single/PostHeader.vue';
+import PostHeader from "./single/PostHeader.vue";
 import PostTopic from "./single/PostTopic.vue";
-import axios from "axios"
+import axios from "axios";
 export default {
     name: "App",
     components: {
@@ -67,13 +66,13 @@ export default {
         Comment,
         Thx,
         PostHeader,
-        PostTopic
+        PostTopic,
     },
     data() {
         return {
-            post_id: "57222",
-            post: ""
-        }
+            post_id: "60031",
+            post: "",
+        };
     },
     watch: {
         post_id: {
@@ -89,7 +88,7 @@ export default {
                 this.post = res.data.data;
                 this.$forceUpdate();
             });
-        }
-    }
+        },
+    },
 };
 </script>

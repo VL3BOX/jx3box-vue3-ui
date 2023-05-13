@@ -5,12 +5,12 @@
             <span class="u-title u-sub-block" :href="url" :title="title">
                 <i class="u-original" v-if="isOriginal">原创</i>
                 <i class="u-private" v-if="post.post_status != 'publish' || !!~~post.visible">
-                    <i
-                        class="el-icon-lock"
+                    <el-icon
                         v-if="post.post_status == 'draft' || post.post_status == 'pending' || !!~~post.visible"
-                        style="color: #fb9b24"
-                    ></i>
-                    <i class="el-icon-delete" v-if="post.post_status == 'dustbin'" style="color: #c00"></i>
+                        color="#fb9b24"
+                        ><Lock></Lock
+                    ></el-icon>
+                    <el-icon v-if="post.post_status == 'dustbin'" color="#c00"><Delete></Delete></el-icon>
                 </i>
                 <span class="u-title-text">{{ title }}</span>
             </span>
@@ -185,7 +185,7 @@ export default {
     }
 
     .u-private {
-        .y(-2px);
+        .y(-4px);
         margin-right: 5px;
         color: #111;
     }
