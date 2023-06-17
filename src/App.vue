@@ -8,6 +8,7 @@
             :publishEnable="true"
             :feedbackEnable="true"
             :adminEnable="true"
+            :crumbEnable="true"
         >
             <template #logo>
                 <img svg-inline src="../assets/img/jx3.svg" />

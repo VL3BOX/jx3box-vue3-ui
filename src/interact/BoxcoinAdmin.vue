@@ -32,7 +32,11 @@
                                 >盒币
                             </el-radio>
                             <el-radio label="custom" border>自定义</el-radio>
-                            <el-input v-model="amount" v-show="count === 'custom'" placeholder="输入自定义数量"></el-input>
+                            <el-input
+                                v-model="amount"
+                                v-show="count === 'custom'"
+                                placeholder="输入自定义数量"
+                            ></el-input>
                         </el-radio-group>
                     </div>
                 </div>
@@ -64,7 +68,7 @@
 
 <script>
 import { grantBoxcoin } from "../../service/thx.js";
-import { getBreadcrumb } from "../../service/helper.js";
+import { getBreadcrumb } from "../../service/breadcrumb.js";
 import User from "@jx3box/jx3box-common/js/user";
 import Contributors from "./Contributors.vue";
 export default {
@@ -157,7 +161,7 @@ export default {
             this.fetchingCurrentRelease = true;
             getBreadcrumb(`current-release-${this.hostClient}`)
                 .then((res) => {
-                    this.remark += res;
+                    this.remark += res.data.data.html;
                 })
                 .catch(() => {
                     this.$message({
