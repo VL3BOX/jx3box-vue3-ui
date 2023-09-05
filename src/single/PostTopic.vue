@@ -77,8 +77,8 @@ export default {
 }
 .c-post-topic__banner {
     position: relative;
-    // height: 100px;
     margin-bottom: 10px;
+    padding: 10px 10px 0 10px;
     .c-topic-text {
         font-size: 12px;
         font-weight: 700;
@@ -97,7 +97,7 @@ export default {
         text-align: right;
     }
     .c-topic-bg {
-        width: 270px;
+        width: 260px;
         // position: absolute;
         // top: 50%;
         // left: calc(50% + 5px);
