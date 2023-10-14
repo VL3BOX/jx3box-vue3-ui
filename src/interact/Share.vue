@@ -46,8 +46,10 @@
 </template>
 
 <script>
-import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import QrcodeVue from "qrcode.vue";
+
+const { __imgPath } = JX3BOX;
 export default {
     name: "ShareComp",
     props: ["postType", "postId", "meta", "simple"],
