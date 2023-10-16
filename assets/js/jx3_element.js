@@ -12,13 +12,17 @@ function renderItem(vm, selector = ".w-jx3-element") {
         // 获取元素数据
         let type = $(e.target).attr("data-type");
         if (type == 'item') {
+            vm.item = {}
             vm.item.id = $(e.target).attr("data-id");
             vm.item.client = $(e.target).attr("data-client") == 'origin' ? 2 : 1;
         } else if (type === 'author') {
+            vm.author = {}
             vm.author.id = $(e.target).attr("data-id");
         } else if (type === 'emotion') {
+            vm.emotion = {}
             vm.emotion.id = $(e.target).attr("data-id");
         } else {
+            vm[type] = {}
             vm[type].client = $(e.target).attr("data-client");
             vm[type].id = $(e.target).attr("data-id");
             vm[type].level = $(e.target).attr("data-level");
@@ -26,6 +30,10 @@ function renderItem(vm, selector = ".w-jx3-element") {
 
         // 显示浮层
         $(pop_class).fadeIn();
+        vm.jx3_element ? '' : vm.jx3_element = {
+            style: {},
+            type: ''
+        }
         vm.jx3_element.type = type
 
         // 计算浮层位置

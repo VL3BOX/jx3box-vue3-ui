@@ -58,8 +58,8 @@
 
 <script>
 import { authorLink, getLink, getThumbnail } from "@jx3box/jx3box-common/js/utils";
-import { getUserInfo, getUserMedals, getUserPublicTeams } from "../../service/author";
-import { getDecoration, getDecorationJson } from "../../service/cms";
+import { getUserInfo, getUserMedals, getUserPublicTeams } from "../../../service/author";
+import { getDecoration, getDecorationJson } from "../../../service/cms";
 import { __imgPath, __userLevelColor } from "@jx3box/jx3box-common/data/jx3box.json";
 import User from "@jx3box/jx3box-common/js/user";
 import Avatar from "./Avatar.vue";

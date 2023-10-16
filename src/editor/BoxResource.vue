@@ -27,7 +27,7 @@
                     </el-input>
                 </div>
 
-                <el-tabs class="m-database-tabs" v-model="type" type="card" @tab-click="changeType">
+                <el-tabs class="m-database-tabs" v-model="type" type="card" @tab-change="changeType">
                     <el-tab-pane label="魔盒用户" name="authors">
                         <template #label>
                             <span class="u-tab-label">
@@ -113,7 +113,6 @@
                 </el-tabs>
 
                 <template v-if="multipage && type !== 'combo'">
-                    {{ multipage && type !== "combo" }}
                     <!-- 下一页 -->
                     <el-button
                         class="m-archive-more"

@@ -3,14 +3,14 @@
     table {
         border-collapse: collapse;
         width: 100%;
-        height: auto;
+        height:auto;
         margin: 10px 0;
         overflow-x: auto;
         max-width: 100%;
         border: none;
 
-        line-height: 2.2;
-        color: @color;
+        line-height:2.2;
+        color:@color;
 
         td,
         th {
@@ -39,22 +39,21 @@
 }
 
 @media screen and (max-width: @phone) {
-    .c-article-tinymce {
+    .c-article-tinymce{
         table {
             display: block;
             width: 100% !important;
             height: auto !important;
 
-            th,
-            td {
+            th,td{
                 white-space: nowrap;
             }
         }
     }
 }
 
-@media print {
-    table {
+@media print{
+	table{
         page-break-inside: avoid !important;
     }
 }

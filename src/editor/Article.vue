@@ -26,14 +26,14 @@
             :total="total"
         ></el-pagination>
 
-        <!-- 相册 -->
-        <!-- <el-image-viewer
-            v-if="showImageViewer"
-            :url-list="images"
-            @close="onImageViewerClose"
-            :initialIndex="imageIndex"
-            hide-on-click-modal
-        ></el-image-viewer> -->
+        <div class="w-jx3-element-pop" :style="jx3_element.style">
+            <jx3-item :item_id="item.id" :jx3ClientType="item.client" v-show="jx3_element.type == 'item'" />
+            <jx3-buff :client="buff.client" :id="buff.id" :level="buff.level" v-show="jx3_element.type == 'buff'" />
+            <jx3-skill :client="skill.client" :id="skill.id" :level="skill.level" v-show="jx3_element.type == 'skill'" />
+            <jx3-npc :client="npc.client" :id="npc.id" v-show="jx3_element.type === 'npc'" />
+            <jx3-author :uid="author.id" v-show="jx3_element.type === 'author'" />
+            <jx3-emotion-author :id="emotion.id" v-show="jx3_element.type === 'emotion'" />
+        </div>
     </div>
 </template>
 
@@ -67,6 +67,14 @@ import renderPzIframe from "../../assets/js/pz_iframe";
 import renderCombo from "../../assets/js/combo";
 import renderJx3Element from "../../assets/js/jx3_element";
 
+// 剑三
+import Item from "./components/Item";
+import Buff from "./components/Buff";
+import Skill from "./components/Skill";
+import Npc from "./components/Npc";
+import Author from "./components/Author";
+import PostAuthor from "./components/PostAuthor.vue";
+
 export default {
     name: "ArticleRender",
     props: {
@@ -84,6 +92,16 @@ export default {
             page: 1,
             data: [],
             mode: "",
+            jx3_element: {
+                style: {},
+                type: "",
+            },
+            item: {},
+            buff: {},
+            skill: {},
+            npc: {},
+            author: {},
+            emotion: {},
         };
     },
     computed: {
@@ -198,6 +216,12 @@ export default {
     components: {
         "el-pagination": ElPagination,
         "el-button": ElButton,
+        "jx3-item": Item,
+        "jx3-buff": Buff,
+        "jx3-skill": Skill,
+        "jx3-npc": Npc,
+        "jx3-author": Author,
+        "jx3-emotion-author": PostAuthor,
     },
 };
 </script>

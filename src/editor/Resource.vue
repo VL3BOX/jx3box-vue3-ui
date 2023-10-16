@@ -2,7 +2,7 @@
     <div class="c-resource">
         <!-- 上传触发按钮 -->
         <el-button class="u-switch" type="primary" @click="openDialog" :disabled="!enable">
-            <img class="u-icon" svg-inline src="../../assets/img/jx3.svg" />剑三资源
+            <img class="u-icon u-jx3-icon" svg-inline src="../../assets/img/jx3.svg" />剑三资源
         </el-button>
 
         <!-- 弹出界面 -->
@@ -32,7 +32,7 @@
                     </el-input>
                 </div>
 
-                <el-tabs class="m-database-tabs" v-model="type" type="card" @tab-click="changeType">
+                <el-tabs class="m-database-tabs" v-model="type" type="card" @tab-change="changeType">
                     <el-tab-pane label="Buff" name="buff">
                         <template #label>
                             <span class="u-tab-label">
@@ -46,7 +46,7 @@
                             <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
                             <div class="u-mode">
                                 插入模式：
-                                <el-radio-group v-model="buff_mode" size="mini" @change="changeMode">
+                                <el-radio-group v-model="buff_mode" size="small" @change="changeMode">
                                     <el-radio-button label="simple">简版</el-radio-button>
                                     <el-radio-button label="full">完整版</el-radio-button>
                                 </el-radio-group>
@@ -90,7 +90,7 @@
                             <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
                             <div class="u-mode">
                                 插入模式：
-                                <el-radio-group v-model="skill_mode" size="mini" @change="changeMode">
+                                <el-radio-group v-model="skill_mode" size="small" @change="changeMode">
                                     <el-radio-button label="simple">简版</el-radio-button>
                                     <el-radio-button label="full">完整版</el-radio-button>
                                 </el-radio-group>
