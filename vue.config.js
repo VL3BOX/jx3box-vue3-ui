@@ -3,6 +3,28 @@ module.exports = {
     //❤️ define path for static files ~
     publicPath: process.env.NODE_ENV === "development" ? "/" : process.env.STATIC_PATH,
 
+    pages: {
+        index: {
+            entry: "src/main.js",
+            template: "public/index.html",
+            filename: "index.html",
+            title: "JX3BOX",
+        },
+        article: {
+            title: "Article",
+            entry: "demo/A.js",
+            template: "public/article.html",
+            filename: "article/index.html",
+        },
+        tinymce: {
+            title: "Tinymce",
+            entry: "demo/T.js",
+            template: "public/tinymce.html",
+            filename: "tinymce/index.html",
+        },
+    },
+
+
     //⚛️ Proxy ~
     devServer: {
         proxy: {
@@ -87,6 +109,10 @@ module.exports = {
         //💖 import common less var * mixin ~
         const types = ["vue-modules", "vue", "normal-modules", "normal"];
         types.forEach((type) => addStyleResource(config.module.rule("less").oneOf(type)));
+
+        config.externals = {
+            tinyMCE: "tinyMCE",
+        }
     },
 };
 

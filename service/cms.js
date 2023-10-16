@@ -5,6 +5,24 @@ function getPostAuthors(post_id) {
     return $cms({ mute: true }).get(`/api/cms/post/${post_id}/authors`);
 }
 
+function uploadFile(data) {
+    return $cms().post(`/api/cms/upload`, data);
+}
+
+// 获取用户列表
+function loadAuthors(params) {
+    return $cms().get(`/api/cms/user/list`, {
+        params: params,
+    });
+}
+
+// 获取表情列表
+function loadEmotions(params) {
+    return $cms().get(`/api/cms/post/emotions`, {
+        params: params,
+    });
+}
+
 function uploadImage(formData) {
     return $cms().post(`/api/cms/upload/avatar`, formData);
 }
@@ -48,4 +66,4 @@ function getSliders(source_type, source_ids) {
     });
 }
 
-export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, checkTeamMember, getHonorJson, getSliders };
+export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, checkTeamMember, getHonorJson, getSliders, loadAuthors, loadEmotions, uploadFile };
