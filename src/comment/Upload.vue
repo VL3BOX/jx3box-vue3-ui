@@ -60,7 +60,7 @@ export default {
             deep: true,
             handler: function (_list) {
                 // 判断是不是字符串
-                if (typeof _list === "string") {
+                if (_list && typeof _list === "string") {
                     _list = [_list];
                 }
                 this.fileList = _list && _list.length ? _list.map((item) => ({ url: item })) : [];
