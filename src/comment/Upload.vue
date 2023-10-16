@@ -19,13 +19,14 @@
             <el-icon><Plus></Plus></el-icon>
             <template #tip>
                 <div class="el-upload__tip">
-                    最多上传 {{ maxCount }} 张 {{ acceptedExtensions.join(" / ").toUpperCase() }} 格式图片，单张图片不能超过
+                    最多上传 {{ maxCount }} 张
+                    {{ acceptedExtensions.join(" / ").toUpperCase() }} 格式图片，单张图片不能超过
                     {{ maxSize / 1024 / 1024 }} MB
                 </div>
             </template>
         </el-upload>
         <el-dialog v-model="dialogVisible">
-            <img width="60%" :src="dialogImageUrl" alt />
+            <img w-full :src="dialogImageUrl" alt />
         </el-dialog>
     </div>
 </template>
@@ -33,6 +34,8 @@
 <script>
 export default {
     name: "CommentUploader",
+    props: ["limit", "imgList"],
+    emits: ["onFinish", "onError"],
     data() {
         return {
             dialogImageUrl: "",
@@ -45,7 +48,21 @@ export default {
             maxSize: 2 * 1024 * 1024,
         };
     },
-    emits: ["onFinish", "onError"],
+    watch: {
+        limit: {
+            immediate: true,
+            handler: function (val) {
+                if (val) this.maxCount = val;
+            },
+        },
+        imgList: {
+            immediate: true,
+            deep: true,
+            handler: function (_list) {
+                this.fileList = _list && _list.length ? _list.map((item) => ({ url: item })) : [];
+            },
+        },
+    },
     methods: {
         handlePictureCardPreview(file) {
             this.dialogImageUrl = file.url;
