@@ -26,7 +26,7 @@
             </template>
         </el-upload>
         <el-dialog v-model="dialogVisible">
-            <img w-full :src="dialogImageUrl" alt />
+            <img width="60%" :src="dialogImageUrl" alt />
         </el-dialog>
     </div>
 </template>
@@ -34,8 +34,6 @@
 <script>
 export default {
     name: "CommentUploader",
-    props: ["limit", "imgList"],
-    emits: ["onFinish", "onError"],
     data() {
         return {
             dialogImageUrl: "",
@@ -48,25 +46,7 @@ export default {
             maxSize: 2 * 1024 * 1024,
         };
     },
-    watch: {
-        limit: {
-            immediate: true,
-            handler: function (val) {
-                if (val) this.maxCount = val;
-            },
-        },
-        imgList: {
-            immediate: true,
-            deep: true,
-            handler: function (_list) {
-                // 判断是不是字符串
-                if (_list && typeof _list === "string") {
-                    _list = [_list];
-                }
-                this.fileList = _list && _list.length ? _list.map((item) => ({ url: item })) : [];
-            },
-        },
-    },
+    emits: ["onFinish", "onError"],
     methods: {
         handlePictureCardPreview(file) {
             this.dialogImageUrl = file.url;
