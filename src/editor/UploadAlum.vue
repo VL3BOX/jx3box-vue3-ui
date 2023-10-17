@@ -2,8 +2,8 @@
     <div class="c-upload-album">
         <Upload @insert="updateFileList" text="批量上传图片" />
         <div class="c-upload-album-list">
-            <div class="m-album" id="uploadAlbum" v-if="imgList && imgList.length">
-                <div class="u-album-item" v-for="(item, i) in imgList" :key="timeStamp + i">
+            <div class="m-album" id="uploadAlbum" v-if="imgList && imgList.length" :key="timeStamp">
+                <div class="u-album-item" v-for="(item, i) in imgList" :key="i">
                     <img class="u-pic" :src="item.url ? item.url : item" />
                     <i class="u-mask"></i>
                     <el-icon class="u-op u-preview" @click="previewHandle(item)"><ZoomIn /></el-icon>
@@ -31,8 +31,9 @@ export default {
             imgList: this.data || [],
             dialogImageUrl: "",
             dialogVisible: false,
-            timeStamp: new Date().getTime() + Math.random(),
+            timeStamp: null,
             sortable: null,
+            hasSort: false,
         };
     },
     model: {
@@ -55,10 +56,12 @@ export default {
         imgList: {
             deep: true,
             handler: function (newVal, oldVal) {
-                if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+                if (this.hasSort || JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+                    this.timeStamp = new Date().getTime() + Math.random();
                     this.$nextTick(() => {
                         this.sort();
                     });
+                    this.hasSort = false;
                     this.$emit("update", newVal);
                 }
             },
@@ -88,7 +91,15 @@ export default {
         },
         sort() {
             let el = document.getElementById("uploadAlbum");
-            this.sortable = Sortable.create(el);
+            this.sortable = Sortable.create(el, {
+                animation: 150,
+                onEnd: ({ newIndex, oldIndex }) => {
+                    const targetRow = this.imgList[oldIndex];
+                    this.imgList.splice(oldIndex, 1);
+                    this.imgList.splice(newIndex, 0, targetRow);
+                    this.hasSort = true;
+                },
+            });
         },
         showThumbnail(val) {
             return getThumbnail(val, 146);
