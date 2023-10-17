@@ -282,7 +282,7 @@
 <script>
 import { loadResource, loadStat, getIcons } from "../../service/database";
 import { loadEmotions } from "../../service/cms";
-import { __iconPath, __Root, __OriginRoot } from "@jx3box/jx3box-common/data/jx3box.json";
+const { __iconPath, __Root, __OriginRoot } = require("@jx3box/jx3box-common/data/jx3box.json");
 import detach_types from "../../assets/data/detach_type.json";
 import { iconLink, getLink, showAvatar } from "@jx3box/jx3box-common/js/utils";
 import GameText from "./components/GameText.vue";

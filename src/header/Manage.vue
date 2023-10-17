@@ -4,31 +4,25 @@
             <img class="u-add" svg-inline src="../../assets/img/header/manage.svg" />
         </span>
         <ul class="u-menu u-pop-content">
-            <li v-for="item in finalPanel" :key="item.label">
-                <a :href="item.link" target="_blank"
-                    ><el-icon>
-                        <component :is="item.icon" v-if="item.icon"></component>
-                        <Present v-else />
+            <li v-for="item in userPanel" :key="item.label">
+                <a :href="item.link" :target="item.target || '_self'">
+                    <el-icon>
+                        <Setting></Setting>
                     </el-icon>
-                    {{ item.label }}</a
-                >
+                    {{ item.label }}
+                </a>
             </li>
-            <hr v-if="finalPanel.length" />
-            <li v-if="isEditor">
-                <a href="https://os.jx3box.com/admin" target="_blank"
-                    ><el-icon><MessageBox /></el-icon> 管理平台</a
-                >
-            </li>
-            <li v-if="isAdmin">
-                <a href="/admin"
-                    ><el-icon><Setting></Setting></el-icon> 站点配置</a
-                >
-            </li>
-            <li v-if="isTeamMember">
-                <a href="/dashboard/feedback?tab=pending"
-                    ><el-icon><Message /></el-icon> 反馈处理</a
-                >
-            </li>
+            <hr v-if="userPanel.length" />
+            <template v-if="isEditor">
+                <li v-for="item in adminPanel" :key="item.label">
+                    <a :href="item.link" :target="item.target || '_self'">
+                        <el-icon>
+                            <Setting></Setting>
+                        </el-icon>
+                        {{ item.label }}
+                    </a>
+                </li>
+            </template>
         </ul>
     </div>
 </template>
@@ -37,7 +31,6 @@
 import User from "@jx3box/jx3box-common/js/user";
 import panel from "../../assets/data/panel.json";
 import { getMenu } from "../../service/header";
-import { checkTeamMember } from "../../service/cms";
 export default {
     name: "HeaderManage",
     data() {
@@ -48,20 +41,15 @@ export default {
         };
     },
     computed: {
-        finalPanel: function () {
-            // 只返回前两个
-            return this.panel
-                .filter((item) => {
-                    // 只返回有权限的
-                    if (item.onlyAdmin) {
-                        return this.isAdmin;
-                    }
-                    return true;
-                })
-                .slice(0, 2);
+        userPanel: function () {
+            return this.panel.filter((item) => {
+                return !item.onlyAdmin;
+            });
         },
-        isAdmin() {
-            return User.isAdmin();
+        adminPanel: function () {
+            return this.panel.filter((item) => {
+                return item.onlyAdmin;
+            });
         },
         isEditor() {
             return User.isEditor();
@@ -69,7 +57,6 @@ export default {
     },
     mounted() {
         this.loadPanel();
-        this.check();
     },
     methods: {
         loadPanel: function () {
@@ -88,22 +75,6 @@ export default {
                 console.log("loadPanel error", e);
             }
         },
-        check: function () {
-            try {
-                const isTeamMember = JSON.parse(localStorage.getItem("BoxTeam3"));
-
-                if (isTeamMember) {
-                    this.isTeamMember = isTeamMember === "true" || isTeamMember;
-                } else {
-                    checkTeamMember().then((res) => {
-                        this.isTeamMember = res.data.data;
-                        localStorage.setItem("BoxTeam3", this.isTeamMember);
-                    });
-                }
-            } catch (e) {
-                console.log("check error", e);
-            }
-        },
     },
 };
 </script>
@@ -112,11 +83,13 @@ export default {
 // 管理菜单
 .c-header-manage {
     height: 100%;
+
     .u-manage {
         padding: 0 10px 0 8px;
         height: 100%;
         .flex;
         align-items: center;
+
         svg {
             .size(19px);
         }
