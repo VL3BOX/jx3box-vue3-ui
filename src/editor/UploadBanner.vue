@@ -21,7 +21,7 @@
 
 <script>
 import { getThumbnail } from "@jx3box/jx3box-common/js/utils";
-import { upload } from "@/service/cms.js";
+import { upload } from "../../service/cms.js";
 export default {
     name: "upload-banner",
     props: {
