@@ -20,18 +20,19 @@
 
 <script>
 const { getThumbnail } = require("@jx3box/jx3box-common/js/utils.js");
-import Upload from "./Upload.vue"; 
+import Upload from "./Upload.vue";
 import Sortable from "sortablejs";
 
 export default {
     name: "UploadAlum",
-    props: ["data"], 
+    props: ["data"],
     data: function () {
         return {
             imgList: this.data || [],
             dialogImageUrl: "",
             dialogVisible: false,
             timeStamp: new Date().getTime() + Math.random(),
+            sortable: null,
         };
     },
     model: {
@@ -84,8 +85,8 @@ export default {
             this.imgList.splice(i, 1);
         },
         sort() {
-            var el = document.getElementById("uploadAlbum");
-            var sortable = Sortable.create(el);
+            let el = document.getElementById("uploadAlbum");
+            this.sortable = Sortable.create(el);
         },
         showThumbnail(val) {
             return getThumbnail(val, 146);
@@ -122,7 +123,7 @@ export default {
         }
         .m-album {
             .flex;
-            gap:10px;
+            gap: 10px;
             .u-album-item {
                 .pr;
                 .size(@h);

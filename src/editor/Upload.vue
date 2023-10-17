@@ -26,8 +26,9 @@
                 with-credentials
                 :file-list="fileList"
                 :on-change="change"
-                ref="uploadbox"
+                ref="uploadBox"
                 :accept="accept"
+                :key="timeStamp + fileList.length"
             >
                 <template #default>
                     <el-icon><Plus /></el-icon>
@@ -43,7 +44,6 @@
                             disabled: file.status != 'success',
                         }"
                     >
-                        <!-- FIXME: 此处为强制刷新file，优雅的实现方式有待发掘 -->
                         <span style="display: none">{{ fileList }}</span>
                         <!-- 图片类型 -->
                         <img v-if="file.is_img" class="el-upload-list__item-thumbnail u-imgbox" :src="file.url" alt />
@@ -63,7 +63,7 @@
             <!-- 插入按钮 -->
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
+                    <el-button @click="closeUpload">取 消</el-button>
                     <el-button type="primary" @click="insert">
                         {{ buttonTXT }}
                     </el-button>
@@ -75,10 +75,10 @@
 
 <script>
 import axios from "axios";
-import { __cms } from "@jx3box/jx3box-common/data/jx3box.json";
+import { cloneDeep } from "lodash";
+const { __cms } = require("@jx3box/jx3box-common/data/jx3box.json");
 const API_Root = process.env.NODE_ENV === "production" ? __cms : "/";
 const API = API_Root + "api/cms/upload";
-
 const imgtypes = ["jpg", "png", "gif", "bmp", "webp", "jpeg", "JPG", "PNG", "GIF", "BMP", "WEBP", "JPEG"];
 
 export default {
@@ -107,19 +107,22 @@ export default {
         // 文件大小限制
         sizeLimit: {
             type: Number,
-            default: 30
+            default: 30,
         },
     },
     data: function () {
         return {
             API: API,
             dialogVisible: false,
-            tip: this.desc || `一次最多同时上传${this.max}个文件（单个文件不超过${this.sizeLimit}M），格式限常见的图片、文档、数据表及压缩包`,
+            tip:
+                this.desc ||
+                `一次最多同时上传${this.max}个文件（单个文件不超过${this.sizeLimit}M），格式限常见的图片、文档、数据表及压缩包`,
             btn_txt: this.text || "上传附件",
 
             fileList: [],
             selectedCount: 0,
             insertList: "",
+            timeStamp: null,
 
             // accept: allow_types.accept,
             // sizeLimit: allow_types.sizeLimit,
@@ -128,12 +131,13 @@ export default {
     watch: {
         fileList: {
             deep: true,
-            handler: function (newval) {
-                this.$emit("update", newval);
+            handler: function (newVal) {
+                this.timeStamp = new Date().getTime() + Math.random();
+                this.$emit("update", newVal);
             },
         },
-        insertList: function (newval) {
-            this.$emit("htmlUpdate", newval);
+        insertList: function (newVal) {
+            this.$emit("htmlUpdate", newVal);
         },
     },
     computed: {
@@ -209,46 +213,52 @@ export default {
             }
         },
         select: function (file) {
+            this.fileList = this.fileList.map((item) => {
+                if (item.uid == file.uid) {
+                    item.selected = !item.selected;
+                }
+                return item;
+            });
             if (file.status == "success") {
-                this.$set(file, "selected", !file.selected);
                 file.selected ? this.selectedCount++ : this.selectedCount--;
             }
         },
         buildHTML: function () {
-            let list = [];
-            this.fileList.forEach((file) => {
-                if (file.selected) {
-                    file.is_img ? list.push(`<img src="${file.url}" />`) : list.push(`<a target="_blank" href="${file.url}">${file.name}</a>`);
-                }
-            });
+            const list = cloneDeep(this.fileList)
+                .filter((item) => item.selected && item.status == "success")
+                .map((file) => {
+                    const html = file.is_img
+                        ? ` <img src="${file.url}" />`
+                        : `<a target="_blank" href="${file.url}">${file.name}</a>`;
+                    return html;
+                });
             this.insertList = list.join(" \n");
             return this.insertList;
         },
         insert: function () {
             // 关闭窗口
-            this.dialogVisible = false;
+            this.closeUpload();
 
             //为空不执行插入
             if (!this.selectedCount) return;
 
             // 传递值
             this.$emit("insert", {
-                list: this.fileList,
+                list: this.fileList.filter((item) => item.selected && item.status == "success"),
                 html: this.buildHTML(),
             });
 
-            //移除所有选择状态
-            this.resetSelectStatus();
+            //移除所有上传图片
+            this.clear();
         },
-        resetSelectStatus: function () {
-            this.fileList.forEach((file, i) => {
-                this.$set(this.fileList[i], "selected", false);
-            });
+
+        clear: function () {
+            this.$refs.uploadBox.clearFiles();
+            this.fileList = [];
             this.selectedCount = 0;
         },
-        clear: function () {
-            this.$refs.uploadbox.clearFiles();
-            this.fileList = [];
+        closeUpload() {
+            this.dialogVisible = false;
         },
         removeFile: function (fileList, uid) {
             fileList.forEach((file, i) => {
@@ -258,8 +268,6 @@ export default {
             });
         },
     },
-    mounted: function () {},
-    components: {},
 };
 </script>
 

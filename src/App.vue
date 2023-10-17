@@ -21,6 +21,7 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
+            <UploadAlum />
             <PostHeader :post="post"></PostHeader>
             <SimpleThxVue
                 postType="bbs"
@@ -45,6 +46,7 @@
             <RightSidebar>
                 <PostTopic type="bps" :id="48857"></PostTopic>
             </RightSidebar>
+
             <Footer> </Footer>
             <!-- <Bottom></Bottom> -->
         </Main>
@@ -52,6 +54,7 @@
 </template>
 
 <script>
+import UploadAlum from "./editor/UploadAlum.vue";
 import Author from "./single/Author.vue";
 import SimpleThxVue from "./single/SimpleThx.vue";
 import Comment from "./single/Comment.vue";
@@ -68,6 +71,7 @@ export default {
         Thx,
         PostHeader,
         PostTopic,
+        UploadAlum,
     },
     data() {
         return {
