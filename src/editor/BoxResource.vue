@@ -155,7 +155,7 @@
 import { loadStat } from "../../service/database";
 import { loadAuthors, loadEmotions } from "../../service/cms";
 import { getUserInfo } from "../../service/author";
-import { __Root, __OriginRoot, __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
+const { __Root, __OriginRoot, __imgPath } = require("@jx3box/jx3box-common/data/jx3box.json");
 import { getLink, showAvatar, resolveImagePath } from "@jx3box/jx3box-common/js/utils";
 import User from "@jx3box/jx3box-common/js/user";
 
