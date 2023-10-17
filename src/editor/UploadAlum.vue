@@ -54,11 +54,13 @@ export default {
         },
         imgList: {
             deep: true,
-            handler: function (newVal) {
-                this.$nextTick(() => {
-                    this.sort();
-                });
-                this.$emit("update", newVal);
+            handler: function (newVal, oldVal) {
+                if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+                    this.$nextTick(() => {
+                        this.sort();
+                    });
+                    this.$emit("update", newVal);
+                }
             },
         },
     },
