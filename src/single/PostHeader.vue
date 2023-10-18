@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { __clients } from "@jx3box/jx3box-common/data/jx3box.json";
+const { __clients } = require("@jx3box/jx3box-common/data/jx3box.json");
 import { showDate, showTime } from "@jx3box/jx3box-common/js/moment";
 import { editLink, authorLink } from "@jx3box/jx3box-common/js/utils.js";
 import User from "@jx3box/jx3box-common/js/user.js";

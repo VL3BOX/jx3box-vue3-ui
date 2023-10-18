@@ -45,11 +45,6 @@ function upload(formData) {
     return $cms().post(`/api/cms/upload`, formData);
 }
 
-// 检测当前用户是否为团队成员
-function checkTeamMember() {
-    return $cms().get(`/api/cms/config/teammates/check`);
-}
-
 function getSliders(source_type, source_ids) {
     let _params = {
         type: "slider",
@@ -66,4 +61,4 @@ function getSliders(source_type, source_ids) {
     });
 }
 
-export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, checkTeamMember, getHonorJson, getSliders, loadAuthors, loadEmotions, uploadFile };
+export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, getHonorJson, getSliders, loadAuthors, loadEmotions, uploadFile };
