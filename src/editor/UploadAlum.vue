@@ -2,14 +2,16 @@
     <div class="c-upload-album">
         <Upload @insert="updateFileList" text="批量上传图片" />
         <div class="c-upload-album-list">
-            <div class="m-album" id="uploadAlbum" v-if="imgList && imgList.length" :key="timeStamp">
-                <div class="u-album-item" v-for="(item, i) in imgList" :key="i">
-                    <img class="u-pic" :src="item.url ? item.url : item" />
-                    <i class="u-mask"></i>
-                    <el-icon class="u-op u-preview" @click="previewHandle(item)"><ZoomIn /></el-icon>
-                    <el-icon class="u-op u-delete" @click="deleteHandle(i)"><Delete /></el-icon>
-                </div>
-            </div>
+            <draggable class="m-album" v-model="imgList" item-key="id" v-if="imgList && imgList.length">
+                <template #item="{ element }">
+                    <div class="u-album-item">
+                        <img class="u-pic" :src="element.url ? element.url : element" />
+                        <i class="u-mask"></i>
+                        <el-icon class="u-op u-preview" @click="previewHandle(element)"><ZoomIn /></el-icon>
+                        <el-icon class="u-op u-delete" @click="deleteHandle(element)"><Delete /></el-icon>
+                    </div>
+                </template>
+            </draggable>
             <div class="u-null" v-else><i class="el-icon-warning-outline"></i> 当前没有任何图片</div>
         </div>
         <el-dialog class="c-upload-album-preview" v-model="dialogVisible">
@@ -19,9 +21,9 @@
 </template>
 
 <script>
+import draggable from "vuedraggable";
 const { getThumbnail } = require("@jx3box/jx3box-common/js/utils.js");
 import Upload from "./Upload.vue";
-import Sortable from "sortablejs";
 
 export default {
     name: "UploadAlum",
@@ -31,14 +33,15 @@ export default {
             imgList: this.data || [],
             dialogImageUrl: "",
             dialogVisible: false,
-            timeStamp: null,
-            sortable: null,
-            hasSort: false,
         };
     },
     model: {
         prop: "data", //向上同步数据
         event: "update",
+    },
+    components: {
+        Upload,
+        draggable,
     },
     watch: {
         data: {
@@ -46,24 +49,12 @@ export default {
             deep: true,
             handler: function (newVal) {
                 this.imgList = newVal || [];
-                if (this.imgList.length) {
-                    this.$nextTick(() => {
-                        this.sort();
-                    });
-                }
             },
         },
         imgList: {
             deep: true,
-            handler: function (newVal, oldVal) {
-                if (this.hasSort || JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-                    this.timeStamp = new Date().getTime() + Math.random();
-                    this.$nextTick(() => {
-                        this.sort();
-                    });
-                    this.hasSort = false;
-                    this.$emit("update", newVal);
-                }
+            handler: function (list) {
+                this.$emit("update", list);
             },
         },
     },
@@ -86,27 +77,12 @@ export default {
             this.dialogImageUrl = item;
             this.dialogVisible = true;
         },
-        deleteHandle: function (i) {
-            this.imgList.splice(i, 1);
-        },
-        sort() {
-            let el = document.getElementById("uploadAlbum");
-            this.sortable = Sortable.create(el, {
-                animation: 150,
-                onEnd: ({ newIndex, oldIndex }) => {
-                    const targetRow = this.imgList[oldIndex];
-                    this.imgList.splice(oldIndex, 1);
-                    this.imgList.splice(newIndex, 0, targetRow);
-                    this.hasSort = true;
-                },
-            });
-        },
+        deleteHandle: function (row) {
+            this.imgList=   this.imgList.filter(item=>item !== row);
+        }, 
         showThumbnail(val) {
             return getThumbnail(val, 146);
         },
-    },
-    components: {
-        Upload,
     },
 };
 </script>
