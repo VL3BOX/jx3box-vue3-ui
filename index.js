@@ -6,6 +6,14 @@ import LeftSidebar from "./src/LeftSidebar.vue";
 import RightSidebar from "./src/RightSidebar.vue";
 import LeftSideToggle from "./src/LeftSideToggle.vue";
 
+import markBy from "./src/filters/markBy.vue";
+import tagBy from "./src/filters/tagBy.vue";
+import orderBy from "./src/filters/orderBy.vue";
+import menuBy from "./src/filters/menuBy.vue";
+import clientBy from "./src/filters/clientBy.vue";
+import zlpBy from "./src/filters/zlpBy.vue";
+import topicBy from "./src/filters/topicBy.vue";
+
 const components = {
     Header,
     Footer,
@@ -14,6 +22,14 @@ const components = {
     LeftSidebar,
     RightSidebar,
     LeftSideToggle,
+
+    tagBy,
+    orderBy,
+    markBy,
+    menuBy,
+    clientBy,
+    zlpBy,
+    topicBy,
 };
 
 const install = function (app) {

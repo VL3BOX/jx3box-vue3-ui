@@ -21,6 +21,16 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
+            <clientBy @filter="filterMeta" :type="client"></clientBy>
+
+            <markBy @filter="filterMeta"></markBy>
+
+            <zlpBy @filter="filterMeta" type="zlp" :client="client"></zlpBy>
+            <orderBy @filter="filterMeta"></orderBy>
+            <menuBy :data="['test1', 'test2']" @filter="filterMeta"></menuBy>
+            <tagBy :data="['PVE', 'PVX']" :type="tag" @filter="filterMeta"></tagBy>
+            <topicBy v-model="tag2" label="PVE" :topics="post_topics"></topicBy>
+            <el-divider></el-divider>
             <UploadAlum />
             <PostHeader :post="post"></PostHeader>
             <SimpleThxVue
@@ -62,6 +72,7 @@ import Thx from "./single/Thx.vue";
 import PostHeader from "./single/PostHeader.vue";
 import PostTopic from "./single/PostTopic.vue";
 import axios from "axios";
+import post_topics from "@jx3box/jx3box-common/data/post_topics.json";
 export default {
     name: "App",
     components: {
@@ -77,6 +88,10 @@ export default {
         return {
             post_id: "60031",
             post: "",
+            client: location.href.includes("origin") ? "origin" : "std",
+            tag: "",
+            post_topics: post_topics["bps_pve"],
+            tag2: "",
         };
     },
     watch: {
@@ -93,6 +108,9 @@ export default {
                 this.post = res.data.data;
                 this.$forceUpdate();
             });
+        },
+        filterMeta(val) {
+            console.log(val);
         },
     },
 };
