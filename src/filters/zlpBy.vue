@@ -5,8 +5,10 @@
                 <span class="u-menu-label">
                     <el-icon> <operation /> </el-icon>
                     {{ value ? value : "资料片" }}
+                    <el-icon>
+                        <arrow-down />
+                    </el-icon>
                 </span>
-                <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
