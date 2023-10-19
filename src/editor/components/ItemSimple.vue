@@ -1,6 +1,6 @@
 <template>
     <el-popover
-        v-if="item"
+        v-if="item && !noPop"
         placement="right-end"
         popper-class="m-simple-item-popup"
         width="auto"
@@ -36,6 +36,31 @@
         </template>
         <jx3-item :item_id="item_id" :jx3-client-type="jx3ClientType" />
     </el-popover>
+    <div
+        class="m-simple-item"
+        v-if="item && noPop"
+        @mousedown="visible = false"
+        :class="{ onlyIcon: onlyIcon, withName: withName }"
+    >
+        <div class="m-icon">
+            <div
+                class="u-border"
+                :style="{
+                    backgroundImage: item_border(item),
+                    opacity: item.Quality == 5 ? 0.9 : 1,
+                }"
+            ></div>
+            <div class="u-border-quest" :style="{ backgroundImage: item_border_quest(item) }"></div>
+            <img
+                class="u-icon"
+                :src="icon_url(item.IconID)"
+                :alt="`IconID:${item.IconID}`"
+                :style="{ width: iconSize, height: iconSize }"
+            />
+        </div>
+        <span class="u-name" :style="{ color: item_color(item.Quality) }" v-text="item.Name"></span>
+        <span class="u-uiid fr" v-text="`ID: ${item.id}`"></span>
+    </div>
 </template>
 
 <script>
@@ -47,7 +72,7 @@ import item_border_quest from "../../../assets/js/item/border_quest.js";
 
 export default {
     name: "ItemSimple",
-    props: ["item", "onlyIcon", "iconSize", "withName", "jx3ClientType", "effect"],
+    props: ["item", "onlyIcon", "iconSize", "withName", "jx3ClientType", "effect", "noPop"],
     data() {
         return { visible: false, item_id: null };
     },

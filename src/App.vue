@@ -34,6 +34,7 @@
             <Item :item_id="'6_27425'"></Item>
             <ItemSimple :item="item1" />
 
+            <ItemSimple :item="item2" :only-icon="true" :with-name="true" :no-pop="true" iconSize="56px" />
             <ItemSimple :item="item2" :only-icon="true" iconSize="56px" />
             <ItemSimple :item="item3" :only-icon="true" iconSize="56px" />
             <ItemSimple :item="item4" :only-icon="true" iconSize="56px" />
