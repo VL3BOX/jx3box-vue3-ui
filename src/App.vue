@@ -21,7 +21,7 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
-            <clientBy @filter="filterMeta" :type="client"></clientBy>
+            <!-- <clientBy @filter="filterMeta" :type="client"></clientBy>
 
             <markBy @filter="filterMeta"></markBy>
 
@@ -29,7 +29,16 @@
             <orderBy @filter="filterMeta"></orderBy>
             <menuBy :data="['test1', 'test2']" @filter="filterMeta"></menuBy>
             <tagBy :data="['PVE', 'PVX']" :type="tag" @filter="filterMeta"></tagBy>
-            <topicBy v-model="tag2" label="PVE" :topics="post_topics"></topicBy>
+            <topicBy v-model="tag2" label="PVE" :topics="post_topics"></topicBy> -->
+            <!-- 
+            <Item :item_id="'6_27425'"></Item>
+            <ItemSimple :item="item1" />
+
+            <ItemSimple :item="item2" :only-icon="true" iconSize="56px" />
+            <ItemSimple :item="item3" :only-icon="true" iconSize="56px" />
+            <ItemSimple :item="item4" :only-icon="true" iconSize="56px" />
+            <ItemSimple :item="item5" jx3-client-type="1" only-icon="true" iconSize="56px" />
+            <ItemSimple :item="item6" jx3-client-type="2" only-icon="true" iconSize="56px" /> -->
             <el-divider></el-divider>
             <UploadAlum />
             <PostHeader :post="post"></PostHeader>
@@ -73,6 +82,7 @@ import PostHeader from "./single/PostHeader.vue";
 import PostTopic from "./single/PostTopic.vue";
 import axios from "axios";
 import post_topics from "@jx3box/jx3box-common/data/post_topics.json";
+import { get_item } from "../service/item";
 export default {
     name: "App",
     components: {
@@ -92,6 +102,12 @@ export default {
             tag: "",
             post_topics: post_topics["bps_pve"],
             tag2: "",
+            item1: null,
+            item2: null,
+            item3: null,
+            item4: null,
+            item5: null,
+            item6: null,
         };
     },
     watch: {
@@ -112,6 +128,58 @@ export default {
         filterMeta(val) {
             console.log(val);
         },
+        loadItems() {
+            get_item("10_310").then((res) => {
+                let data = res.data;
+                if (data.code === 200) {
+                    let item = data.data.item;
+                    this.item1 = JSON.stringify(item) !== "{}" ? item : null;
+                }
+            });
+
+            get_item("6_4396").then((res) => {
+                let data = res.data;
+                if (data.code === 200) {
+                    let item = data.data.item;
+                    this.item2 = JSON.stringify(item) !== "{}" ? item : null;
+                }
+            });
+
+            get_item("10_202").then((res) => {
+                let data = res.data;
+                if (data.code === 200) {
+                    let item = data.data.item;
+                    this.item3 = JSON.stringify(item) !== "{}" ? item : null;
+                }
+            });
+
+            get_item("10_98").then((res) => {
+                let data = res.data;
+                if (data.code === 200) {
+                    let item = data.data.item;
+                    this.item4 = JSON.stringify(item) !== "{}" ? item : null;
+                }
+            });
+
+            get_item("5_3028", 1).then((res) => {
+                let data = res.data;
+                if (data.code === 200) {
+                    let item = data.data.item;
+                    this.item5 = JSON.stringify(item) !== "{}" ? item : null;
+                }
+            });
+
+            get_item("5_3028", 2).then((res) => {
+                let data = res.data;
+                if (data.code === 200) {
+                    let item = data.data.item;
+                    this.item6 = JSON.stringify(item) !== "{}" ? item : null;
+                }
+            });
+        },
+    },
+    mounted() {
+        // this.loadItems();
     },
 };
 </script>

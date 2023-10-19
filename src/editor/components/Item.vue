@@ -46,20 +46,13 @@
                     <span
                         v-if="
                             attribute.type == 'atMeleeWeaponAttackSpeedBase' ||
-                                attribute.type == 'atRangeWeaponAttackSpeedBase'
+                            attribute.type == 'atRangeWeaponAttackSpeedBase'
                         "
                         class="u-value u-speed"
                         v-text="attribute.label"
                     ></span>
-                    <span
-                        v-else-if="attribute.type == 'atHorseAttribute'"
-                        class="u-value u-horse-attribute"
-                    >
-                        <img
-                            v-if="attribute.icon_id > 0"
-                            class="u-horse-icon"
-                            :src="iconLink(attribute.icon_id)"
-                        />
+                    <span v-else-if="attribute.type == 'atHorseAttribute'" class="u-value u-horse-attribute">
+                        <img v-if="attribute.icon_id > 0" class="u-horse-icon" :src="iconLink(attribute.icon_id)" />
                         <div class="u-horse-desc" v-html="attribute.label"></div>
                     </span>
                     <span v-else class="u-value">
@@ -108,11 +101,7 @@
                 </li>
             </ul>
             <!-- 仅性别可穿戴 -->
-            <div
-                v-if="source.Requires && source.Requires[7]"
-                class="u-require-sex"
-                v-text="source.Requires[7]"
-            ></div>
+            <div v-if="source.Requires && source.Requires[7]" class="u-require-sex" v-text="source.Requires[7]"></div>
             <!-- 需要门派 -->
             <div
                 v-if="source.Requires && source.Requires[6]"
@@ -120,11 +109,7 @@
                 v-text="source.Requires[6]"
             ></div>
             <!-- 需要等级 -->
-            <div
-                v-if="source.Requires && source.Requires[5]"
-                class="u-require-level"
-                v-text="source.Requires[5]"
-            ></div>
+            <div v-if="source.Requires && source.Requires[5]" class="u-require-level" v-text="source.Requires[5]"></div>
             <!-- 需要阵营 -->
             <div
                 v-if="source.Requires && source.Requires[100]"
@@ -146,12 +131,7 @@
             <!-- 套装信息 -->
             <div v-if="source.Set" class="u-set">
                 <br />
-                <div
-                    class="u-yellow"
-                    v-text="
-                        `${source.Set.name}(1/${source.Set.siblings.length})`
-                    "
-                ></div>
+                <div class="u-yellow" v-text="`${source.Set.name}(1/${source.Set.siblings.length})`"></div>
                 <ul class="u-set-siblings u-gray">
                     <li
                         v-for="(sibling, key) in source.Set.siblings"
@@ -162,11 +142,8 @@
                 </ul>
                 <br />
                 <ul class="u-set-attributes u-gray">
-                    <li
-                        v-for="(attribute, key) in source.Set.attributes"
-                        :key="key"
-                    >
-                        <span>{{`[${key}]`}}</span>
+                    <li v-for="(attribute, key) in source.Set.attributes" :key="key">
+                        <span>{{ `[${key}]` }}</span>
                         <game-text :client="client" :text="attribute" :ignore-color="true"></game-text>
                     </li>
                 </ul>
@@ -174,12 +151,10 @@
             </div>
             <!-- 图片 -->
             <div class="u-image-url" v-if="source.ImageUrl">
-                <img :src="source.ImageUrl" @error.once="source.ImageUrl=null" />
+                <img :src="source.ImageUrl" @error.once="source.ImageUrl = null" />
             </div>
             <!-- 描述 -->
-            <p
-                v-if="source.Desc"
-                class="u-desc u-yellow">
+            <p v-if="source.Desc" class="u-desc u-yellow">
                 <game-text :client="client" :text="source.Desc"></game-text>
             </p>
             <!-- 五彩石属性 -->
@@ -193,11 +168,7 @@
                 v-text="'装备分数' + source.EquipmentRating"
             ></div>
             <!-- 推荐门派心法 -->
-            <div
-                v-if="source.Recommend"
-                class="u-equipment-recommend"
-                v-text="'推荐门派：' + source.Recommend"
-            ></div>
+            <div v-if="source.Recommend" class="u-equipment-recommend" v-text="'推荐门派：' + source.Recommend"></div>
             <!-- 冷却时间 -->
             <div
                 v-if="source.CoolDown"
@@ -207,33 +178,20 @@
             <!-- 外观名称 -->
             <div v-if="source.Appearance" class="u-appearance" v-text="'外观名称：' + source.Appearance"></div>
             <!-- 可收集门派 -->
-            <div
-                v-if="source.CanExterior"
-                class="u-can-exterior"
-                v-text="'外观：' + source.CanExterior"
-            ></div>
+            <div v-if="source.CanExterior" class="u-can-exterior" v-text="'外观：' + source.CanExterior"></div>
             <!-- 储物箱共享 -->
-            <div
-                v-if="
-                    source.CanShared &&
-                        !(source.AucGenre >= 1 && source.AucGenre <= 4)
-                "
-                class="u-can-shared"
-            >该物品可以放入账号储物箱共享。</div>
-            <div
-                v-if="
-                    source.CanShared &&
-                        source.AucGenre >= 1 &&
-                        source.AucGenre <= 4
-                "
-                class="u-can-shared"
-            >该装备未精炼、镶嵌、附魔、穿戴前可以放入账号储物箱共享。</div>
+            <div v-if="source.CanShared && !(source.AucGenre >= 1 && source.AucGenre <= 4)" class="u-can-shared">
+                该物品可以放入账号储物箱共享。
+            </div>
+            <div v-if="source.CanShared && source.AucGenre >= 1 && source.AucGenre <= 4" class="u-can-shared">
+                该装备未精炼、镶嵌、附魔、穿戴前可以放入账号储物箱共享。
+            </div>
             <!-- 家具可交互可缩放 -->
             <div v-if="source.furniture_attributes" class="u-furniture-can">
                 <span v-if="source.furniture_attributes.interact">可交互</span>
                 <span
                     v-if="source.furniture_attributes.scale_range"
-                    v-text="`可缩放(${source.furniture_attributes.scale_range.replace(';',' - ')}倍)`"
+                    v-text="`可缩放(${source.furniture_attributes.scale_range.replace(';', ' - ')}倍)`"
                 ></span>
             </div>
             <!-- 物品来源 -->
@@ -253,24 +211,24 @@ import color from "../../../assets/js/item/color.js";
 import { iconLink } from "@jx3box/jx3box-common/js/utils";
 
 import second_format from "../../../assets/js/item/second_format.js";
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration'
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 dayjs.extend(duration);
 
 export default {
     name: "ItemComponent",
     props: {
         item: {
-            type: Object
+            type: Object,
         },
         item_id: {
-            type: String
+            type: String,
         },
         client: {
-            type: String
+            type: String,
         },
         jx3ClientType: {
-            type: Number
+            type: Number,
         },
     },
     data() {
@@ -279,35 +237,35 @@ export default {
         };
     },
     components: {
-        GameText
+        GameText,
     },
-    computed : {
+    computed: {
         // 兼容旧版传值
-        env_client_id : function (){
-            return location.href.includes('origin') ? 2 : 1
+        env_client_id: function () {
+            return location.href.includes("origin") ? 2 : 1;
         },
-        client_id : function (){
-            return  this.jx3ClientType || this.env_client_id
+        client_id: function () {
+            return this.jx3ClientType || this.env_client_id;
         },
-        client_by_id : function (){
-            return  this.client_id == 1 ? 'std' : 'origin'
+        client_by_id: function () {
+            return this.client_id == 1 ? "std" : "origin";
         },
         // 新版传值
-        final_client : function (){
-            return this.client || this.client_by_id
+        final_client: function () {
+            return this.client || this.client_by_id;
         },
-        cache_key : function (){
-            return `item-${this.final_client}-${this.item_id}`
+        cache_key: function () {
+            return `item-${this.final_client}-${this.item_id}`;
         },
     },
     methods: {
-        iconLink : function (id){
-            return iconLink(id,this.final_client)
+        iconLink: function (id) {
+            return iconLink(id, this.final_client);
         },
         second_format,
-        showDuration : function (val){
-            val = Number(val)
-            return val && dayjs.duration(val).asDays().toFixed(0) + '天';
+        showDuration: function (val) {
+            val = Number(val);
+            return val && dayjs.duration(val).asDays().toFixed(0) + "天";
         },
         attribute_percent,
         bind,
@@ -331,25 +289,25 @@ export default {
                     let _cache = sessionStorage.getItem(this.cache_key);
 
                     // 本地读取缓存
-                    if(_cache){
-                        try{
-                            this.source = JSON.parse(_cache)
-                        }catch(e){
-                            console.log(e,'[Item]无法解析本地缓存')
+                    if (_cache) {
+                        try {
+                            this.source = JSON.parse(_cache);
+                        } catch (e) {
+                            console.log(e, "[Item]无法解析本地缓存");
                         }
 
-                    // 服务端拉取
-                    }else{
+                        // 服务端拉取
+                    } else {
                         get_item(this.item_id, this.final_client).then((res) => {
                             let data = res.data;
                             if (data.code === 200) {
                                 let item = data.data.item;
-                                let isValidItem = JSON.stringify(item) !== "{}"
-                                if(isValidItem){
-                                    this.source = item
-                                    sessionStorage.setItem(this.cache_key,JSON.stringify(this.source));
-                                }else{
-                                    this.source = null
+                                let isValidItem = JSON.stringify(item) !== "{}";
+                                if (isValidItem) {
+                                    this.source = item;
+                                    sessionStorage.setItem(this.cache_key, JSON.stringify(this.source));
+                                } else {
+                                    this.source = null;
                                 }
                             }
                         });

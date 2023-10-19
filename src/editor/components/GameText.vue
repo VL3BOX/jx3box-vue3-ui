@@ -10,11 +10,7 @@
 </template>
 
 <script>
-import {
-    extractTextContent,
-    getLink,
-    iconLink,
-} from "@jx3box/jx3box-common/js/utils";
+import { extractTextContent, getLink, iconLink } from "@jx3box/jx3box-common/js/utils";
 import { getResource as getResourceFromNode } from "../../../service/resource";
 import { escape } from "lodash";
 
@@ -50,7 +46,7 @@ export default {
             let style = ``;
             let link = null;
             content = content.replace(/\\n/g, "<br />").replace(/\\/g, "");
-            if ([item.r, item.g, item.b].every(v => v != undefined && v > 0)) {
+            if ([item.r, item.g, item.b].every((v) => v != undefined && v > 0)) {
                 style = `color: rgb(${item.r}, ${item.g}, ${item.b});`;
             } else if (item.font != undefined && item.font != 100) {
                 const fonts = require("../../../assets/data/game_font.json");
@@ -62,11 +58,8 @@ export default {
                 }
             }
             if (item.name == "iteminfolink" && item.script) {
-                let item_type = item.script?.match(
-                    /this\.dwTabType=(\d+)/i
-                )?.[1];
-                let item_index =
-                    item.script?.match(/this\.dwIndex=(\d+)/i)?.[1];
+                let item_type = item.script?.match(/this\.dwTabType=(\d+)/i)?.[1];
+                let item_index = item.script?.match(/this\.dwIndex=(\d+)/i)?.[1];
                 if (item_type && item_index) {
                     let item_id = `${item_type}_${item_index}`;
                     link = getLink("item", item_id);
@@ -124,9 +117,7 @@ export default {
             let replaceMap = {};
             //先统计需要的资源，减少请求数量
             for (let match of matches) {
-                let [token, id, level, type] = match.match(
-                    /<BUFF (\d+) (\d+) (.*?)>/i
-                );
+                let [token, id, level, type] = match.match(/<BUFF (\d+) (\d+) (.*?)>/i);
                 resourceKeys.push(`${id}_${level}`);
                 if (level != 0) resourceKeys.push(`${id}_0`);
                 replaceMap[token] = [id, level, type];
@@ -171,10 +162,7 @@ export default {
                             let [_, _attr] = _m.match(/<BUFF ([0-9a-zA-Z]+)>/i);
                             for (let i = 1; i < 15; i++) {
                                 if (buff[`BeginAttrib${i}`] == _attr) {
-                                    desc = desc.replace(
-                                        _m,
-                                        buff[`BeginValue${i}A`]
-                                    );
+                                    desc = desc.replace(_m, buff[`BeginValue${i}A`]);
                                 }
                             }
                         }
@@ -219,18 +207,12 @@ export default {
             if (type == "buff") {
                 for (let item of data) {
                     let buff_token = `${item.BuffID}_${item.Level}`;
-                    sessionStorage.setItem(
-                        `buff-${this.client}-${buff_token}`,
-                        JSON.stringify(item)
-                    );
+                    sessionStorage.setItem(`buff-${this.client}-${buff_token}`, JSON.stringify(item));
                 }
             } else if (type == "enchant") {
                 for (let item of data) {
                     let enchant_token = `${item.ID}`;
-                    sessionStorage.setItem(
-                        `enchant-${this.client}-${enchant_token}`,
-                        JSON.stringify(item)
-                    );
+                    sessionStorage.setItem(`enchant-${this.client}-${enchant_token}`, JSON.stringify(item));
                 }
             }
         },
@@ -239,9 +221,7 @@ export default {
             if (type == "buff") {
                 token = `${id}_${level}`;
             }
-            let resource = sessionStorage.getItem(
-                `${type}-${this.client}-${token}`
-            );
+            let resource = sessionStorage.getItem(`${type}-${this.client}-${token}`);
             if (resource) return JSON.parse(resource);
             return null;
         },

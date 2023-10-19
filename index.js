@@ -14,6 +14,10 @@ import clientBy from "./src/filters/clientBy.vue";
 import zlpBy from "./src/filters/zlpBy.vue";
 import topicBy from "./src/filters/topicBy.vue";
 
+import Item from "./src/editor/components/Item.vue";
+import ItemSimple from "./src/editor/components/ItemSimple.vue";
+import GameText from "./src/editor/components/GameText.vue";
+
 const components = {
     Header,
     Footer,
@@ -30,6 +34,10 @@ const components = {
     clientBy,
     zlpBy,
     topicBy,
+
+    Item,
+    ItemSimple,
+    GameText,
 };
 
 const install = function (app) {

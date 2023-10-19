@@ -50,10 +50,10 @@
 
 <script>
 import Item from "./Item";
-import icon_url from "../assets/js/item/icon_url.js";
-import item_color from "../assets/js/item/color.js";
-import item_border from "../assets/js/item/border.js";
-import item_border_quest from "../assets/js/item/border_quest.js";
+import icon_url from "../../../assets/js/item/icon_url.js";
+import item_color from "../../../assets/js/item/color.js";
+import item_border from "../../../assets/js/item/border.js";
+import item_border_quest from "../../../assets/js/item/border_quest.js";
 
 export default {
     name: "ItemSimple",
@@ -115,5 +115,5 @@ export default {
 }
 </style>
 <style lang="less">
-@import "../assets/css/module/item_simple.less";
+@import "../../../assets/css/module/item_simple.less";
 </style>
