@@ -21,7 +21,7 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
-            <!-- <Admin :fromList="true" :show="true" :postId="post_id"></Admin> -->
+            <!-- <Admin :fromList="true" :show="true" :postId="post_id" @update="update"></Admin> -->
             <!-- <clientBy @filter="filterMeta" :type="client"></clientBy>
 
             <markBy @filter="filterMeta"></markBy>
@@ -123,6 +123,9 @@ export default {
         },
     },
     methods: {
+        update(data) {
+            console.log(data);
+        },
         loadPost() {
             axios.get(`/api/cms/post/${this.post_id}`).then((res) => {
                 this.post = res.data.data;

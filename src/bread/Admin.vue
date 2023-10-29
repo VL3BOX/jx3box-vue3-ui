@@ -128,7 +128,7 @@ export default {
             default: false,
         },
         postId: {
-            type: Number,
+            type: [Number, String],
             default: 0,
         },
     },
@@ -277,6 +277,7 @@ export default {
         push: function () {
             postSetting(this.data)
                 .then(() => {
+                    this.$emit("update", this.data);
                     this.$message({
                         message: "设置成功",
                         type: "success",
