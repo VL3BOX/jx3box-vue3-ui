@@ -21,6 +21,7 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
+            <!-- <Admin :fromList="true" :show="true" :postId="post_id"></Admin> -->
             <!-- <clientBy @filter="filterMeta" :type="client"></clientBy>
 
             <markBy @filter="filterMeta"></markBy>
@@ -84,6 +85,7 @@ import PostTopic from "./single/PostTopic.vue";
 import axios from "axios";
 import post_topics from "@jx3box/jx3box-common/data/post_topics.json";
 import { get_item } from "../service/item";
+// import Admin from "@/bread/Admin.vue";
 export default {
     name: "App",
     components: {
@@ -94,6 +96,7 @@ export default {
         PostHeader,
         PostTopic,
         UploadAlum,
+        // Admin,
     },
     data() {
         return {

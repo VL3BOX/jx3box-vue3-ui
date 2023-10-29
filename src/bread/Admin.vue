@@ -116,6 +116,22 @@ import MARK from "@jx3box/jx3box-common/data/mark.json";
 // import { onClickOutside } from "@vueuse/core";
 export default {
     name: "BreadAdmin",
+    emits: ["update"],
+    props: {
+        // 入口是否是后台管理/list
+        fromList: {
+            type: Boolean,
+            default: false,
+        },
+        show: {
+            type: Boolean,
+            default: false,
+        },
+        postId: {
+            type: Number,
+            default: 0,
+        },
+    },
     data() {
         return {
             // 可视
@@ -275,6 +291,18 @@ export default {
     watch: {
         "$route.params.id": function () {
             this.checkPostID();
+        },
+        show: {
+            immediate: true,
+            handler(bol) {
+                if (this.fromList) {
+                    this.dialog_visible = bol;
+                    if (bol) {
+                        this.pid = this.postId;
+                        this.pull();
+                    }
+                }
+            },
         },
     },
     created: function () {
