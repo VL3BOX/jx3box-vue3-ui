@@ -21,7 +21,7 @@
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
-            <!-- <Admin :fromList="true" :show="true" :postId="post_id" @update="update"></Admin> -->
+            <!-- <Admin :fromList="true" :show="true" :postId="post_id" @update="update" :appDisabled="true"></Admin> -->
             <!-- <clientBy @filter="filterMeta" :type="client"></clientBy>
 
             <markBy @filter="filterMeta"></markBy>

@@ -80,6 +80,7 @@
                         placeholder="请选择板块"
                         style="width: 100%"
                         class="u-select drawer-item-content"
+                        :disabled="appDisabled"
                     >
                         <el-option
                             v-for="type in type_options"
@@ -130,6 +131,11 @@ export default {
         postId: {
             type: [Number, String],
             default: 0,
+        },
+        // 是否禁止板块选择
+        appDisabled: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
