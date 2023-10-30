@@ -12,7 +12,7 @@
         <div class="c-admin-wrapper" ref="adminDrawer">
             <!-- <template v-if="isAdmin"> -->
             <el-divider content-position="left">状态变更</el-divider>
-            <el-radio-group v-model="post_status" size="small" class="c-admin-status">
+            <el-radio-group v-model="post_status" class="c-admin-status">
                 <el-radio-button v-for="(option, key) in status_options" :label="key" :key="key">{{
                     option
                 }}</el-radio-button>
@@ -20,7 +20,7 @@
             <!-- </template> -->
 
             <el-divider content-position="left">可见性变更</el-divider>
-            <el-radio-group v-model="visible" size="small" class="c-admin-status">
+            <el-radio-group v-model="visible" class="c-admin-status">
                 <el-radio-button v-for="(option, key) in visible_options" :label="key" :key="key">{{
                     option
                 }}</el-radio-button>
@@ -39,7 +39,6 @@
                     class="c-admin-highlight-block"
                     v-model="color"
                     :predefine="color_options"
-                    size="small"
                 ></el-color-picker>
                 <span class="c-admin-highlight-preview" :style="{ color: color }">预览高亮效果</span>
             </template>
@@ -57,7 +56,7 @@
                     <img v-if="post_banner" :src="post_banner" />
                     <el-icon><Plus /></el-icon>
                 </el-upload>
-                <el-input class="u-banner" v-model="post_banner" size="small">
+                <el-input class="u-banner" v-model="post_banner">
                     <template #prepend>
                         <span>海报地址</span>
                     </template>
