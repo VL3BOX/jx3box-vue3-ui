@@ -41,12 +41,14 @@
 </template>
 
 <script>
-import { __imgPath, __userLevelColor } from "@jx3box/jx3box-common/data/jx3box.json";
+import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import { authorLink } from "@jx3box/jx3box-common/js/utils";
 import User from "@jx3box/jx3box-common/js/user";
 import { getUserInfo } from "../../service/author";
 import Avatar from "./Avatar.vue";
 import Honor from "./AuthorHonor.vue";
+
+const { __imgPath, __userLevelColor } = JX3BOX;
 export default {
     name: "AuthorInfo",
     props: ["uid"],

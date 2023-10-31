@@ -4,9 +4,11 @@
     </div>
 </template>
 <script>
-import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import { getDecoration, getHonorJson } from "../../service/cms";
 import { inRange } from "lodash";
+
+const { __imgPath } = JX3BOX;
 const HONOR_IMG_KEY = "honor_img";
 export default {
     props: ["uid"],

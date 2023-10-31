@@ -21,6 +21,7 @@
                 size="small"
                 icon="ChatRound"
                 @click="showForm = !showForm"
+                type="primary"
                 >回复</el-button
             >
             <el-button
@@ -30,6 +31,7 @@
                 icon="Delete"
                 size="small"
                 @click="deleteComment()"
+                type="danger"
                 >删除</el-button
             >
             <el-button
@@ -39,6 +41,7 @@
                 icon="Top"
                 size="small"
                 @click="topComment(true)"
+                type="primary"
                 >置顶</el-button
             >
             <el-button
@@ -48,6 +51,7 @@
                 icon="Top"
                 size="small"
                 @click="topComment(false)"
+                type="primary"
                 >取消置顶</el-button
             >
             <el-button
@@ -57,6 +61,7 @@
                 icon="Star"
                 size="small"
                 @click="starComment(true)"
+                type="primary"
                 >加精</el-button
             >
             <el-button
@@ -66,6 +71,7 @@
                 icon="StarFilled"
                 size="small"
                 @click="starComment(false)"
+                type="primary"
                 >取消加精</el-button
             >
             <time class="u-date">
@@ -112,7 +118,7 @@
                     :disabled="disableSubmitBtn"
                     >提交</el-button
                 >
-                <el-button size="small" link @click="showForm = false"
+                <el-button size="small" link @click="showForm = false" type="primary"
                     >收起</el-button
                 >
             </el-form-item>

@@ -2,15 +2,21 @@
     <div class="w-boxcoin-user" v-if="allowBoxcoin">
         <el-tooltip effect="dark" content="投币" placement="top-start">
             <div class="w-boxcoin-block" @click="openBoxcoinPop">
-                <img class="u-icon" svg-inline src="../../assets/img/widget/heart1.svg" />
-                <span class="u-count" v-if="boxcoin">{{boxcoin}}</span>
+                <img class="u-icon" svg-inline :src="likeImg" />
+                <span class="u-count" v-if="boxcoin">{{ boxcoin }}</span>
             </div>
         </el-tooltip>
-        <el-dialog title="投币打赏" v-model="visible" class="w-boxcoin-pop" append-to-body :close-on-click-modal="false">
+        <el-dialog
+            title="投币打赏"
+            v-model="visible"
+            class="w-boxcoin-pop"
+            append-to-body
+            :close-on-click-modal="false"
+        >
             <div class="w-boxcoin-user-content">
                 <div class="u-left">
                     <em class="u-label">当前拥有盒币</em>
-                    <b>{{left}}</b>
+                    <b>{{ left }}</b>
                     <a class="u-charge" :href="chargeLink" target="_blank">[充值]</a>
                 </div>
                 <div class="u-list">
@@ -19,8 +25,15 @@
                     <div class="u-points">
                         <el-radio-group v-model="count">
                             <el-radio :label="item" v-for="item in fitPoints" :key="item" border>
-                                <b>{{item}}</b>盒币
+                                <b>{{ item }}</b
+                                >盒币
                             </el-radio>
+                            <el-radio label="custom" border>自定义</el-radio>
+                            <el-input
+                                v-model="amount"
+                                v-show="count === 'custom'"
+                                placeholder="输入自定义数量"
+                            ></el-input>
                         </el-radio-group>
                     </div>
                 </div>
@@ -50,12 +63,13 @@
 <script>
 import { rewardBoxcoin } from "../../service/thx.js";
 import User from "@jx3box/jx3box-common/js/user";
-import Contributors from './Contributors.vue';
+import Contributors from "./Contributors.vue";
+import { debounce } from "lodash";
 export default {
     name: "BoxcoinUser",
-    props: ["boxcoin", "postType", "postId", "userId", "own", "points", "authors",'client'],
+    props: ["boxcoin", "postType", "postId", "userId", "own", "points", "authors", "client"],
     components: {
-        Contributors
+        Contributors,
     },
     data: function () {
         return {
@@ -63,73 +77,83 @@ export default {
 
             count: 0,
             remark: "辛苦了，谢谢大大！",
+            amount: "",
 
-            left : this.own,
+            left: this.own,
 
             chargeLink: "/vip/boxcoin?redirect=" + location.href,
 
-            chosen: '', // 被选中的人
+            chosen: "", // 被选中的人
+
+            likeImg: require("../../assets/img/widget/like4.png"),
         };
     },
     computed: {
         ready: function () {
-            return this.isNotSelf && this.isEnough && this.count && this.remark;
+            const count = this.count === "custom" ? this.amount : this.count;
+            return this.isNotSelf && this.isEnough && count && this.remark;
         },
         isNotSelf: function () {
             return this.userId != User.getInfo().uid;
         },
         isEnough: function () {
-            return this.left && this.left >= this.count;
+            const count = this.count === "custom" ? this.amount : this.count;
+            return this.left && this.left >= count;
         },
-        allowBoxcoin : function (){
-            return this.postType && this.postId && (this.userId || (this.authors && this.authors.length))
+        allowBoxcoin: function () {
+            return this.postType && this.postId && (this.userId || (this.authors && this.authors.length));
         },
-        hostClient : function (){
-            return location.href.includes('origin') ? 'origin' : 'std'
+        hostClient: function () {
+            return location.href.includes("origin") ? "origin" : "std";
         },
-        fitPoints : function (){
-            return this.points //.filter(item => item <= this.left)
-        }
+        fitPoints: function () {
+            return this.points; //.filter(item => item <= this.left)
+        },
     },
     watch: {
-        own : function (val){
-            this.left = val
-        }
+        own: function (val) {
+            this.left = val;
+        },
     },
     methods: {
         openBoxcoinPop: function () {
             if (User.isLogin()) {
+                this.likeImg = require("../../assets/img/widget/like4ing.gif");
                 this.visible = true;
+
+                debounce(() => {
+                    this.likeImg = require("../../assets/img/widget/like4.png");
+                }, 2800)();
             } else {
                 User.toLogin();
             }
         },
         // 选择要打赏的对象
         handleChosen(userId) {
-            this.chosen = userId
+            this.chosen = userId;
         },
         submit: function () {
-            rewardBoxcoin(this.postType, this.postId, this.chosen || this.userId, this.count, {
+            const count = this.count === "custom" ? this.amount : this.count;
+            rewardBoxcoin(this.postType, this.postId, this.chosen || this.userId, count, {
                 remark: this.remark,
-                client : this.client || this.hostClient
+                client: this.client || this.hostClient,
             })
                 .then((res) => {
                     this.$message({
                         message: "操作成功",
                         type: "success",
                     });
-                    return res.data.data
+                    return res.data.data;
                 })
                 .then((data) => {
                     // 1.扣除额度
                     this.left -= this.count;
                     // 2. 将新增emit出去
-                    this.$emit('updateRecord', data);
+                    this.$emit("updateRecord", data);
                 })
                 .finally(() => {
                     this.visible = false;
                 });
-
         },
         init: function () {},
     },

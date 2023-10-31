@@ -24,7 +24,9 @@
 <script>
 import { getMedalLink } from "@jx3box/jx3box-common/js/utils";
 import { getUserMedals } from "../../service/author";
-import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
+const { __imgPath } = JX3BOX;
+
 export default {
     name: "AuthorMedals",
     props: ["uid"],

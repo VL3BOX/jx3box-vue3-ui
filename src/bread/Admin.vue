@@ -31,20 +31,17 @@
                 <el-checkbox v-for="(option, key) in mark_options" :label="key" :key="key">{{ option }}</el-checkbox>
             </el-checkbox-group>
 
-            <el-divider content-position="left">加粗高亮</el-divider>
+            <el-divider content-position="left">高亮置顶</el-divider>
+            <el-checkbox class="c-admin-highlight-checkbox" v-model="isSticky">置顶</el-checkbox>
             <el-checkbox class="c-admin-highlight-checkbox" v-model="isHighlight">开启高亮</el-checkbox>
             <template v-if="isHighlight">
                 <el-color-picker
                     class="c-admin-highlight-block"
                     v-model="color"
                     :predefine="color_options"
-                    size="small"
                 ></el-color-picker>
                 <span class="c-admin-highlight-preview" :style="{ color: color }">预览高亮效果</span>
             </template>
-
-            <el-divider content-position="left">是否置顶</el-divider>
-            <el-switch v-model="isSticky" active-text="置顶" class="switch-post-pinned drawer-item-content"></el-switch>
 
             <el-divider content-position="left">封面海报</el-divider>
             <div class="c-admin-banner">
@@ -59,7 +56,7 @@
                     <img v-if="post_banner" :src="post_banner" />
                     <el-icon><Plus /></el-icon>
                 </el-upload>
-                <el-input class="u-banner" v-model="post_banner" size="small">
+                <el-input class="u-banner" v-model="post_banner">
                     <template #prepend>
                         <span>海报地址</span>
                     </template>
@@ -75,8 +72,15 @@
 
             <el-divider content-position="left">元信息</el-divider>
             <div class="c-admin-info">
-                <div class="c-admin-type">
-                    <el-select v-model="post_type" placeholder="请选择类型" class="drawer-item-content">
+                <div class="w-select c-admin-type">
+                    <div class="u-select-label">板块</div>
+                    <el-select
+                        v-model="post_type"
+                        placeholder="请选择板块"
+                        style="width: 100%"
+                        class="u-select drawer-item-content"
+                        :disabled="appDisabled"
+                    >
                         <el-option
                             v-for="type in type_options"
                             :key="type.value"
@@ -86,11 +90,11 @@
                     </el-select>
                 </div>
                 <div class="c-admin-author">
-                    <el-input
-                        v-model="post_author"
-                        placeholder="请输入作者uid"
-                        class="input-author drawer-item-content"
-                    ></el-input>
+                    <el-input v-model="post_author" placeholder="请输入作者ID" class="input-author drawer-item-content">
+                        <template #prepend>
+                            <span class="u-keyword">作者ID</span>
+                        </template>
+                    </el-input>
                 </div>
             </div>
 
@@ -112,6 +116,27 @@ import MARK from "@jx3box/jx3box-common/data/mark.json";
 // import { onClickOutside } from "@vueuse/core";
 export default {
     name: "BreadAdmin",
+    emits: ["update"],
+    props: {
+        // 入口是否是后台管理/list
+        fromList: {
+            type: Boolean,
+            default: false,
+        },
+        show: {
+            type: Boolean,
+            default: false,
+        },
+        postId: {
+            type: [Number, String],
+            default: 0,
+        },
+        // 是否禁止板块选择
+        appDisabled: {
+            type: Boolean,
+            default: false,
+        },
+    },
     data() {
         return {
             // 可视
@@ -227,6 +252,9 @@ export default {
         // 关闭
         close() {
             this.dialog_visible = false;
+            this.$emit("update", {
+                show: false,
+            });
         },
         // 拉
         pull: function () {
@@ -257,6 +285,10 @@ export default {
         push: function () {
             postSetting(this.data)
                 .then(() => {
+                    this.$emit("update", {
+                        show: false,
+                        data: this.data,
+                    });
                     this.$message({
                         message: "设置成功",
                         type: "success",
@@ -271,6 +303,18 @@ export default {
     watch: {
         "$route.params.id": function () {
             this.checkPostID();
+        },
+        show: {
+            immediate: true,
+            handler(bol) {
+                if (this.fromList) {
+                    this.dialog_visible = bol;
+                    if (bol) {
+                        this.pid = this.postId;
+                        this.pull();
+                    }
+                }
+            },
         },
     },
     created: function () {

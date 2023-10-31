@@ -29,6 +29,7 @@
                 icon="ChatLineRound"
                 size="small"
                 @click="showReplyForReplyInput()"
+                type="primary"
                 >回复</el-button
             >
             <el-button
@@ -37,6 +38,7 @@
                 link
                 icon="Delete"
                 size="small"
+                type="danger"
                 @click="deleteComment()"
                 >删除</el-button
             >

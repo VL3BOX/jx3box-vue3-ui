@@ -4,7 +4,6 @@
             v-if="!isFollow"
             class="u-btn"
             :class="{ 'is-follow': isFollow, 'u-fans-box': isSelf }"
-            size="small"
             plain
             icon="Plus"
             @click="follow"
@@ -25,9 +24,7 @@
                 </div>
             </div>
             <template #reference>
-                <el-button class="u-trigger" size="small" :type="btnType" plain icon="Check">{{
-                    btnText
-                }}</el-button>
+                <el-button class="u-trigger" :type="btnType" plain icon="Check">{{ btnText }}</el-button>
             </template>
         </el-popover>
     </div>
@@ -159,9 +156,9 @@ export default {
         cursor: default;
         &:hover {
             cursor: pointer;
-            background-color: @light-pink ;
-            color: #fff ;
-            border-color: darken(@light-pink, 2%) ;
+            background-color: @light-pink;
+            color: #fff;
+            border-color: darken(@light-pink, 2%);
         }
     }
 

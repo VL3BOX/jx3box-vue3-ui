@@ -63,7 +63,8 @@ export default {
             // if(location.pathname.startsWith('/index') || location.pathname.startsWith('/origin')){
             //     location.href = 'https://' + item.to
             // }else{
-            location.href = location.href.replace(item.from, item.to);
+            const href = location.href.replace(location.host, item.to);
+            location.href = href;
             // }
         },
     },

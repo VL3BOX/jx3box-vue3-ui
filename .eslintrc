@@ -4,6 +4,20 @@
         "node": true
     },
     "parser": "vue-eslint-parser",
-    "extends": ["plugin:vue/vue3-essential", "eslint:recommended"],
-    "rules": {}
+    "extends": [
+        "plugin:vue/vue3-essential",
+        "eslint:recommended"
+    ],
+    "rules": {
+        "vue/multi-word-component-names": [
+            "error",
+            {
+                "ignores": ["Item"]
+            }
+        ]
+    },
+    "globals": {
+        "defineOptions": "writable",
+        "tinyMCE": true
+    }
 }

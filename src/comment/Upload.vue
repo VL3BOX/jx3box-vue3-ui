@@ -19,7 +19,8 @@
             <el-icon><Plus></Plus></el-icon>
             <template #tip>
                 <div class="el-upload__tip">
-                    最多上传 {{ maxCount }} 张 {{ acceptedExtensions.join(" / ").toUpperCase() }} 格式图片，单张图片不能超过
+                    最多上传 {{ maxCount }} 张
+                    {{ acceptedExtensions.join(" / ").toUpperCase() }} 格式图片，单张图片不能超过
                     {{ maxSize / 1024 / 1024 }} MB
                 </div>
             </template>
