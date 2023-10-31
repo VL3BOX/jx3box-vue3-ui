@@ -12,7 +12,7 @@
         <div class="c-admin-wrapper" ref="adminDrawer">
             <!-- <template v-if="isAdmin"> -->
             <el-divider content-position="left">状态变更</el-divider>
-            <el-radio-group v-model="post_status" size="small" class="c-admin-status">
+            <el-radio-group v-model="post_status" class="c-admin-status">
                 <el-radio-button v-for="(option, key) in status_options" :label="key" :key="key">{{
                     option
                 }}</el-radio-button>
@@ -20,7 +20,7 @@
             <!-- </template> -->
 
             <el-divider content-position="left">可见性变更</el-divider>
-            <el-radio-group v-model="visible" size="small" class="c-admin-status">
+            <el-radio-group v-model="visible" class="c-admin-status">
                 <el-radio-button v-for="(option, key) in visible_options" :label="key" :key="key">{{
                     option
                 }}</el-radio-button>
