@@ -26,8 +26,8 @@
     },
     "dependencies": {
         "@element-plus/icons-vue": "^2.1.0",
-        "@jx3box/jx3box-common": "^8.0.0",
-        "@jx3box/jx3box-data": "^3.5.2",
+        "@jx3box/jx3box-common": "^8.0.3",
+        "@jx3box/jx3box-data": "^3.5.3",
         "@jx3box/jx3box-emotion": "^1.2.4",
         "@jx3box/jx3box-macro": "^1.0.1",
         "@jx3box/jx3box-talent": "^1.2.7",

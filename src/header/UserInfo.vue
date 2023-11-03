@@ -48,6 +48,7 @@
                                 title="专业版账号"
                             >
                                 <i class="i-icon-vip" :class="{ on: isPRO }">{{ vipType }}</i>
+                                <span class="u-expire">有效期至：{{ pro_expire_date }}</span>
                             </a>
                         </div>
                         <div class="u-id">
@@ -94,7 +95,7 @@
 
 <script>
 import User from "@jx3box/jx3box-common/js/user";
-import { showAvatar } from "@jx3box/jx3box-common/js/utils";
+import { showAvatar, showDate } from "@jx3box/jx3box-common/js/utils";
 import { getMyInfo } from "../../service/author";
 import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import { copyText } from "../../utils";
@@ -137,6 +138,9 @@ export default {
         },
         isEditor() {
             return User.isEditor();
+        },
+        pro_expire_date: function() {
+            return this.asset.pro_expire_date ? showDate(this.asset.pro_expire_date) : '-';
         },
     },
     mounted() {

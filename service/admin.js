@@ -12,4 +12,9 @@ function postSetting(data) {
     return $cms().put(`/api/cms/manage/post/${data.ID}`, data);
 }
 
-export { getSetting, postSetting };
+// 管理员发送私信
+function sendMessage(data) {
+    return $cms().post(`/api/cms/manage/message`, data);
+}
+
+export { getSetting, postSetting, sendMessage };
