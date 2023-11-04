@@ -29,3 +29,8 @@ export function copyText(text) {
         document.body.removeChild(textArea);
     }
 }
+
+// 去除最后的/
+export function trimSlash(str) {
+    return str.replace(/\/$/, "");
+}

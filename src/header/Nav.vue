@@ -10,6 +10,12 @@
                                 :class="{ on: isFocus(item.link) }"
                                 :href="item.link"
                                 :target="isSelf(item.link)"
+                                v-reporter="{
+                                    data: {
+                                        item: trimSlash(item.link),
+                                    },
+                                    caller: 'index_nav',
+                                }"
                                 >{{ item.label }}<el-icon><ArrowDown /></el-icon
                             ></a>
                             <template #dropdown>
@@ -23,6 +29,12 @@
                                             :href="subitem.link"
                                             :target="isSelf(subitem.link)"
                                             v-if="subitem.status && matchedClient(subitem.client)"
+                                            v-reporter="{
+                                                data: {
+                                                    item: trimSlash(subitem.link),
+                                                },
+                                                caller: 'index_nav',
+                                            }"
                                             >{{ subitem.label }} <span v-if="subitem.desc">{{ subitem.desc }}</span></a
                                         ></el-dropdown-item
                                     >
@@ -31,7 +43,18 @@
                         </el-dropdown>
                     </template>
                     <template v-else>
-                        <a class="u-item" :class="{ on: isFocus(item.link) }" :href="item.link">{{ item.label }}</a>
+                        <a
+                            class="u-item"
+                            :class="{ on: isFocus(item.link) }"
+                            :href="item.link"
+                            v-reporter="{
+                                data: {
+                                    item: trimSlash(item.link),
+                                },
+                                caller: 'index_nav',
+                            }"
+                            >{{ item.label }}</a
+                        >
                     </template>
                 </template>
             </div>
@@ -53,6 +76,12 @@
                                         :class="{ on: isFocus(item.link) }"
                                         :href="item.link"
                                         :target="isSelf(item.link)"
+                                        v-reporter="{
+                                            data: {
+                                                item: trimSlash(item.link),
+                                            },
+                                            caller: 'index_nav',
+                                        }"
                                         >{{ item.label }}</a
                                     ></template
                                 >
@@ -61,6 +90,12 @@
                                         v-if="matchedClient(subitem.client)"
                                         :key="'header-nav-drop-' + subitem.key + subIndex"
                                         :index="subitem.key"
+                                        v-reporter="{
+                                            data: {
+                                                item: trimSlash(subitem.link),
+                                            },
+                                            caller: 'index_nav',
+                                        }"
                                     >
                                         <a class="u-menu-item" :href="subitem.link" :target="isSelf(subitem.link)"
                                             >{{ subitem.label }} <span v-if="subitem.desc">{{ subitem.desc }}</span>
@@ -69,9 +104,18 @@
                                 </template>
                             </el-sub-menu>
                             <el-menu-item v-else>
-                                <a class="u-item" :class="{ on: isFocus(item.link) }" :href="item.link">{{
-                                    item.label
-                                }}</a>
+                                <a
+                                    class="u-item"
+                                    :class="{ on: isFocus(item.link) }"
+                                    :href="item.link"
+                                    v-reporter="{
+                                        data: {
+                                            item: trimSlash(item.link),
+                                        },
+                                        caller: 'index_nav',
+                                    }"
+                                    >{{ item.label }}</a
+                                >
                             </el-menu-item>
                         </template>
                     </el-menu-item>
@@ -84,6 +128,19 @@
 <script>
 import default_nav from "../../assets/data/nav.json";
 import { getMenu } from "../../service/header";
+import { trimSlash } from "../../utils";
+
+const activeNav = {
+    index: ['index'],
+    macro: ['macro', 'pz'],
+    tool: ['app', 'jx3dat', 'dbm'],
+    bps: ['bps', 'jcl', 'battle'],
+    fb: ['fb','baizhan','team', 'jdt', 'rank'],
+    cj: ['cj', 'item', 'knowledge', 'quest'],
+    pvx: ['face', 'adventure', 'pvg'],
+    bbs: ['bbs','topic','event'],
+    pvp: ['pvp']
+}
 export default {
     name: "HeaderNav",
     props: [],
@@ -119,10 +176,22 @@ export default {
         client() {
             return location.href.includes("origin") ? "origin" : "std";
         },
+        prefix() {
+            return this.client === "std" ? "www" : "origin";
+        },
     },
     methods: {
         isFocus: function (type) {
-            return location.pathname.includes(type);
+            // return location.pathname.includes(type);
+            let active = '';
+            const pathname = location.pathname?.split('/')?.filter(Boolean)?.[0] || 'index';
+            for (const key in activeNav) {
+                if (activeNav[key].includes(pathname)) {
+                    active = key;
+                    break;
+                }
+            }
+            return type.includes(active);
         },
         matchedClient: function (client) {
             return client == "all" ? true : client == this.client;
@@ -147,6 +216,9 @@ export default {
                 this.nav = default_nav;
                 console.log("loadNav error", e);
             }
+        },
+        trimSlash(link) {
+            return trimSlash(`${this.prefix}:${link}`);
         },
     },
     created: function () {

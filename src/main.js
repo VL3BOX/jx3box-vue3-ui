@@ -16,6 +16,8 @@ import "../assets/css/var.less";
 
 import "@jx3box/jx3box-common/css/normalize.css";
 
+import reporter from "@jx3box/jx3box-common/js/reporter";
+
 app.use(ElementPlus, {
     locale: zhCn,
 });
@@ -28,6 +30,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 import { install } from "../index.js";
 install(app);
+
+reporter.installVue3(app);
 
 // 3.Mount DOM
 app.mount("#app");
