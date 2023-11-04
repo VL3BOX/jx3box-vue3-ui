@@ -95,7 +95,8 @@
 
 <script>
 import User from "@jx3box/jx3box-common/js/user";
-import { showAvatar, showDate } from "@jx3box/jx3box-common/js/utils";
+import { showAvatar } from "@jx3box/jx3box-common/js/utils";
+import {showDate} from "@jx3box/jx3box-common/js/moment";
 import { getMyInfo } from "../../service/author";
 import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import { copyText } from "../../utils";
