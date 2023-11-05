@@ -45,11 +45,12 @@ function upload(formData) {
     return $cms().post(`/api/cms/upload`, formData);
 }
 
-function getSliders(source_type, source_ids) {
+function getSliders(source_type, source_ids, client='std') {
     let _params = {
         type: "slider",
         source_type,
         per: 10,
+        client
     };
 
     if (source_ids) {

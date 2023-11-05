@@ -28,6 +28,10 @@ export default {
             type: Number,
             default: 46917,
         },
+        postBanner: {
+            type: String,
+            default: "",
+        }
     },
     data() {
         return {
@@ -42,7 +46,8 @@ export default {
             return dayjs(this.topicInfo?.created_at).format('YYYY年')
         },
         topicImage() {
-            return this.topicInfo ? getThumbnail(this.topicInfo.img, [260*2, 78*2]) : ''
+            const img = this.postBanner || this.topicInfo?.img;
+            return getThumbnail(img, [260*2, 78*2])
         },
         client() {
             return location.href.includes("origin") ? "origin" : "std";
@@ -59,7 +64,7 @@ export default {
     },
     methods: {
         loadData() {
-            getSliders(this.type, this.id).then((res) => {
+            getSliders(this.type, this.id, this.client).then((res) => {
                 if (res.data.data?.list) {
                     // 取创建时间最新的一条
                     const list = res.data.data.list.sort((a, b) => dayjs(b.created_at).isAfter(dayjs(a.created_at)) ? 1 : -1);
@@ -105,11 +110,14 @@ export default {
     }
 }
 .c-post-topic__img {
-    display: flex;
-    justify-content: center;
+    .pr;
+    overflow: hidden;
+    .r(4px);
+    min-height: 71px;
     img{
-        .r(3px);
-        .size(260px,78px);
+        .pa;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 </style>
