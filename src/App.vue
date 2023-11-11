@@ -13,7 +13,10 @@
             <template #logo>
                 <img svg-inline src="../assets/img/jx3.svg" />
             </template>
-            bread info
+            <template #op-prepend>
+
+                <AdminDirectMessage :user-id="8" :sourceId="19382" sourceType="macro"></AdminDirectMessage>
+            </template>
         </breadcrumb>
         <LeftSidebar :open="true" :uid="8">
             <LeftSideToggle :mobileOnly="true" />
@@ -31,7 +34,7 @@
             <menuBy :data="['test1', 'test2']" @filter="filterMeta"></menuBy>
             <tagBy :data="['PVE', 'PVX']" :type="tag" @filter="filterMeta"></tagBy>
             <topicBy v-model="tag2" label="PVE" :topics="post_topics"></topicBy> -->
-            <!-- 
+            <!--
             <Item :item_id="'6_27425'"></Item>
             <ItemSimple :item="item1" />
 
@@ -85,6 +88,7 @@ import PostTopic from "./single/PostTopic.vue";
 import axios from "axios";
 import post_topics from "@jx3box/jx3box-common/data/post_topics.json";
 import { get_item } from "../service/item";
+import AdminDirectMessage from "./bread/AdminDirectMessage.vue";
 // import Admin from "@/bread/Admin.vue";
 export default {
     name: "App",
@@ -96,6 +100,7 @@ export default {
         PostHeader,
         PostTopic,
         UploadAlum,
+        AdminDirectMessage,
         // Admin,
     },
     data() {
