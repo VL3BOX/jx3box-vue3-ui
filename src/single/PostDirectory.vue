@@ -1,3 +1,26 @@
+<template>
+    <div class="m-single-directory"></div>
+</template>
+
+<script>
+export default {
+   name : 'PostDirectory',
+   props:[],
+   components : {},
+   data : function(){
+       return {
+           
+       }
+   },
+   computed:{},
+   watch:{},
+   methods:{},
+   created:function(){},
+   mounted:function(){},
+}
+</script>
+
+<style lang="less">
 .c-article-directory {
     h1,
     h2,
@@ -34,16 +57,20 @@
     h5,
     h6 {
         &::before {
-            content: "";
-            background-image: url("../../img/single/ticket.svg");
+            content: "\e78b";
+
+            font-family: element-icons !important;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            vertical-align: baseline;
             display: inline-block;
+            -webkit-font-smoothing: antialiased;
             margin-right: 5px;
-            width: 14px;
-            height: 14px;
-            display: inline-block;
-            background-size: cover;
-            position: relative;
-            top: 2px;
+            font-size: 16px;
         }
     }
 
@@ -101,20 +128,6 @@
         }
     }
 }
-.c-article-directory-title-icon {
-    &::before {
-        content: "";
-        background-image: url("../../img/single/directory-header.svg");
-        display: inline-block;
-        // margin-right: 5px;
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-        background-size: cover;
-        position: relative;
-        top: 1px;
-    }
-}
 .c-article-directory-content {
     padding: 10px 15px;
 }
@@ -131,13 +144,4 @@
 .c-article .isScrollFocus {
     animation: focusFade 0.5s ease-in-out;
 }
-
-.w-directory-anchor {
-    .fz(16px);
-    .pointer;
-    // color:@color !important;
-    &:hover {
-        box-shadow: none !important;
-        color: #c00 !important;
-    }
-}
+</style>

@@ -62,4 +62,8 @@ function getSliders(source_type, source_ids, client='std') {
     });
 }
 
-export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, getHonorJson, getSliders, loadAuthors, loadEmotions, uploadFile };
+function getCollection(id) {
+    return $cms({ mute: true }).get(`/api/cms/post/collection/${id}`);
+}
+
+export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, getHonorJson, getSliders, loadAuthors, loadEmotions, uploadFile, getCollection };

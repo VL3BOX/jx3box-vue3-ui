@@ -46,7 +46,8 @@
             <ItemSimple :item="item6" jx3-client-type="2" only-icon="true" iconSize="56px" /> -->
             <el-divider></el-divider>
             <UploadAlum />
-            <PostHeader :post="post"></PostHeader>
+            <!-- <PostHeader :post="post"></PostHeader> -->
+            <singlebox :post="post" />
             <SimpleThxVue
                 postType="bbs"
                 postTitle="bbs23865的标题"
@@ -69,6 +70,7 @@
             <Comment category="post" id="19382"></Comment>
             <RightSidebar>
                 <PostTopic type="bps" :id="48857"></PostTopic>
+                <div id="directory"></div>
             </RightSidebar>
 
             <Footer> </Footer>
@@ -78,12 +80,13 @@
 </template>
 
 <script>
+import singlebox from "./single/cms-single.vue";
 import UploadAlum from "./editor/UploadAlum.vue";
 import Author from "./single/Author.vue";
 import SimpleThxVue from "./single/SimpleThx.vue";
 import Comment from "./single/Comment.vue";
 import Thx from "./single/Thx.vue";
-import PostHeader from "./single/PostHeader.vue";
+// import PostHeader from "./single/PostHeader.vue";
 import PostTopic from "./single/PostTopic.vue";
 import axios from "axios";
 import post_topics from "@jx3box/jx3box-common/data/post_topics.json";
@@ -97,15 +100,16 @@ export default {
         Author,
         Comment,
         Thx,
-        PostHeader,
+        // PostHeader,
         PostTopic,
         UploadAlum,
         AdminDirectMessage,
+        singlebox,
         // Admin,
     },
     data() {
         return {
-            post_id: "60031",
+            post_id: "69014",
             post: "",
             client: location.href.includes("origin") ? "origin" : "std",
             tag: "",
