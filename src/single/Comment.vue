@@ -190,7 +190,7 @@ export default {
         },
     },
     created() {
-        this.baseAPI = `/api/comment/${this.category}/article/${this.id}`;
+        this.baseAPI = `/api/next2/comment/${this.category}/article/${this.id}`;
     },
     mounted() {
         getOrderMode()
