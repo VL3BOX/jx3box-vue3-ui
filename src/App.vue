@@ -68,7 +68,7 @@
                 :allowGift="true"
             />
             <Comment category="post" id="19382"></Comment>
-            <RightSidebar>
+            <RightSidebar :show-toggle="true">
                 <PostTopic type="bps" :id="48857"></PostTopic>
                 <div id="directory"></div>
             </RightSidebar>
