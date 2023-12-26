@@ -63,6 +63,11 @@
                 {{ views }}
             </span>
 
+            <span class="u-word-count u-sub-block" v-if="wordCount" title="累计字数">
+                <el-icon :size="15"><Sunny /></el-icon>
+                {{ wordCount }}
+            </span>
+
             <!-- 编辑 -->
             <a class="u-edit u-sub-block" :href="edit_link">
                 <el-icon class="u-icon-edit" :size="16"><Edit /></el-icon>
@@ -77,11 +82,14 @@ const { __clients } = require("@jx3box/jx3box-common/data/jx3box.json");
 import { showDate, showTime } from "@jx3box/jx3box-common/js/moment";
 import { editLink, authorLink } from "@jx3box/jx3box-common/js/utils.js";
 import User from "@jx3box/jx3box-common/js/user.js";
+import $ from "jquery";
 export default {
     name: "PostHeader",
     props: ["post", "stat"],
     data: function () {
-        return {};
+        return {
+            wordCount: 0,
+        };
     },
     computed: {
         url: function () {
@@ -124,10 +132,27 @@ export default {
             return this.post?.client || "std";
         },
     },
+    watch: {
+        post: {
+            deep: true,
+            handler: function() {
+                this.countWords();
+            },
+        }
+    },
     methods: {
         showClientLabel: function (val) {
             return __clients[val];
         },
+        countWords: function (){
+            this.$nextTick(() => {
+                // 需要去除空格 \n \g
+                // eslint-disable-next-line no-useless-escape
+                const text = $('.c-article').text()?.replace(/[\s|\n|\r|\t|\g|\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\，|\。|\？|\：|\；|\‘|\’|\”|\“|\、|\·|\！|\（|\）|\》|\《|\『|\』]/g, '');
+
+                this.wordCount = text?.length || 0;
+            })
+        }
     },
     mounted: function () {},
 };
@@ -274,10 +299,10 @@ export default {
         font-style: normal;
     }
 
-    .u-views {
+    .u-views,.u-word-count {
         .flex;
         align-items: center;
-        gap: 4px;
+        gap: 2px;
     }
 
     .u-edit {
