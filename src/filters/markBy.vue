@@ -38,9 +38,9 @@ export default {
             type: String,
             default: "",
         },
-        mode: {
+        type: {
             type: String,
-            default: "",
+            default: "mark",
         },
         marks: {
             type: Object,
@@ -67,7 +67,7 @@ export default {
         },
         filter: function (key) {
             this.mark = key;
-            this.$emit("filter", { type: "mark", val: key });
+            this.$emit("filter", { type: this.type, val: key });
             this.visible = false;
         },
     },

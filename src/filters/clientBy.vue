@@ -1,10 +1,13 @@
 <template>
     <div class="w-filter-client">
         <ul>
+            <li class="u-client" :class="{on: client == ''}" @click="filter('')" v-if="clients">
+                全部
+            </li>
             <li
                 class="u-client"
                 :class="{ on: client == value }"
-                v-for="(label, value) in clients"
+                v-for="(label, value) in computedClients"
                 :key="value"
                 @click="filter(value)"
             >
@@ -16,21 +19,29 @@
 
 <script>
 const clients = {
-    all: "全部版本",
+    all: "双端",
     std: "重制",
     origin: "缘起",
 };
 export default {
     name: "clientBy",
     emits: ["filter"],
-    props: ["type"],
+    props: ["type", "clients", "showWujie"],
     data: function () {
         return {
-            client: this.type || "all",
-            clients,
+            client: this.type || "",
         };
     },
-    computed: {},
+    computed: {
+        computedClients: function () {
+            if (this.showWujie) {
+                return Object.assign({}, this.clients || clients, {
+                    wujie: "无界",
+                });
+            }
+            return clients;
+        },
+    },
     methods: {
         filter: function (val) {
             this.client = val;
