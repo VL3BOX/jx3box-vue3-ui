@@ -240,6 +240,7 @@ export default {
     @origin: #0eb7ce;
     @std: #f0b400;
     @all: #a26ef7;
+    @wujie : #fc79bf;
 
     .u-client {
         // .fl;
@@ -257,6 +258,11 @@ export default {
         &.origin {
             border: 1px solid @origin;
             color: @origin;
+        }
+
+        &.wujie{
+            border: 1px solid @wujie;
+            color: @wujie;
         }
 
         &.all {
