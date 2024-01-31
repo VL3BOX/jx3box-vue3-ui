@@ -69,7 +69,7 @@
             </span>
 
             <!-- 编辑 -->
-            <a class="u-edit u-sub-block" :href="edit_link">
+            <a class="u-edit u-sub-block" :href="edit_link" v-if="canEdit">
                 <el-icon class="u-icon-edit" :size="16"><Edit /></el-icon>
                 <span>编辑</span>
             </a>
