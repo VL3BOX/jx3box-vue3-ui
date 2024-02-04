@@ -9,7 +9,7 @@
                 <span class="u-item">
                     <a class="u-item-primary" href="/about/incentives" target="_blank">
                         <span class="u-label"
-                            ><el-icon><User /></el-icon> 等级</span
+                            ><el-icon><User /></el-icon> {{ $t('等级') }}</span
                         >
                         <span class="u-value u-level" :style="levelStyle">Lv.{{ level }}</span>
                     </a>
@@ -18,43 +18,43 @@
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/boxcoin" target="_blank"
                         ><span class="u-label"
-                            ><el-icon><Coin /></el-icon> 盒币</span
+                            ><el-icon><Coin /></el-icon> {{ $t('盒币') }}</span
                         >
                         <span class="u-value">{{ asset.box_coin }}</span></a
                     >
-                    <span class="u-item-extend"><a href="/dashboard/boxcoin" target="_blank">[兑换通宝]</a></span>
+                    <span class="u-item-extend"><a href="/dashboard/boxcoin" target="_blank">[{{ $t('兑换通宝') }}]</a></span>
                 </span>
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/cny" target="_blank"
                         ><span class="u-label"
-                            ><el-icon><Wallet /></el-icon> 金箔</span
+                            ><el-icon><Wallet /></el-icon> {{ $t('金箔') }}</span
                         ><span class="u-value">{{ asset.cny }}</span></a
                     >
                     <span class="u-item-extend"
-                        ><a href="/vip/cny" target="_blank">[充值]</a>
-                        <a href="/dashboard/cny" target="_blank">[提现]</a></span
+                        ><a href="/vip/cny" target="_blank">[{{ $t('充值') }}]</a>
+                        <a href="/dashboard/cny" target="_blank">[{{ $t('提现') }}]</a></span
                     >
                 </span>
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/points" target="_blank"
                         ><span class="u-label"
-                            ><el-icon><Sugar /></el-icon> 银铛</span
+                            ><el-icon><Sugar /></el-icon> {{ $t('银铛') }}</span
                         >
                         <span class="u-value">{{ asset.points }}</span></a
                     >
                     <span class="u-item-extend"
-                        ><a href="/vip/mall" target="_blank">[兑礼]</a
-                        ><a href="/vip/lottery" target="_blank">[抽奖]</a></span
+                        ><a href="/vip/mall" target="_blank">[{{ $t('兑礼') }}]</a
+                        ><a href="/vip/lottery" target="_blank">[{{ $t('抽奖') }}]</a></span
                     >
                 </span>
                 <span class="u-item">
                     <a class="u-item-primary" href="/dashboard/card" target="_blank"
                         ><span class="u-label"
-                            ><el-icon><Postcard /></el-icon> 卡密</span
+                            ><el-icon><Postcard /></el-icon> {{ $t('卡密') }}</span
                         >
                         <span class="u-value">{{ asset.ext_info ? asset.ext_info.keycode : 0 }}</span></a
                     >
-                    <span class="u-item-extend"><a href="/dashboard/card" target="_blank">[查看]</a></span>
+                    <span class="u-item-extend"><a href="/dashboard/card" target="_blank">[{{ $t('查看') }}]</a></span>
                 </span>
             </div>
         </div>

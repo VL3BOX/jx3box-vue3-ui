@@ -7,7 +7,7 @@
                 maxlength="300"
                 show-word-limit
                 v-model="newComment.content"
-                placeholder="参与讨论..."
+                :placeholder="$t('参与讨论...')"
                 :id="inputId"
             ></el-input>
             <div class="c-comment-tools">
@@ -32,7 +32,7 @@
                     @click="onSubmit"
                     class="u-publish"
                     :disabled="disableSubmitBtn"
-                    >发表评论</el-button
+                    >{{ $t('发表评论') }}</el-button
                 >
             </div>
         </el-form-item>

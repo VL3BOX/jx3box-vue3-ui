@@ -5,23 +5,23 @@
             <template v-if="isPhone">
                 <ul class="u-menu u-pop-content">
                     <li>
-                        <a href="/dashboard">个人中心</a>
+                        <a href="/dashboard">{{ $t('个人中心') }}</a>
                     </li>
                     <li>
-                        <a :href="url.msg">消息中心</a>
+                        <a :href="url.msg">{{ $t('消息中心') }}</a>
                     </li>
                     <li>
-                        <a :href="url.publish">发布中心</a>
+                        <a :href="url.publish">{{ $t('发布中心') }}</a>
                     </li>
                     <hr />
                     <li v-if="isAdmin">
-                        <a href="/admin">站点配置</a>
+                        <a href="/admin">{{ $t('站点配置') }}</a>
                     </li>
                     <li v-if="isEditor">
-                        <a href="https://os.jx3box.com/admin">管理平台</a>
+                        <a href="https://os.jx3box.com/admin">{{ $t('管理平台') }}</a>
                     </li>
                     <li>
-                        <a class="" @click="logout">退出登录</a>
+                        <a class="" @click="logout">{{ $t('退出登录') }}</a>
 
                     </li>
                 </ul>
@@ -38,53 +38,53 @@
                                     :src="super_author_icon"
                                     class="u-superauthor-profile"
                                     alt="superauthor"
-                                    title="签约作者"
+                                    :title="$t('签约作者')"
                                     :class="{ off: !isSuperAuthor }"
                             /></a>
                             <a
                                 class="u-vip"
                                 href="/vip/premium?from=header_usermenu"
                                 target="_blank"
-                                title="专业版账号"
+                                :title="$t('专业版账号')"
                             >
                                 <i class="i-icon-vip" :class="{ on: isPRO }">{{ vipType }}</i>
-                                <span class="u-expire">有效期至：{{ pro_expire_date }}</span>
+                                <span class="u-expire">{{ $t('有效期至：') + pro_expire_date }}</span>
                             </a>
                         </div>
                         <div class="u-id">
                             <span
-                                >魔盒UID：<b>{{ user.ID }}</b></span
+                                >{{ $t('魔盒UID：') }}<b>{{ user.ID }}</b></span
                             >
                             <el-icon @click.stop="copyText(user.ID)"><DocumentCopy /></el-icon>
                         </div>
                     </div>
 
                     <el-button-group class="u-actions">
-                        <a class="el-button el-button--default is-plain" href="/dashboard">个人中心</a>
-                        <a class="el-button el-button--default is-plain" :href="url.profile">资料设置</a>
-                        <a class="el-button el-button--default is-plain" href="/dashboard/frame">主题风格</a>
+                        <a class="el-button el-button--default is-plain" href="/dashboard">{{ $t('个人中心') }}</a>
+                        <a class="el-button el-button--default is-plain" :href="url.profile">{{ $t('资料设置') }}</a>
+                        <a class="el-button el-button--default is-plain" href="/dashboard/frame">{{ $t('主题风格') }}</a>
                     </el-button-group>
 
                     <div class="u-other">
                         <a href="/dashboard/fav" class="u-item"
-                            ><el-icon><Star /></el-icon>收藏订阅
+                            ><el-icon><Star /></el-icon>{{ $t('收藏订阅') }}
                         </a>
                         <a href="/team/role/manage" class="u-item"
-                            ><el-icon><User /></el-icon>角色管理
+                            ><el-icon><User /></el-icon>{{ $t('角色管理') }}
                         </a>
                         <a href="/dashboard/purchases" class="u-item"
-                            ><el-icon><ShoppingCart /></el-icon>已购资源
+                            ><el-icon><ShoppingCart /></el-icon>{{ $t('已购资源') }}
                         </a>
                         <a href="/dashboard/mall" class="u-item"
-                            ><el-icon><ShoppingBag /></el-icon>订单中心
+                            ><el-icon><ShoppingBag /></el-icon>{{ $t('订单中心') }}
                         </a>
                         <hr />
                         <a href="/dashboard/feedback" class="u-item"
-                            ><el-icon><Phone /></el-icon>反馈帮助
+                            ><el-icon><Phone /></el-icon>{{ $t('反馈帮助') }}
                         </a>
                         <hr />
                         <div class="u-logout">
-                            <el-button @click="logout" plain>退出登录</el-button>
+                            <el-button @click="logout" plain>{{ $t('退出登录') }}</el-button>
                         </div>
                     </div>
                 </div>

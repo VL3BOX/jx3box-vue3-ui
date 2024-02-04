@@ -8,12 +8,12 @@
                         class="u-share2-item"
                         :key="shareItem.key"
                         @click="share(shareItem.key)"
-                        title="分享"
+                        :title="$t('分享')"
                     >
                         <img class="u-share-icon" svg-inline :src="shareItem.img" :alt="shareItem.name">
                         <div class="u-share2-name">{{ shareItem.name }}</div>
                     </div>
-                    <!-- <p class="tip">将文章链接贴</p> -->
+                    <!-- <p class="tip">{{ $t('将文章链接贴') }}</p> -->
                 </div>
                 <div class="u-share2-wechat">
                     <qrcode-vue
@@ -22,16 +22,16 @@
                         :size="75"
                         level="H"
                     ></qrcode-vue>
-                    <span>微信扫一扫分享</span>
+                    <span>{{ $t('微信扫一扫分享') }}</span>
                 </div>
             </div>
 
             <template #reference>
-                <!-- <el-tooltip class="item" effect="dark" content="分享" placement="top"> -->
+                <!-- <el-tooltip class="item" effect="dark" :content="$t('分享')" placement="top"> -->
                     <div v-if="simple">
                         <img class="u-icon u-simple-icon" svg-inline src="../../assets/img/widget/share.svg" />
                         <!-- <i class="el-icon-position"></i> -->
-                        <span class="u-text">分享</span>
+                        <span class="u-text">{{ $t('分享') }}</span>
                     </div>
                     <img
                         v-else

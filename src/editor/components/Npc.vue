@@ -19,134 +19,133 @@
                                 {{ data.MapName }}
                             </span>
                             <span class="u-intensity" v-if="data.Intensity">
-                                强度
-                                {{ data.Intensity }}
+                                {{ $t('强度') + data.Intensity }}
                             </span>
                         </div>
                     </div>
                     <div class="u-primary">
                         <div class="u-life">
                             <img class="u-descicon u-descicon-life" svg-inline src="../../../assets/img/npc/energy.svg" />
-                            <b>血量</b>
+                            <b>{{ $t('血量') }}</b>
                             <em>MaxLife</em>
                             <strong>{{ data.MaxLife }}</strong>
                         </div>
                         <div class="u-mana">
                             <img class="u-descicon u-descicon-mana" svg-inline src="../../../assets/img/npc/energy.svg" />
-                            <b>内力</b>
+                            <b>{{ $t('内力') }}</b>
                             <em>MaxMana</em>
                             <strong>{{ data.MaxMana }}</strong>
                         </div>
                         <div class="u-touch" v-if="data.TouchRange">
                             <img class="u-descicon u-descicon-touch" svg-inline src="../../../assets/img/npc/radar.svg" />
-                            <b>范围</b>
+                            <b>{{ $t('范围') }}</b>
                             <em>TouchRange</em>
                             <strong>{{ data.TouchRange }}</strong>
                         </div>
                         <div class="u-sense" v-if="data.Sense">
                             <img class="u-descicon u-descicon-sense" svg-inline src="../../../assets/img/npc/sight.svg" />
-                            <b>识破</b>
+                            <b>{{ $t('识破') }}</b>
                             <em>Sense</em>
                             <strong>{{ data.Sense }}</strong>
                         </div>
                         <div class="u-dodge" v-if="data.Dodge">
                             <img class="u-descicon u-descicon-dodge" svg-inline src="../../../assets/img/npc/miss.svg" />
-                            <b>闪避</b>
+                            <b>{{ $t('闪避') }}</b>
                             <em>Dodge</em>
                             <strong>{{ data.Dodge }}</strong>
                         </div>
                         <div class="u-dodge" v-if="data.Parry">
                             <img class="u-descicon u-descicon-dodge" svg-inline src="../../../assets/img/npc/miss.svg" />
-                            <b>招架</b>
+                            <b>{{ $t('招架') }}</b>
                             <em>Parry</em>
                             <strong>{{ data.ParryValue }}</strong>
                         </div>
                         <div class="u-shield">
                             <img class="u-descicon u-descicon-shield" svg-inline src="../../../assets/img/npc/shield.svg" />
-                            <b>防御</b>
+                            <b>{{ $t('防御') }}</b>
                             <em>Shield</em>
                             <span class="u-sitem">
-                                外功防御
+                                {{ $t('外功防御') }}
                                 <em>PhysicsShieldBase</em>
                                 <span class="u-value">{{ ~~data.PhysicsShieldBase }}</span>
                             </span>
                             <span class="u-sitem">
-                                混元防御
+                                {{ $t('混元防御') }}
                                 <em>NeutralMagicDefence</em>
                                 <span class="u-value">{{ ~~data.NeutralMagicDefence }}</span>
                             </span>
                             <span class="u-sitem">
-                                阳性防御
+                                {{ $t('阳性防御') }}
                                 <em>SolarMagicDefence</em>
                                 <span class="u-value">{{ ~~data.SolarMagicDefence }}</span>
                             </span>
                             <span class="u-sitem">
-                                阴性防御
+                                {{ $t('阴性防御') }}
                                 <em>LunarMagicDefence</em>
                                 <span class="u-value">{{ ~~data.LunarMagicDefence }}</span>
                             </span>
                             <span class="u-sitem">
-                                毒性防御
+                                {{ $t('毒性防御') }}
                                 <em>PoisonMagicDefence</em>
                                 <span class="u-value">{{ ~~data.PoisonMagicDefence }}</span>
                             </span>
                         </div>
                         <div class="u-critical">
                             <img class="u-descicon u-descicon-attack" svg-inline src="../../../assets/img/npc/attack.svg" />
-                            <b>会心</b>
+                            <b>{{ $t('会心') }}</b>
                             <em>Critical</em>
                             <span class="u-sitem">
-                                外功会心
+                                {{ $t('外功会心') }}
                                 <em>PhysicsCriticalStrike</em>
                                 <span class="u-value">{{ ~~data.PhysicsCriticalStrike }}</span>
                             </span>
                             <span class="u-sitem">
-                                混元会心
+                                {{ $t('混元会心') }}
                                 <em>NeutralCriticalStrike</em>
                                 <span class="u-value">{{ ~~data.NeutralCriticalStrike }}</span>
                             </span>
                             <span class="u-sitem">
-                                阳性会心
+                                {{ $t('阳性会心') }}
                                 <em>SolarCriticalStrike</em>
                                 <span class="u-value">{{ ~~data.SolarCriticalStrike }}</span>
                             </span>
                             <span class="u-sitem">
-                                阴性会心
+                                {{ $t('阴性会心') }}
                                 <em>LunarCriticalStrike</em>
                                 <span class="u-value">{{ ~~data.LunarCriticalStrike }}</span>
                             </span>
                             <span class="u-sitem">
-                                毒性会心
+                                {{ $t('毒性会心') }}
                                 <em>PoisonCriticalStrike</em>
                                 <span class="u-value">{{ ~~data.PoisonCriticalStrike }}</span>
                             </span>
                         </div>
                         <div class="u-attack">
                             <img class="u-descicon u-descicon-attack" svg-inline src="../../../assets/img/npc/target.svg" />
-                            <b>命中</b>
+                            <b>{{ $t('命中') }}</b>
                             <em>Attack</em>
                             <span class="u-sitem">
-                                外功命中
+                                {{ $t('外功命中') }}
                                 <em>PhysicsAttackHit</em>
                                 <span class="u-value">{{ ~~data.PhysicsAttackHit }}</span>
                             </span>
                             <span class="u-sitem">
-                                混元命中
+                                {{ $t('混元命中') }}
                                 <em>NeutralMagicHit</em>
                                 <span class="u-value">{{ ~~data.NeutralMagicHit }}</span>
                             </span>
                             <span class="u-sitem">
-                                阳性命中
+                                {{ $t('阳性命中') }}
                                 <em>SolarMagicHit</em>
                                 <span class="u-value">{{ ~~data.SolarMagicHit }}</span>
                             </span>
                             <span class="u-sitem">
-                                阴性命中
+                                {{ $t('阴性命中') }}
                                 <em>LunarMagicHit</em>
                                 <span class="u-value">{{ ~~data.LunarMagicHit }}</span>
                             </span>
                             <span class="u-sitem">
-                                毒性命中
+                                {{ $t('毒性命中') }}
                                 <em>PoisonMagicHit</em>
                                 <span class="u-value">{{ ~~data.PoisonMagicHit }}</span>
                             </span>

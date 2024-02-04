@@ -62,7 +62,7 @@
         <div class="c-header-nav__pad">
             <el-menu mode="horizontal" class="c-quick-menu" v-model="activeIndex" :ellipsis="false">
                 <el-sub-menu index="quick-menu" popper-class="c-quick-menu__submenu">
-                    <template #title>快捷导航</template>
+                    <template #title>{{ $t('快捷导航') }}</template>
                     <el-menu-item v-for="item in finalNav" :key="'header-nav-' + item.key">
                         <template v-if="matchedClient(item.client)">
                             <el-sub-menu

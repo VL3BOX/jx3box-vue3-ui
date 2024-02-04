@@ -22,7 +22,7 @@
                 icon="ChatRound"
                 @click="showForm = !showForm"
                 type="primary"
-                >回复</el-button
+                >{{ $t('回复') }}</el-button
             >
             <el-button
                 class="u-admin"
@@ -32,7 +32,7 @@
                 size="small"
                 @click="deleteComment()"
                 type="danger"
-                >删除</el-button
+                >{{ $t('删除') }}</el-button
             >
             <el-button
                 class="u-admin"
@@ -42,7 +42,7 @@
                 size="small"
                 @click="topComment(true)"
                 type="primary"
-                >置顶</el-button
+                >{{ $t('置顶') }}</el-button
             >
             <el-button
                 class="u-admin"
@@ -52,7 +52,7 @@
                 size="small"
                 @click="topComment(false)"
                 type="primary"
-                >取消置顶</el-button
+                >{{ $t('取消置顶') }}</el-button
             >
             <el-button
                 class="u-admin"
@@ -62,7 +62,7 @@
                 size="small"
                 @click="starComment(true)"
                 type="primary"
-                >加精</el-button
+                >{{ $t('加精') }}</el-button
             >
             <el-button
                 class="u-admin"
@@ -72,7 +72,7 @@
                 size="small"
                 @click="starComment(false)"
                 type="primary"
-                >取消加精</el-button
+                >{{ $t('取消加精') }}</el-button
             >
             <time class="u-date">
                 <i class="Clock"></i>
@@ -89,7 +89,7 @@
                 <el-input
                     type="textarea"
                     v-model="newComment.content"
-                    placeholder="参与评论..."
+                    :placeholder="$('参与评论...')"
                     :id="'id' + inputId"
                 ></el-input>
             </el-form-item>
@@ -116,10 +116,10 @@
                     type="primary"
                     @click="submit()"
                     :disabled="disableSubmitBtn"
-                    >提交</el-button
+                    >{{ $t('提交') }}</el-button
                 >
                 <el-button size="small" link @click="showForm = false" type="primary"
-                    >收起</el-button
+                    >{{ $t('收起') }}</el-button
                 >
             </el-form-item>
         </el-form>

@@ -21,9 +21,9 @@
         </template>
         <template v-else>
             <div class="c-header-login">
-                <a class="u-register u-default" :href="register_url">注册</a>
+                <a class="u-register u-default" :href="register_url">{{ $t('注册') }}</a>
                 <em>|</em>
-                <a class="u-login u-default" :href="login_url">登录</a>
+                <a class="u-login u-default" :href="login_url">{{ $t('登录') }}</a>
             </div>
         </template>
     </div>

@@ -10,29 +10,29 @@
         <div class="c-item-wrapper">
             <!-- 精炼等级 -->
             <div v-if="source.MaxStrengthLevel" class="u-max-strength-level">
-                <span v-text="`精炼等级：0 / ${source.MaxStrengthLevel}`"></span>
+                <span v-text="$t('精炼等级：') + `0 / ${source.MaxStrengthLevel}`"></span>
             </div>
             <!-- 物品名称 -->
             <div class="u-title" :style="{ color: color(source.Quality) }" v-text="source.Name"></div>
             <!-- 绑定状态 -->
             <div v-if="source.BindType > 1" class="u-bind" v-text="bind(source.BindType)"></div>
             <!-- 唯一 -->
-            <div v-if="parseInt(source.MaxExistAmount) === 1" class="unique" v-text="'唯一'"></div>
+            <div v-if="parseInt(source.MaxExistAmount) === 1" class="unique" v-text="$t('唯一')"></div>
             <!-- 存在时间 -->
             <div
                 v-if="parseInt(source.MaxExistTime) > 0"
                 class="u-max-exist-time"
-                v-text="'限时时间：' + showDuration(source.MaxExistTime)"
+                v-text="$t('限时时间：') + showDuration(source.MaxExistTime)"
             ></div>
             <!-- 最大拥有数 -->
             <div
                 v-if="parseInt(source.MaxExistAmount) > 1"
                 class="u-max-exist-amount"
-                v-text="'最大拥有数：' + source.MaxExistAmount"
+                v-text="$t('最大拥有数：') + source.MaxExistAmount"
             ></div>
             <!-- 武器类别 -->
-            <div v-if="source.AucGenre == 1" class="u-weapon-type-label">近身武器</div>
-            <div v-if="source.AucGenre == 2" class="u-weapon-type-label">远程武器</div>
+            <div v-if="source.AucGenre == 1" class="u-weapon-type-label">{{ $t('近身武器') }}</div>
+            <div v-if="source.AucGenre == 2" class="u-weapon-type-label">{{ $t('远程武器') }}</div>
             <!-- 物品类型文案 -->
             <div v-if="source.TypeLabel" class="u-type-label" v-text="source.TypeLabel"></div>
             <!-- 装备属性 -->
@@ -72,19 +72,19 @@
             <!-- 家具属性 -->
             <div class="u-furniture-attributes" v-if="source.furniture_attributes">
                 <div class="u-field u-green" v-if="source.furniture_attributes.view">
-                    <span class="u-value" v-text="`观赏提高${source.furniture_attributes.view}`"></span>
+                    <span class="u-value" v-text="$t('观赏提高') + `${source.furniture_attributes.view}`"></span>
                 </div>
                 <div class="u-field u-green" v-if="source.furniture_attributes.practical">
-                    <span class="u-value" v-text="`实用提高${source.furniture_attributes.practical}`"></span>
+                    <span class="u-value" v-text="$t('实用提高') + `${source.furniture_attributes.practical}`"></span>
                 </div>
                 <div class="u-field u-green" v-if="source.furniture_attributes.hard">
-                    <span class="u-value" v-text="`坚固提高${source.furniture_attributes.hard}`"></span>
+                    <span class="u-value" v-text="$t('坚固提高') + `${source.furniture_attributes.hard}`"></span>
                 </div>
                 <div class="u-field u-green" v-if="source.furniture_attributes.geomantic">
-                    <span class="u-value" v-text="`风水提高${source.furniture_attributes.geomantic}`"></span>
+                    <span class="u-value" v-text="$t('风水提高') + `${source.furniture_attributes.geomantic}`"></span>
                 </div>
                 <div class="u-field u-green" v-if="source.furniture_attributes.interesting">
-                    <span class="u-value" v-text="`趣味提高${source.furniture_attributes.interesting}`"></span>
+                    <span class="u-value" v-text="$t('趣味提高') + `${source.furniture_attributes.interesting}`"></span>
                 </div>
             </div>
             <!-- 镶嵌 -->
@@ -92,12 +92,12 @@
                 <!-- 五行石 -->
                 <li class="u-diamond" v-for="(label, key) in source.Diamonds" :key="key">
                     <span class="u-square"></span>
-                    <span class="u-text" v-text="`镶嵌孔：${label}`"></span>
+                    <span class="u-text" v-text="$t('镶嵌孔：') + `${label}`"></span>
                 </li>
                 <!-- 五彩石 -->
                 <li v-if="source.AucGenre == 1" class="u-diamond">
                     <span class="u-square"></span>
-                    <span class="u-text">&lt;只能镶嵌五彩石&gt;</span>
+                    <span class="u-text">&lt;{{ $t('只能镶嵌五彩石') }}&gt;</span>
                 </li>
             </ul>
             <!-- 仅性别可穿戴 -->
@@ -126,7 +126,7 @@
             <div
                 v-if="source.AucGenre >= 1 && source.AucGenre <= 3"
                 class="u-max-durability"
-                v-text="'最大耐久度' + source.MaxDurability"
+                v-text="$t('最大耐久度') + source.MaxDurability"
             ></div>
             <!-- 套装信息 -->
             <div v-if="source.Set" class="u-set">
@@ -160,42 +160,42 @@
             <!-- 五彩石属性 -->
             <p v-if="source.WuCaiHtml" class="u-desc" v-html="source.WuCaiHtml"></p>
             <!-- 品质等级 -->
-            <div v-if="source.Level" class="u-level u-yellow" v-text="'品质等级' + source.Level"></div>
+            <div v-if="source.Level" class="u-level u-yellow" v-text="$t('品质等级') + source.Level"></div>
             <!-- 装备分数 -->
             <div
                 v-if="source.EquipmentRating"
                 class="u-equipment-rating u-orange"
-                v-text="'装备分数' + source.EquipmentRating"
+                v-text="$t('装备分数') + source.EquipmentRating"
             ></div>
             <!-- 推荐门派心法 -->
-            <div v-if="source.Recommend" class="u-equipment-recommend" v-text="'推荐门派：' + source.Recommend"></div>
+            <div v-if="source.Recommend" class="u-equipment-recommend" v-text="$t('推荐门派：') + source.Recommend"></div>
             <!-- 冷却时间 -->
             <div
                 v-if="source.CoolDown"
                 class="u-equipment-recommend"
-                v-text="'使用间隔' + second_format(source.CoolDown)"
+                v-text="$t('使用间隔') + second_format(source.CoolDown)"
             ></div>
             <!-- 外观名称 -->
-            <div v-if="source.Appearance" class="u-appearance" v-text="'外观名称：' + source.Appearance"></div>
+            <div v-if="source.Appearance" class="u-appearance" v-text="$t('外观名称：') + source.Appearance"></div>
             <!-- 可收集门派 -->
-            <div v-if="source.CanExterior" class="u-can-exterior" v-text="'外观：' + source.CanExterior"></div>
+            <div v-if="source.CanExterior" class="u-can-exterior" v-text="$t('外观：') + source.CanExterior"></div>
             <!-- 储物箱共享 -->
             <div v-if="source.CanShared && !(source.AucGenre >= 1 && source.AucGenre <= 4)" class="u-can-shared">
-                该物品可以放入账号储物箱共享。
+                {{ $t('该物品可以放入账号储物箱共享。') }}
             </div>
             <div v-if="source.CanShared && source.AucGenre >= 1 && source.AucGenre <= 4" class="u-can-shared">
-                该装备未精炼、镶嵌、附魔、穿戴前可以放入账号储物箱共享。
+                {{ $t('该装备未精炼、镶嵌、附魔、穿戴前可以放入账号储物箱共享。') }}
             </div>
             <!-- 家具可交互可缩放 -->
             <div v-if="source.furniture_attributes" class="u-furniture-can">
-                <span v-if="source.furniture_attributes.interact">可交互</span>
+                <span v-if="source.furniture_attributes.interact">{{ $t('可交互') }}</span>
                 <span
                     v-if="source.furniture_attributes.scale_range"
-                    v-text="`可缩放(${source.furniture_attributes.scale_range.replace(';', ' - ')}倍)`"
+                    v-text="$t('可缩放') + `(${source.furniture_attributes.scale_range.replace(';', ' - ')}) + $t('倍')`"
                 ></span>
             </div>
             <!-- 物品来源 -->
-            <div v-if="source.GetType" class="u-get-type" v-text="`物品来源：${source.GetType}`"></div>
+            <div v-if="source.GetType" class="u-get-type" v-text="$t('物品来源：') + `${source.GetType}`"></div>
         </div>
     </div>
 </template>

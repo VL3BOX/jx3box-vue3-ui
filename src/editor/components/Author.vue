@@ -11,17 +11,17 @@
                 />
                 <div class="u-info">
                     <a class="u-name" :href="authorLink(uid)" target="_blank">
-                        <el-tooltip class="item" effect="dark" content="签约作者" placement="top" v-if="isSuperAuthor">
+                        <el-tooltip class="item" effect="dark" :content="$t('签约作者')" placement="top" v-if="isSuperAuthor">
                             <a class="u-superauthor" href="/dashboard/cooperation" target="_blank">
                                 <img :src="super_author_icon" alt="superauthor" />
                             </a>
                         </el-tooltip>
-                        <span class="u-displayname" :title="data.display_name">{{ data.display_name || "未知" }}</span>
+                        <span class="u-displayname" :title="data.display_name">{{ data.display_name || $t('未知') }}</span>
                     </a>
                     <div class="u-extend">
                         <el-tooltip class="item" effect="dark" placement="top">
                             <template #content>
-                                <span class="u-tips">经验值：{{ data.experience }}</span>
+                                <span class="u-tips">{{ $t('经验值：') + data.experience }}</span>
                             </template>
                             <span
                                 class="u-level"

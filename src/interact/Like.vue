@@ -1,6 +1,6 @@
 <template>
     <div class="w-like2" :class="{ disabled: !status }" @click="addLike" v-if="ready">
-        <el-tooltip effect="dark" content="点赞" placement="top-start">
+        <el-tooltip effect="dark" :content="$t('点赞')" placement="top-start">
             <div>
                 <img class="u-icon" svg-inline src="../../assets/img/widget/like2.svg" />
                 <span class="u-count" v-if="count">{{ count }}</span>

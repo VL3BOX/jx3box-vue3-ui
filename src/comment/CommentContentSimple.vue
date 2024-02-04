@@ -2,7 +2,7 @@
     <div class="u-reply">
         <div class="u-reply-content">
             <span class="u-reply-label" v-if="replyForUserId != 0">
-                回复
+                {{ $t('回复') }}
                 <el-link type="primary" target="_blank" :href="userHref"
                     >@{{ replyForUsername }}</el-link
                 >
@@ -30,7 +30,7 @@
                 size="small"
                 @click="showReplyForReplyInput()"
                 type="primary"
-                >回复</el-button
+                >{{ $t('回复') }}</el-button
             >
             <el-button
                 class="u-admin"
@@ -40,7 +40,7 @@
                 size="small"
                 type="danger"
                 @click="deleteComment()"
-                >删除</el-button
+                >{{ $t('删除') }}</el-button
             >
             <time class="u-date">
                 <i class="Clock"></i>

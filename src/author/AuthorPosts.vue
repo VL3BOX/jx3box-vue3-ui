@@ -2,7 +2,7 @@
     <div class="c-author-posts" v-if="ready">
         <div class="u-label">
             <img svg-inline src="../../assets/img/leftsidebar/post.svg" />
-            <span>最新作品</span>
+            <span>{{ $t('最新作品') }}</span>
             <a :href="authorLink(uid)" class="u-more" target="_blank"
                 ><img svg-inline src="../../assets/img/leftsidebar/more.svg"
             /></a>

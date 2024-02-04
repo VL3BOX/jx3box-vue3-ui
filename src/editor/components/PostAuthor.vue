@@ -8,7 +8,7 @@
     <div class="w-author w-author__post" v-loading="loading">
         <div class="w-author-wrapper el-popover" v-if="data">
             <div class="u-meta">
-                <span class="u-meta-label">作者</span>
+                <span class="u-meta-label">{{ $t('作者') }}</span>
                 <span class="u-meta-value">
                     <a class="u-user" :href="authorLink(data.user_id)" target="_blank">
                         <Avatar class="u-user-avatar" :uid="data.user_id" :url="data.user_info.user_avatar" :size="32" />
@@ -17,13 +17,13 @@
                 </span>
             </div>
             <div class="u-meta">
-                <div class="u-meta-label">更新</div>
+                <div class="u-meta-label">{{ $t('更新') }}</div>
                 <div class="u-meta-value">
                     {{ formatTime(data.created_at) }}
                 </div>
             </div>
             <div class="u-meta">
-                <div class="u-meta-label">信息</div>
+                <div class="u-meta-label">{{ $t('信息') }}</div>
                 <div class="u-meta-value">{{ data.desc }}</div>
             </div>
         </div>

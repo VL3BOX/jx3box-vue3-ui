@@ -4,19 +4,19 @@
             <Avatar class="u-avatar" :uid="uid" :url="data.user_avatar" size="s" :frame="data.user_avatar_frame" />
             <div class="u-info">
                 <div class="u-name">
-                    <el-tooltip class="item" effect="dark" content="签约作者" placement="top" v-if="isSuperAuthor">
+                    <el-tooltip class="item" effect="dark" :content="$t('签约作者')" placement="top" v-if="isSuperAuthor">
                         <a class="u-superauthor" href="/about/superauthor" target="_blank">
                             <img :src="super_author_icon" alt="superauthor" />
                         </a>
                     </el-tooltip>
                     <a class="u-displayname" :href="authorLink(uid)" target="_blank">
-                        {{ data.display_name || "未知" }}
+                        {{ data.display_name || $t('未知') }}
                     </a>
                 </div>
                 <div class="u-extend">
                     <el-tooltip class="item" effect="dark" placement="top">
                         <template #content>
-                            <span class="u-tips">经验值：{{ data.experience }}</span>
+                            <span class="u-tips">{{ $t('经验值：') + data.experience }}</span>
                         </template>
                         <a
                             class="u-level"

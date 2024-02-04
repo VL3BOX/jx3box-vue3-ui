@@ -3,14 +3,14 @@
         <el-main>
             <CommentInputForm @submit="userSubmitInputForm" />
             <div class="c-comment-order">
-                <span class="u-label">排序模式：</span>
+                <span class="u-label">{{ $t('排序模式：') }}</span>
                 <el-radio-group
                     v-model="isDesc"
                     @change="changeOrder"
                     size="small"
                 >
-                    <el-radio-button label="DESC">最后靠前</el-radio-button>
-                    <el-radio-button label="ASC">最早靠前</el-radio-button>
+                    <el-radio-button label="DESC">{{ $t('最后靠前') }}</el-radio-button>
+                    <el-radio-button label="ASC">{{ $t('最早靠前') }}</el-radio-button>
                 </el-radio-group>
             </div>
             <template v-if="isNormal">

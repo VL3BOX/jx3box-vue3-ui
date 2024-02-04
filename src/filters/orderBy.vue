@@ -1,7 +1,7 @@
 <template>
     <div class="w-filter-order" :class="{ on: visible }">
         <span class="u-label" @click="toggleFilter">
-            <span class="u-current-order">排序 : {{ current || "最后更新" }}</span>
+            <span class="u-current-order">{{ $t('排序: ') + (current || $t('最后更新')) }}</span>
             <span class="u-toggle">
                 <el-icon class="el-icon-arrow-down">
                     <arrow-down />
@@ -16,13 +16,13 @@
                 ><el-icon>
                     <refresh />
                 </el-icon>
-                最后更新</span
+                {{ $t('最后更新') }}</span
             >
             <span class="u-mode u-podate" :class="{ on: order == 'podate' }" @click="filter('podate')"
                 ><el-icon>
                     <sort />
                 </el-icon>
-                最早发布</span
+                {{ $t('最早发布') }}</span
             >
             <slot></slot>
         </span>

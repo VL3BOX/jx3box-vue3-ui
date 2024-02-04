@@ -12,7 +12,7 @@
             ></div>
         </div>
         <div id="c-article" class="c-article" ref="article" v-else-if="data && data.length" v-html="data[0]"></div>
-        <el-button class="c-article-all" type="primary" v-if="!all && hasPages" @click="showAll">加载全部</el-button>
+        <el-button class="c-article-all" type="primary" v-if="!all && hasPages" @click="showAll">{{ $t('加载全部') }}</el-button>
         <el-pagination
             class="c-article-pages"
             v-if="!all"

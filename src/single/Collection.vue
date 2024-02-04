@@ -1,7 +1,7 @@
 <template>
     <div class="w-collection" v-if="list && list.length">
         <div class="w-collection-title" @click="handleShow" :class="{ on: visible }">
-            <span> <el-icon><Notebook /></el-icon> 该作品已被收录至作者的剑三小册 </span>
+            <span> <el-icon><Notebook /></el-icon> {{ $t('该作品已被收录至作者的剑三小册') }} </span>
             <a @click.stop :href="collectionLink(id)" target="_blank">《{{ title }}》</a>
         </div>
         <transition name="fade">

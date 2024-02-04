@@ -6,13 +6,13 @@
                 type="primary"
                 target="_blank"
                 :href="userHref"
-                >{{ username || "人字榜800线无名小侠" }}</el-link
+                >{{ username || $t('人字榜800线无名小侠') }}</el-link
             >
             <span class="u-mark u-top" v-if="item.is_top"
-                ><i class="Download"></i>置顶</span
+                ><i class="Download"></i>{{ $t('置顶') }}</span
             >
             <span class="u-mark u-star" v-if="item.is_star"
-                ><i class="Star"></i>精华</span
+                ><i class="Star"></i>{{ $t('精华') }}</span
             >
         </div>
         <CommentContent

@@ -1,7 +1,7 @@
 <template>
-    <div class="c-header-logo" @click="toggleBox($event)" title="点击展开魔盒矩阵">
+    <div class="c-header-logo" @click="toggleBox($event)" :title="$t('点击展开魔盒矩阵')">
         <i class="u-pic" id="c-header-logo"><img svg-inline src="../../assets/img/header/logo.svg" /></i>
-        <span class="u-txt" :class="{ on: isIndex }" href="/">魔盒</span>
+        <span class="u-txt" :class="{ on: isIndex }" href="/">{{ $t('魔盒') }}</span>
     </div>
 </template>
 

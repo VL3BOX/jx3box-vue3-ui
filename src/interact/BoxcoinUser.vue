@@ -1,13 +1,13 @@
 <template>
     <div class="w-boxcoin-user" v-if="allowBoxcoin">
-        <el-tooltip effect="dark" content="投币" placement="top-start">
+        <el-tooltip effect="dark" :content="$t('投币')" placement="top-start">
             <div class="w-boxcoin-block" @click="openBoxcoinPop">
                 <img class="u-icon" svg-inline :src="likeImg" />
                 <span class="u-count" v-if="boxcoin">{{ boxcoin }}</span>
             </div>
         </el-tooltip>
         <el-dialog
-            title="投币打赏"
+            :title="$t('投币打赏')"
             v-model="visible"
             class="w-boxcoin-pop"
             append-to-body
@@ -15,34 +15,34 @@
         >
             <div class="w-boxcoin-user-content">
                 <div class="u-left">
-                    <em class="u-label">当前拥有盒币</em>
+                    <em class="u-label">{{ $t('当前拥有盒币') }}</em>
                     <b>{{ left }}</b>
-                    <a class="u-charge" :href="chargeLink" target="_blank">[充值]</a>
+                    <a class="u-charge" :href="chargeLink" target="_blank">[{{ $t('充值') }}]</a>
                 </div>
                 <div class="u-list">
-                    <em class="u-label">❤️ 打赏</em>
+                    <em class="u-label">❤️ {{ $t('打赏') }}</em>
                     <Contributors v-if="authors && authors.length" :authors="authors" @chosen="handleChosen" />
                     <div class="u-points">
                         <el-radio-group v-model="count">
                             <el-radio :label="item" v-for="item in fitPoints" :key="item" border>
                                 <b>{{ item }}</b
-                                >盒币
+                                >{{ $t('盒币') }}
                             </el-radio>
-                            <el-radio label="custom" border>自定义</el-radio>
+                            <el-radio label="custom" border>{{ $t('自定义') }}</el-radio>
                             <el-input
                                 v-model="amount"
                                 v-show="count === 'custom'"
-                                placeholder="输入自定义数量"
+                                :placeholder="$t('输入自定义数量')"
                             ></el-input>
                         </el-radio-group>
                     </div>
                 </div>
                 <div class="u-msg">
-                    <em class="u-label">📝 寄语</em>
+                    <em class="u-label">📝 {{ $t('寄语') }}</em>
                     <div class="u-input">
                         <el-input
                             v-model="remark"
-                            placeholder="请输入寄语（必填）"
+                            :placeholder="$t('请输入寄语（必填）')"
                             :minlength="2"
                             :maxlength="30"
                             show-word-limit
@@ -52,8 +52,8 @@
             </div>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="visible = false">取 消</el-button>
-                    <el-button type="primary" @click="submit" :disabled="!ready">确 定</el-button>
+                    <el-button @click="visible = false">{{ $t('取 消') }}</el-button>
+                    <el-button type="primary" @click="submit" :disabled="!ready">{{ $t('确 定') }}</el-button>
                 </span>
             </template>
         </el-dialog>

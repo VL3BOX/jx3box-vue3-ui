@@ -22,7 +22,7 @@
                 class="u-publish el-button el-button--primary el-button--medium u-op-public"
             >
                 <el-icon><Edit /></el-icon>
-                <span>发布</span>
+                <span>{{ $t('发布') }}</span>
             </a>
             <a
                 v-if="feedbackEnable"
@@ -32,7 +32,7 @@
                 target="_blank"
             >
                 <el-icon><InfoFilled /></el-icon>
-                <span>反馈</span>
+                <span>{{ $t('反馈') }}</span>
             </a>
             <AdminButton v-if="adminEnable" class="u-admin" />
             <Admin v-if="adminEnable" />

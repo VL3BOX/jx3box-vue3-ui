@@ -2,7 +2,7 @@
     <div class="container-page">
         <Header></Header>
         <breadcrumb
-            name="频道名称"
+            :name="$t('频道名称')"
             slug="slug"
             root="/slug"
             :publishEnable="true"
@@ -50,7 +50,7 @@
             <singlebox :post="post" />
             <SimpleThxVue
                 postType="bbs"
-                postTitle="bbs23865的标题"
+                :postTitle="$t('bbs23865的标题')"
                 :userId="7"
                 :adminBoxcoinEnable="true"
                 :userBoxcoinEnable="true"
@@ -59,7 +59,7 @@
             />
             <Thx
                 postType="bbs"
-                postTitle="bbs23865的标题"
+                :postTitle="$t('bbs23865的标题')"
                 type="batchReward"
                 :userId="7"
                 :adminBoxcoinEnable="true"

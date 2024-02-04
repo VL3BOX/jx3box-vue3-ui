@@ -2,31 +2,31 @@
     <div class="c-resource">
         <!-- 上传触发按钮 -->
         <el-button class="u-switch" type="primary" @click="openDialog" :disabled="!enable">
-            <img class="u-icon u-jx3-icon" svg-inline src="../../assets/img/jx3.svg" />剑三资源
+            <img class="u-icon u-jx3-icon" svg-inline src="../../assets/img/jx3.svg" />{{ $t('剑三资源') }}
         </el-button>
 
         <!-- 弹出界面 -->
-        <el-dialog class="c-large-dialog" title="剑三数据库" v-model="dialogVisible">
+        <el-dialog class="c-large-dialog" :title="$t('剑三数据库')" v-model="dialogVisible">
             <div class="c-resource-content" v-loading="loading">
                 <div class="m-database-search">
                     <el-radio-group class="u-client" v-model="client" @change="search">
-                        <el-radio-button label="std">重制</el-radio-button>
-                        <el-radio-button label="origin">缘起</el-radio-button>
+                        <el-radio-button label="std">{{ $t('重制') }}</el-radio-button>
+                        <el-radio-button label="origin">{{ $t('缘起') }}</el-radio-button>
                     </el-radio-group>
                     <el-input
                         class="u-input"
-                        placeholder="请输入 ID 或 名称"
+                        :placeholder="$t('请输入 ID 或 名称')"
                         v-model="query"
                         @change="search"
                         @keyup.enter="search"
                     >
-                        <template #prepend>ID ／名称</template>
+                        <template #prepend>ID ／{{ $t('名称') }}</template>
                         <template #append v-if="isPC">
                             <el-switch
                                 v-model="strict"
-                                active-text="精确匹配"
+                                :active-text="$t('精确匹配')"
                                 @change="search"
-                                title="仅对Buff/Skill有效"
+                                :title="$t('仅对Buff/Skill有效')"
                             ></el-switch>
                         </template>
                     </el-input>
@@ -43,12 +43,12 @@
                         </template>
 
                         <div v-if="total && done" class="m-resource-count">
-                            <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
+                            <el-icon><Histogram /></el-icon> {{ $t('共找到') }} <b>{{ total }}</b> {{ $t('条记录') }}
                             <div class="u-mode">
-                                插入模式：
+                                {{ $t('插入模式：') }}
                                 <el-radio-group v-model="buff_mode" size="small" @change="changeMode">
-                                    <el-radio-button label="simple">简版</el-radio-button>
-                                    <el-radio-button label="full">完整版</el-radio-button>
+                                    <el-radio-button label="simple">{{ $t('简版') }}</el-radio-button>
+                                    <el-radio-button label="full">{{ $t('完整版') }}</el-radio-button>
                                 </el-radio-group>
                             </div>
                         </div>
@@ -75,24 +75,24 @@
                                 </span>
                             </li>
                         </ul>
-                        <el-alert v-if="!buff.length && done" title="没有找到相关条目" type="info" show-icon></el-alert>
+                        <el-alert v-if="!buff.length && done" :title="$t('没有找到相关条目')" type="info" show-icon></el-alert>
                     </el-tab-pane>
-                    <el-tab-pane label="技能" name="skill">
+                    <el-tab-pane :label="$t('技能')" name="skill">
                         <template #label>
                             <span class="u-tab-label">
                                 <img class="u-icon" svg-inline src="../../assets/img/skill.svg" />
-                                <b>技能</b>
+                                <b>{{ $t('技能') }}</b>
                                 <em class="u-count">{{ stat.skill }}</em>
                             </span>
                         </template>
 
                         <div v-if="total && done" class="m-resource-count">
-                            <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
+                            <el-icon><Histogram /></el-icon> {{ $t('共找到') }} <b>{{ total }}</b> {{ $t('条记录') }}
                             <div class="u-mode">
-                                插入模式：
+                                {{ $t('插入模式：') }}
                                 <el-radio-group v-model="skill_mode" size="small" @change="changeMode">
-                                    <el-radio-button label="simple">简版</el-radio-button>
-                                    <el-radio-button label="full">完整版</el-radio-button>
+                                    <el-radio-button label="simple">{{ $t('简版') }}</el-radio-button>
+                                    <el-radio-button label="full">{{ $t('完整版') }}</el-radio-button>
                                 </el-radio-group>
                             </div>
                         </div>
@@ -120,21 +120,21 @@
                         </ul>
                         <el-alert
                             v-if="!skill.length && done"
-                            title="没有找到相关条目"
+                            :title="$t('没有找到相关条目')"
                             type="info"
                             show-icon
                         ></el-alert>
                     </el-tab-pane>
-                    <el-tab-pane label="物品" name="item">
+                    <el-tab-pane :label="$t('物品')" name="item">
                         <template #label>
                             <span class="u-tab-label">
                                 <img class="u-icon" svg-inline src="../../assets/img/item.svg" />
-                                <b>物品</b>
+                                <b>{{ $t('物品') }}</b>
                                 <em class="u-count">{{ stat.item }}</em>
                             </span>
                         </template>
                         <p v-if="total && done" class="m-resource-count">
-                            <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
+                            <el-icon><Histogram /></el-icon> {{ $t('共找到') }} <b>{{ total }}</b> {{ $t('条记录') }}
                         </p>
                         <ul class="m-resource-list" v-if="item.length">
                             <el-popover
@@ -167,7 +167,7 @@
                                 <jx3-item :item_id="o.id" :client="client"></jx3-item>
                             </el-popover>
                         </ul>
-                        <el-alert v-if="!item.length && done" title="没有找到相关条目" type="info" show-icon></el-alert>
+                        <el-alert v-if="!item.length && done" :title="$t('没有找到相关条目')" type="info" show-icon></el-alert>
                     </el-tab-pane>
                     <el-tab-pane label="Npc" name="npc">
                         <template #label>
@@ -178,7 +178,7 @@
                             </span>
                         </template>
                         <p v-if="total && done" class="m-resource-count">
-                            <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
+                            <el-icon><Histogram /></el-icon> {{ $t('共找到') }} <b>{{ total }}</b> {{ $t('条记录') }}
                         </p>
                         <ul class="m-resource-list" v-if="npc.length">
                             <li
@@ -193,30 +193,30 @@
                                 <img class="u-pic" :title="'IconID:' + o.IconID" :src="iconURL(o.IconID)" />
                                 <span class="u-name">
                                     {{ o.Name }}
-                                    <em v-if="o.Level">(等级：{{ o.Level }})</em>
+                                    <em v-if="o.Level">({{ $t('等级：') + o.Level }})</em>
                                 </span>
                                 <span class="u-content">
-                                    <span class="u-map">地图：{{ o.MapName }}</span>
-                                    <span class="u-life">血量：{{ o.MaxLife }}</span>
-                                    <span class="u-mana">内力：{{ o.MaxMana }}</span>
+                                    <span class="u-map">{{ $t('地图：') + o.MapName }}</span>
+                                    <span class="u-life">{{ $t('血量：') + o.MaxLife }}</span>
+                                    <span class="u-mana">{{ $t('内力：') + o.MaxMana }}</span>
                                 </span>
                                 <span class="u-remark">
                                     {{ o.Requirement }}
                                 </span>
                             </li>
                         </ul>
-                        <el-alert v-if="!npc.length && done" title="没有找到相关条目" type="info" show-icon></el-alert>
+                        <el-alert v-if="!npc.length && done" :title="$t('没有找到相关条目')" type="info" show-icon></el-alert>
                     </el-tab-pane>
-                    <el-tab-pane label="图标" name="icon">
+                    <el-tab-pane :label="$t('图标')" name="icon">
                         <template #label>
                             <span class="u-tab-label">
                                 <img class="u-icon" svg-inline src="../../assets/img/icons.svg" />
-                                <b>图标</b>
+                                <b>{{ $t('图标') }}</b>
                                 <em class="u-count">{{ stat.icon }}</em>
                             </span>
                         </template>
                         <p v-if="icon.length && done" class="m-resource-count">
-                            <el-icon><Histogram /></el-icon> 共找到 <b>{{ icon.length }}</b> 条记录
+                            <el-icon><Histogram /></el-icon> {{ $t('共找到') }} <b>{{ icon.length }}</b> {{ $t('条记录') }}
                         </p>
                         <ul class="m-resource-iconlist">
                             <li
@@ -236,7 +236,7 @@
                                 <!-- </el-tooltip> -->
                             </li>
                         </ul>
-                        <el-alert v-if="!icon.length && done" title="没有找到相关条目" type="info" show-icon></el-alert>
+                        <el-alert v-if="!icon.length && done" :title="$t('没有找到相关条目')" type="info" show-icon></el-alert>
                     </el-tab-pane>
                 </el-tabs>
 
@@ -248,7 +248,7 @@
                         type="primary"
                         icon="ArrowDown"
                         @click="appendPage"
-                        >加载更多</el-button
+                        >{{ $t('加载更多') }}</el-button
                     >
                     <!-- 分页 -->
                     <el-pagination
@@ -263,13 +263,13 @@
                     ></el-pagination>
                 </template>
 
-                <div class="m-database-tip" v-show="isBlank">❤ 请输入搜索条件查询</div>
+                <div class="m-database-tip" v-show="isBlank">❤ {{ $t('请输入搜索条件查询') }}</div>
             </div>
 
             <!-- 插入按钮 -->
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
+                    <el-button @click="dialogVisible = false">{{ $t('取 消') }}</el-button>
                     <el-button type="primary" @click="insert">
                         {{ buttonTXT }}
                     </el-button>

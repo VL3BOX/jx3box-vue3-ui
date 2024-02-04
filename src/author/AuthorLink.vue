@@ -25,7 +25,7 @@
             :class="'u-link__' + data.tv_type"
             :href="tv_link"
             target="_blank"
-            :title="`房间号:${data.tv_id}`"
+            :title="$t('房间号:') + data.tv_id"
         >
             <img :src="getIcon(data.tv_type)" />
         </a>

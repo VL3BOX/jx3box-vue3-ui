@@ -2,7 +2,7 @@
     <div class="c-author-teams" v-if="ready">
         <div class="u-label">
             <img svg-inline src="../../assets/img/leftsidebar/united.svg" />
-            <span>所在团队</span>
+            <span>{{ $t('所在团队') }}</span>
         </div>
         <div class="u-teams">
             <el-tooltip

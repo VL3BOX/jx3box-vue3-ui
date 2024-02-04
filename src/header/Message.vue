@@ -1,6 +1,6 @@
 <template>
     <div class="c-header-msg" id="c-header-msg">
-        <el-tooltip effect="dark" content="消息中心" placement="bottom" popper-class="c-header-tooltip">
+        <el-tooltip effect="dark" :content="$t('消息中心')" placement="bottom" popper-class="c-header-tooltip">
             <a class="u-msg" :href="url">
                 <i class="u-icon u-icon-msg">
                     <i class="u-pop" style="display: none" v-show="pop"></i>

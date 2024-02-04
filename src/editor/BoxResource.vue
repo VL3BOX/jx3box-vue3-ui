@@ -2,16 +2,16 @@
     <div class="c-resource c-resource__jx3box">
         <!-- 上传触发按钮 -->
         <el-button class="u-switch" type="primary" @click="openDialog" :disabled="!enable">
-            <img class="u-icon" svg-inline :src="boxIcon" />魔盒资源
+            <img class="u-icon" svg-inline :src="boxIcon" />{{ $t('魔盒资源') }}
         </el-button>
 
         <!-- 弹出界面 -->
-        <el-dialog class="c-large-dialog" title="魔盒资源库" v-model="dialogVisible">
+        <el-dialog class="c-large-dialog" :title="$t('魔盒资源库')" v-model="dialogVisible">
             <div class="c-resource-content" v-loading="loading">
                 <div class="m-database-search">
                     <el-radio-group class="u-client" v-model="comboClient" @change="search" v-if="type === 'combo'">
-                        <el-radio-button label="std">重制</el-radio-button>
-                        <el-radio-button label="origin">缘起</el-radio-button>
+                        <el-radio-button label="std">{{ $t('重制') }}</el-radio-button>
+                        <el-radio-button label="origin">{{ $t('缘起') }}</el-radio-button>
                     </el-radio-group>
                     <el-input
                         class="u-input"
@@ -20,24 +20,24 @@
                         @change="search"
                         @keyup.enter="search"
                     >
-                        <template #prepend>关键词</template>
+                        <template #prepend>{{ $t('关键词') }}</template>
                         <template #append>
-                            <el-switch v-model="strict" active-text="精确匹配"></el-switch>
+                            <el-switch v-model="strict" :active-text="$t('精确匹配')"></el-switch>
                         </template>
                     </el-input>
                 </div>
 
                 <el-tabs class="m-database-tabs" v-model="type" type="card" @tab-change="changeType">
-                    <el-tab-pane label="魔盒用户" name="authors">
+                    <el-tab-pane :label="$t('魔盒用户')" name="authors">
                         <template #label>
                             <span class="u-tab-label">
                                 <el-icon style="margin-right: 5px"><Avatar></Avatar> </el-icon>
-                                <b>用户</b>
+                                <b>{{ $t('用户') }}</b>
                                 <i class="u-lv-box">Lv2+</i>
                             </span>
                         </template>
                         <p v-if="total && done" class="m-resource-count">
-                            <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
+                            <el-icon><Histogram /></el-icon> {{ $t('共找到') }} <b>{{ total }}</b> {{ $t('条记录') }}
                         </p>
                         <ul class="m-resource-list">
                             <li
@@ -66,21 +66,21 @@
                         </ul>
                         <el-alert
                             v-if="!authors.length && done"
-                            title="没有找到相关条目"
+                            :title="$t('没有找到相关条目')"
                             type="info"
                             show-icon
                         ></el-alert>
                     </el-tab-pane>
-                    <el-tab-pane label="剑三趣图" name="emotions">
+                    <el-tab-pane :label="$t('剑三趣图')" name="emotions">
                         <template #label>
                             <span class="u-tab-label">
                                 <el-icon style="margin-right: 5px"><Sugar /></el-icon>
-                                <b>趣图</b>
+                                <b>{{ $t('趣图') }}</b>
                             </span>
                         </template>
 
                         <p v-if="total && done" class="m-resource-count">
-                            <el-icon><Histogram /></el-icon> 共找到 <b>{{ total }}</b> 条记录
+                            <el-icon><Histogram /></el-icon> {{ $t('共找到') }} <b>{{ total }}</b> {{ $t('条记录') }}
                         </p>
                         <ul class="m-resource-emotion">
                             <li
@@ -96,16 +96,16 @@
                         </ul>
                         <el-alert
                             v-if="!emotions.length && done"
-                            title="没有找到相关条目"
+                            :title="$t('没有找到相关条目')"
                             type="info"
                             show-icon
                         ></el-alert>
                     </el-tab-pane>
-                    <!-- <el-tab-pane label="连招" name="combo">
+                    <!-- <el-tab-pane :label="$t('连招')" name="combo">
                         <template #label>
                             <span class="u-tab-label">
                                 <el-icon style="margin-right: 5px"><Lollipop /></el-icon>
-                                <b>连招</b>
+                                <b>{{ $t('连招') }}</b>
                             </span>
                         </template>
                         <ComboVue :query="query" ref="combo" :client="comboClient" :strict="strict"></ComboVue>
@@ -120,7 +120,7 @@
                         type="primary"
                         icon="ArrowDown"
                         @click="appendPage"
-                        >加载更多</el-button
+                        >{{ $t('加载更多') }}</el-button
                     >
                     <!-- 分页 -->
                     <el-pagination
@@ -135,13 +135,13 @@
                     ></el-pagination>
                 </template>
 
-                <div class="m-database-tip" v-show="isBlank && type !== 'combo'">❤ 请输入搜索条件查询</div>
+                <div class="m-database-tip" v-show="isBlank && type !== 'combo'">❤ {{ $t('请输入搜索条件查询') }}</div>
             </div>
 
             <!-- 插入按钮 -->
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
+                    <el-button @click="dialogVisible = false">{{ $t('取 消') }}</el-button>
                     <el-button type="primary" @click="insert">
                         {{ buttonTXT }}
                     </el-button>

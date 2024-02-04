@@ -7,10 +7,10 @@
         </el-button>
 
         <!-- 弹出界面 -->
-        <el-dialog class="c-large-dialog" title="上传" v-model="dialogVisible" @close="closeUpload">
+        <el-dialog class="c-large-dialog" :title="$t('上传')" v-model="dialogVisible" @close="closeUpload">
             <!-- 清空按钮 -->
             <el-button class="u-upload-clear" plain size="small" @click="clear"
-                ><el-icon><Delete /></el-icon>清空</el-button
+                ><el-icon><Delete /></el-icon>{{ $t('清空') }}</el-button
             >
 
             <!-- 限制提示 -->
@@ -63,7 +63,7 @@
             <!-- 插入按钮 -->
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="closeUpload">取 消</el-button>
+                    <el-button @click="closeUpload">{{ $t('取 消') }}</el-button>
                     <el-button type="primary" @click="insert">
                         {{ buttonTXT }}
                     </el-button>

@@ -1,6 +1,6 @@
 <template>
     <div class="c-header-panel c-header-vip" id="c-header-vip">
-        <el-tooltip effect="dark" content="会员中心" placement="bottom" popper-class="c-header-tooltip">
+        <el-tooltip effect="dark" :content="$t('会员中心')" placement="bottom" popper-class="c-header-tooltip">
             <a class="u-post u-vip" href="/vip/premium">
                 <img class="u-add" svg-inline src="../../assets/img/header/vip.svg" />
             </a>

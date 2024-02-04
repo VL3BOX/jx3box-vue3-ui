@@ -12,8 +12,8 @@
         <!-- 分页 -->
         <el-row v-if="data.length >= 3 || showPager">
             <el-col :span="4">
-                <el-button link v-show="showPager" @click="showLess()">收起</el-button>
-                <el-button link v-show="!showPager" @click="showMore()">查看更多</el-button>
+                <el-button link v-show="showPager" @click="showLess()">{{ $t('收起') }}</el-button>
+                <el-button link v-show="!showPager" @click="showMore()">{{ $t('查看更多') }}</el-button>
             </el-col>
             <el-col :span="20" class="c-comment-reply-pages">
                 <el-pagination

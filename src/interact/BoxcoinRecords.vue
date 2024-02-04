@@ -6,19 +6,19 @@
                     <span class="u-meta u-action">
                         <el-icon><Trophy /></el-icon>
                     </span>
-                    <span class="u-meta u-user">参与打赏</span>
-                    <span class="u-meta u-user">收益作者</span>
-                    <span class="u-meta u-count">盒币</span>
-                    <span class="u-meta u-remark">寄语</span>
+                    <span class="u-meta u-user">{{ $t('参与打赏') }}</span>
+                    <span class="u-meta u-user">{{ $t('收益作者') }}</span>
+                    <span class="u-meta u-count">{{ $t('盒币') }}</span>
+                    <span class="u-meta u-remark">{{ $t('寄语') }}</span>
                     <time class="u-meta u-time"></time>
                 </li>
                 <li v-for="(item, i) in list" :key="i" class="u-item u-body">
                     <span class="u-meta u-action">
                         <template v-if="item.is_user_gift">
-                            <i title="打赏"><img class svg-inline src="../../assets/img/widget/gift.svg" /></i>
+                            <i :title="$t('打赏')"><img class svg-inline src="../../assets/img/widget/gift.svg" /></i>
                         </template>
                         <template v-else>
-                            <i title="品鉴"><img class svg-inline src="../../assets/img/widget/admin_gift.svg" /></i>
+                            <i :title="$t('品鉴')"><img class svg-inline src="../../assets/img/widget/admin_gift.svg" /></i>
                         </template>
                     </span>
                     <a class="u-meta u-user" :href="authorLink(item.operate_user_id)" target="_blank">
@@ -37,7 +37,7 @@
                     <time class="u-meta u-time">{{ showTime(item.created_at) }}</time>
                     <span class="u-client" v-if="isSuperAdmin">{{ item.client }}</span>
                     <span class="u-delete" v-if="isSuperAdmin" @click="recovery(item, i)">
-                        <i class="Delete"></i>撤销
+                        <i class="Delete"></i>{{ $t('撤销') }}
                     </span>
                 </li>
             </ul>

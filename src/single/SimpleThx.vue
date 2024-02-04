@@ -29,7 +29,7 @@
                 @updateRecord="updateRecord"
                 :client="client"
             />
-            <el-tooltip effect="dark" content="打赏记录" placement="top-start">
+            <el-tooltip effect="dark" :content="$t('打赏记录')" placement="top-start">
                 <!-- <div class="w-boxcoin-block"> -->
                 <img
                     src="../../assets/img/widget/records.svg"
@@ -42,7 +42,7 @@
             </el-tooltip>
         </div>
 
-        <el-drawer v-model="showDrawer" title="打赏记录" append-to-body>
+        <el-drawer v-model="showDrawer" :title="$t('打赏记录')" append-to-body>
             <BoxcoinRecords
                 :postId="postId"
                 :postType="postType"

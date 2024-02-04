@@ -1,6 +1,6 @@
 <template>
     <div class="w-creators" v-if="visible">
-        <span class="w-creators-title">联合创作</span>
+        <span class="w-creators-title">{{ $t('联合创作') }}</span>
         <a
             class="w-creators-super w-creators-item"
             v-if="super_author"
@@ -26,7 +26,7 @@
             </a>
         </div>
         <a class="w-creators-edit" :href="editLink" v-if="isCreator">
-            <el-icon><Edit /></el-icon> 编辑当前作品
+            <el-icon><Edit /></el-icon> {{ $t('编辑当前作品') }}
         </a>
     </div>
 </template>

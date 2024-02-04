@@ -2,7 +2,7 @@
     <div class="m-resource-combo">
         <div class="m-combo-list">
             <div v-if="total && done" class="m-resource-count">
-                <i class="el-icon-s-data"></i> 共找到 <b>{{ total }}</b> 条记录
+                <i class="el-icon-s-data"></i> {{ $t('共找到') }} <b>{{ total }}</b> {{ $t('条记录') }}
             </div>
             <ul class="m-resource-list">
                 <li
@@ -31,7 +31,7 @@
             </ul>
             <el-alert
                 v-if="!skill.length && done"
-                title="没有找到相关条目"
+                :title="$t('没有找到相关条目')"
                 type="info"
                 show-icon
             ></el-alert>
@@ -44,7 +44,7 @@
                     type="primary"
                     icon="el-icon-arrow-down"
                     @click="appendPage"
-                    >加载更多</el-button
+                    >{{ $t('加载更多') }}</el-button
                 >
                 <!-- 分页 -->
                 <el-pagination
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <el-divider>已选技能</el-divider>
+        <el-divider>{{ $t('已选技能') }}</el-divider>
         <div class="m-selected-skills">
             <ul class="m-skills-list">
                 <li
@@ -84,7 +84,7 @@
                         </i>
                         <i
                             class="u-remove-icon"
-                            title="移除"
+                            :title="$t('移除')"
                             @click="removeSelected(index)"
                             ><i class="el-icon-close"></i
                         ></i>
