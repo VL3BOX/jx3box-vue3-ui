@@ -1,5 +1,5 @@
 import { createI18n } from "vue-i18n";
-import { $cms } from "../js/https";
+import { $cms } from "@jx3box/jx3box-common/js/https_v2";
 
 // default language that is preloaded
 const currentLang = localStorage.getItem("lang") || "zh-CN";
@@ -85,11 +85,12 @@ export function loadLanguageAsync(i18n, lang) {
 }
 
 const i18n = createI18n({
-    locale: "zh-CN",
     fallbackLocale: "zh-CN",
-    formatFallbackMessages: true,
+    globalInjection: true,
+    legacy: false,
+    locale: "zh-CN",
     messages: {},
-    silentTranslationWarn: !translationWarn,
+    missingWarn: translationWarn,
 });
 
 changeLocale(i18n, "vi");
