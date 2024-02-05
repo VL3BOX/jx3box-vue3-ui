@@ -1,14 +1,14 @@
 <template>
-    <div class="c-author-honor" :style="{ backgroundImage: `url(${imgUrl()})` }" v-if="honor">
+    <a class="c-author-honor" :style="{ backgroundImage: `url(${imgUrl()})` }" v-if="honor" :href="url" target="_blank">
         <span :style="{ color: honor.color }">{{ honor.honor }}</span>
-    </div>
+    </a>
 </template>
 <script>
 import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import { getUserHonor } from "../../service/cms";
 import { inRange } from "lodash";
 
-const { __imgPath } = JX3BOX;
+const { __imgPath, __Root } = JX3BOX;
 const HONOR_IMG_KEY = "honor_img";
 export default {
     props: ["uid"],
@@ -28,6 +28,9 @@ export default {
     computed: {
         isJdt() {
             return this.honor?.val?.toLowerCase()?.includes("jdt");
+        },
+        url() {
+            return this.honor?.honor_info?.url ? __Root + this.honor?.honor_info?.url : "";
         },
     },
     methods: {
@@ -61,7 +64,7 @@ export default {
         },
         //有称号后，获取样式配置
         getHonorStyle(honor) {
-            const data = honor
+            const data = honor;
             let honorConfig = honor?.honor_info;
             let only = honorConfig.only;
             let prefix = honorConfig.prefix;
@@ -69,7 +72,7 @@ export default {
             let ranking = honorConfig.ranking;
             let honorStr = honorConfig.year || "";
 
-            console.log(honorConfig, regPrefix)
+            console.log(honorConfig, regPrefix);
             if (!only) {
                 if (regPrefix) {
                     honorStr = honorStr + (data[regPrefix[0].slice(1, -1)] || "");
@@ -82,10 +85,7 @@ export default {
             if (ranking.length > 0) {
                 data.imgIndex = 0;
                 for (let i = 0; i < ranking.length; i++) {
-                    if (
-                        honor.ranking !== undefined &&
-                        inRange(Number(honor.ranking), ranking[i][0], ranking[i][1])
-                    ) {
+                    if (honor.ranking !== undefined && inRange(Number(honor.ranking), ranking[i][0], ranking[i][1])) {
                         data.imgIndex = i;
                         let str = ranking[i][2];
                         let regStr = str.match(/\{([^{}]+?)\}/g);
