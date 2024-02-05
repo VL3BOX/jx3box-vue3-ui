@@ -18,9 +18,9 @@
                 <AdminDirectMessage :user-id="8" :sourceId="19382" sourceType="macro"></AdminDirectMessage>
             </template>
         </breadcrumb>
-        <LeftSidebar :open="true" :uid="8719">
+        <LeftSidebar :open="true" :uid="7">
             <LeftSideToggle :mobileOnly="true" />
-            <Author :uid="8719" />
+            <Author :uid="7" />
         </LeftSidebar>
 
         <Main :withoutLeft="false" :withoutRight="false">
