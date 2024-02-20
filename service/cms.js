@@ -45,6 +45,11 @@ function upload(formData) {
     return $cms().post(`/api/cms/upload`, formData);
 }
 
+function getUserHonor(uid) {
+    return $cms({ mute: true })
+        .get(`/api/cms/user/honor/${uid}/using`)
+}
+
 function getSliders(source_type, source_ids, client='std') {
     let _params = {
         type: "slider",
@@ -66,4 +71,4 @@ function getCollection(id) {
     return $cms({ mute: true }).get(`/api/cms/post/collection/${id}`);
 }
 
-export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, getHonorJson, getSliders, loadAuthors, loadEmotions, uploadFile, getCollection };
+export { getPostAuthors, uploadImage, upload, getDecoration, getDecorationJson, getHonorJson, getSliders, loadAuthors, loadEmotions, uploadFile, getCollection, getUserHonor };
