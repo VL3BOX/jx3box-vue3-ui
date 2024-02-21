@@ -2,9 +2,9 @@ import { createI18n } from "vue-i18n";
 import { $cms } from "@jx3box/jx3box-common/js/https_v2";
 
 // default language that is preloaded
-const currentLang = localStorage.getItem("lang") || "zh-CN";
+const currentLang = sessionStorage.getItem("lang") || "zh-CN";
 const loadedLanguages = ["zh-CN"];
-const translationWarn = ~~localStorage.getItem("translationWarn");
+const translationWarn = ~~sessionStorage.getItem("translationWarn");
 
 
 function setLocale(i18n, locale) {
@@ -31,7 +31,7 @@ export function changeLocale(i18n, lang) {
     } else {
         // momment or dayjs locale
     }
-    localStorage.setItem("lang", lang);
+    sessionStorage.setItem("lang", lang);
     loadLanguageAsync(i18n, lang);
     // window.location.reload();
 }
@@ -52,7 +52,7 @@ export function loadLanguageAsync(i18n, lang) {
         console.log("OFFLINE", lang);
         const messages = await import(/* webpackChunkName: "[request]" */ `./locales/${lang}.json`);
         console.log("messages", JSON.stringify(messages.default));
-        localStorage.setItem("locale", JSON.stringify(messages.default));
+        sessionStorage.setItem("locale", JSON.stringify(messages.default));
         i18n.global.setLocaleMessage(lang, messages.default);
         loadedLanguages.push(lang);
         return setLocale(i18n, lang);
@@ -64,7 +64,7 @@ export function loadLanguageAsync(i18n, lang) {
         return $cms()
             .get(`/locales/${lang}.json`)
             .then((res) => {
-                localStorage.setItem("locale", JSON.stringify(res.data));
+                sessionStorage.setItem("locale", JSON.stringify(res.data));
                 loadedLanguages.push(lang);
 
                 i18n.global.setLocaleMessage(lang, res.data);
@@ -75,7 +75,7 @@ export function loadLanguageAsync(i18n, lang) {
             });
     }
 
-    const langData = localStorage.getItem("locale");
+    const langData = sessionStorage.getItem("locale");
     if (langData) {
         loadedLanguages.push(lang);
         i18n.global.setLocaleMessage(lang, JSON.parse(langData));
