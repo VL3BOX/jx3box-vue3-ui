@@ -1,11 +1,14 @@
+import dayjs from "dayjs";
 import { createI18n } from "vue-i18n";
+
 import { $cms } from "@jx3box/jx3box-common/js/https_v2";
+import { zhcnDateTimeFormat } from "./datetime";
+
 
 // default language that is preloaded
 const currentLang = sessionStorage.getItem("lang") || "zh-CN";
 const loadedLanguages = ["zh-CN"];
 const translationWarn = ~~sessionStorage.getItem("translationWarn");
-
 
 function setLocale(i18n, locale) {
     if (i18n.mode === "legacy") {
@@ -28,8 +31,10 @@ function getLocale(i18n) {
 export function changeLocale(i18n, lang) {
     if (currentLang === "zh-CN") {
         // momment or dayjs locale
+        dayjs.locale("zh-cn", zhcnDateTimeFormat);
     } else {
         // momment or dayjs locale
+        dayjs.locale("vi");
     }
     sessionStorage.setItem("lang", lang);
     loadLanguageAsync(i18n, lang);
