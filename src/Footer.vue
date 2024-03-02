@@ -2,8 +2,8 @@
     <footer class="c-footer" id="c-footer" v-if="!isApp" :class="{ 'is--dark': darkMode }">
         <div class="c-footer-inner">
             <div class="c-footer-left">
-                &copy;2024 <a href="https://www.jx3box.com/" class="u-beian" target="_blank">&copy;JX3BOX</a>.
-                All rights reserved. Modified by <a href="https://vl3box.com/" class="u-beian" target="_blank">&copy;VL3BOX</a>.
+                &copy;2024 <a href="https://www.jx3box.com/" class="u-beian" target="_blank">JX3BOX</a>.
+                All rights reserved. Translated by <a href="https://vl3box.com/" class="u-beian" target="_blank">VL3BOX</a>.
             </div>
             <div class="c-footer-right">
                 <a class="u-about" :href="about" target="_blank">{{ $t('关于我们') }}</a>

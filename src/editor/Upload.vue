@@ -117,7 +117,7 @@ export default {
             tip:
                 this.desc ||
                 `一次最多同时上传${this.max}个文件（单个文件不超过${this.sizeLimit}M），格式限常见的图片、文档、数据表及压缩包`,
-            btn_txt: this.text || "上传附件",
+            btn_txt: this.text || this.$i18n.t("上传附件"),
 
             fileList: [],
             selectedCount: 0,
