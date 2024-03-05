@@ -6,9 +6,18 @@ import { zhcnDateTimeFormat } from "./datetime";
 
 
 // default language that is preloaded
-const currentLang = sessionStorage.getItem("lang") || "zh-CN";
 const loadedLanguages = ["zh-CN"];
-const translationWarn = ~~sessionStorage.getItem("translationWarn");
+const currentLang = sessionStorage.getItem("lang") || "zh-CN";
+const currentMessages = JSON.parse(sessionStorage.getItem("locale") || "{}");
+
+const i18n = createI18n({
+    locale: currentLang,
+    fallbackLocale: "zh-CN",
+    globalInjection: true,
+    legacy: false,
+    messages: currentMessages,
+    missingWarn: !(process.env.NODE_ENV === "production"),
+});
 
 function setLocale(i18n, locale) {
     if (i18n.mode === "legacy") {
@@ -21,7 +30,7 @@ function setLocale(i18n, locale) {
     return locale;
 }
 
-function getLocale(i18n) {
+export function getLocale() {
     if (i18n.mode === "legacy") {
         return i18n.global.locale;
     }
@@ -34,11 +43,11 @@ export function changeLocale(i18n, lang) {
         dayjs.locale("zh-cn", zhcnDateTimeFormat);
     } else {
         // momment or dayjs locale
-        dayjs.locale("vi");
+        dayjs.locale(lang);
     }
     sessionStorage.setItem("lang", lang);
     loadLanguageAsync(i18n, lang);
-    // window.location.reload();
+    window.location.reload();
 }
 
 export function loadLanguageAsync(i18n, lang) {
@@ -54,9 +63,7 @@ export function loadLanguageAsync(i18n, lang) {
     }
 
     async function importOffline(lang) {
-        console.log("OFFLINE", lang);
         const messages = await import(/* webpackChunkName: "[request]" */ `./locales/${lang}.json`);
-        console.log("messages", JSON.stringify(messages.default));
         sessionStorage.setItem("locale", JSON.stringify(messages.default));
         i18n.global.setLocaleMessage(lang, messages.default);
         loadedLanguages.push(lang);
@@ -64,14 +71,11 @@ export function loadLanguageAsync(i18n, lang) {
     }
 
     async function importOnline(lang) {
-        console.log("ONLINE", lang);
-
         return $cms()
             .get(`/locales/${lang}.json`)
             .then((res) => {
                 sessionStorage.setItem("locale", JSON.stringify(res.data));
                 loadedLanguages.push(lang);
-
                 i18n.global.setLocaleMessage(lang, res.data);
                 return setLocale(i18n, lang);
             })
@@ -89,14 +93,6 @@ export function loadLanguageAsync(i18n, lang) {
     return process.env.OFFLINE ? importOffline(lang) : importOnline(lang);
 }
 
-const i18n = createI18n({
-    fallbackLocale: "zh-CN",
-    globalInjection: true,
-    legacy: false,
-    locale: "zh-CN",
-    messages: {},
-    missingWarn: translationWarn,
-});
 
 changeLocale(i18n, "vi");
 
