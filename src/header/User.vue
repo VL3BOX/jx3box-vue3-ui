@@ -14,10 +14,10 @@
             <asset :asset="asset" />
 
             <!-- manage -->
-            <manage />
+            <manage :isTeammate="isTeammate" v-if="isTeammate" />
 
             <!-- user info -->
-            <user-info :asset="asset" @logout="logout" />
+            <user-info :asset="asset" @logout="logout" @update="update" />
         </template>
         <template v-else>
             <div class="c-header-login">
@@ -74,6 +74,8 @@ export default {
             // 链接
             login_url: JX3BOX.__Links.account.login + "?redirect=" + location.href,
             register_url: JX3BOX.__Links.account.register + "?redirect=" + location.href,
+
+            isTeammate: false,
         };
     },
     methods: {
@@ -132,6 +134,10 @@ export default {
         // 退出登录
         logout: function () {
             this.isLogin = false;
+        },
+
+        update: function ({ is_teammate }) {
+            this.isTeammate = is_teammate;
         },
     },
     created: function () {

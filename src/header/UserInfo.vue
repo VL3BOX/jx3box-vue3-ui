@@ -14,15 +14,22 @@
                         <a :href="url.publish">发布中心</a>
                     </li>
                     <hr />
-                    <li v-if="isAdmin">
-                        <a href="/admin">站点配置</a>
+                    <li v-for="item in userPanel" :key="item.label">
+                        <a :href="item.link" :target="item.target || '_self'">
+                            <!-- <i :class="item.icon || 'el-icon-present'"></i> -->
+                            {{ item.label }}
+                        </a>
                     </li>
-                    <li v-if="isEditor">
-                        <a href="https://os.jx3box.com/admin">管理平台</a>
-                    </li>
+                    <template v-if="isTeammate">
+                        <li v-for="item in adminPanel" :key="item.label">
+                            <a :href="item.link" :target="item.target || '_self'">
+                                <!-- <i :class="item.icon || 'el-icon-present'"></i> -->
+                                {{ item.label }}
+                            </a>
+                        </li>
+                    </template>
                     <li>
                         <a class="" @click="logout">退出登录</a>
-
                     </li>
                 </ul>
             </template>
@@ -96,14 +103,15 @@
 <script>
 import User from "@jx3box/jx3box-common/js/user";
 import { showAvatar } from "@jx3box/jx3box-common/js/utils";
-import {showDate} from "@jx3box/jx3box-common/js/moment";
+import { showDate } from "@jx3box/jx3box-common/js/moment";
 import { getMyInfo } from "../../service/author";
 import JX3BOX from "@jx3box/jx3box-common/data/jx3box.json";
 import { copyText } from "../../utils";
+import { getMenu } from "../../service/header";
 export default {
     name: "HeaderUserInfo",
     props: ["asset"],
-    emits: ["logout"],
+    emits: ["logout", "update"],
     data() {
         return {
             isPhone: window.innerWidth < 768,
@@ -119,6 +127,9 @@ export default {
             },
 
             isSuperAuthor: false,
+
+            panel: [],
+            isTeammate: false,
         };
     },
     computed: {
@@ -137,20 +148,28 @@ export default {
         isAdmin() {
             return User.isAdmin();
         },
-        isEditor() {
-            return User.isEditor();
+        userPanel: function () {
+            return this.panel.filter((item) => {
+                return !item.onlyAdmin;
+            });
         },
-        pro_expire_date: function() {
-            return this.asset.pro_expire_date ? showDate(this.asset.pro_expire_date) : '-';
+        adminPanel: function () {
+            return this.panel.filter((item) => {
+                return item.onlyAdmin;
+            });
+        },
+        pro_expire_date: function () {
+            return this.asset.pro_expire_date ? showDate(this.asset.pro_expire_date) : "-";
         },
     },
     mounted() {
         this.loadMyInfo();
+        this.loadPanel();
     },
     methods: {
         copyText,
         showAvatar,
-        logout: function (mute=false) {
+        logout: function (mute = false) {
             User.destroy()
                 .then(() => {
                     this.$emit("logout");
@@ -175,11 +194,28 @@ export default {
             getMyInfo().then((data) => {
                 this.user = data;
                 this.isSuperAuthor = !!data.sign;
-
+                this.isTeammate = this.user?.is_teammate;
+                this.$emit("update", this.user);
                 if (this.user.deleted) {
                     this.logout(true);
                 }
             });
+        },
+        loadPanel: function () {
+            const panel = JSON.parse(sessionStorage.getItem("panel"));
+            try {
+                if (panel) {
+                    this.panel = panel;
+                } else {
+                    getMenu("panel").then((res) => {
+                        this.panel = res.data?.data?.val;
+                        sessionStorage.setItem("panel", JSON.stringify(this.panel));
+                    });
+                }
+            } catch (e) {
+                this.panel = panel;
+                console.log("loadPanel error", e);
+            }
         },
     },
 };
